@@ -1,0 +1,24 @@
+title: wklchris 的博客 - wklchris' blog
+author: wklchris
+email: wklchris AT hotmail DOT com
+description: > # this means to ignore newlines until "baseurl:"
+  This is wklchris' blog. Please refer to original page if repost. 
+  这里是 wklchris 的博客。如有转载，请注明出处页面。
+baseurl: ""
+github_username:  wklchris
+
+defaults:
+  -
+    scope:
+      path: "posts" # 一个空的字符串代表项目中所有的文件
+    values:
+      layout: "default"
+      theme: minima
+      permalink: date
+
+# Build settings
+markdown: kramdown
+theme: minima
+exclude:
+  - Gemfile
+  - Gemfile.lock
