@@ -13,9 +13,9 @@ category: Jekyll
 ## 安装 Jekyll 和 Bundle
 请确保电脑的 Internet 连接正常。转到 dev-kit 目录，空白处Shift+鼠标右键呼出运行cmd，输入：
 ```
-ruby dk.rb init  
-ruby dk.rb install  
-gem install jekyll  
+ruby dk.rb init
+ruby dk.rb install
+gem install jekyll
 gem install bundle
 ```
 
@@ -101,6 +101,17 @@ title: 怎样用 Github Pages 来建立一个博客
 
     username.github.io/1900/01/20/this-is-the-title.html
 
+## 添加 Disqus 评论区
+
+*注：该评论区在非production环境（比如本地调试）下不能显示。*
+
+该模板针对 Disqus 专门做出了优化，只需要在 \_config.yml 中添加：
+```
+disqus:
+  shortname: my_disqus_shortname
+```
+即可。注意将你注册的 Disqus 账号对应博客网址的短id正确填写。
+
 ## 发布前的测试
 
 仍然是仓库文件夹，在cmd命令下输入：
@@ -111,4 +122,13 @@ bundle exec jekyll serve
 
 如果后续对 \_config.yml 文件进行了修改，就需要执行第一行；否则只用执行第二行即可。
 
-此时服务器会运行，你可以通过访问[http://127.0.0.1:4000](http://127.0.0.1:4000)预览你的博客页面。
+此时服务器会运行，你可以通过访问 [http://127.0.0.1:4000](http://127.0.0.1:4000) 预览你的博客页面。
+
+如果不想测试，可以直接：`jekyll build` 之后，将本地 git 推送。
+
+## 扩展功能
+
+1. 如果在仓库目录下新建一个 assets 文件夹，内放 main.scss 的文件，即可对一些细节进行定义。  
+2. layout 文件夹可以留空，但也可以从主题所在的 Github 仓库克隆。你也可以自定义新的 layout. 
+
+具体的文件内容参考[本博客的 Github 仓库](https://github.com/wklchris/wklchris.github.io)。

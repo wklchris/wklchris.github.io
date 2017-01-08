@@ -43,6 +43,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  jekyll (~> 3.3)
   minima
 
 BUNDLED WITH

@@ -1,0 +1,12 @@
+---
+layout: page
+---
+<h1>博文分类</h1>
+{% for category in site.categories %}
+<h3 id="{{ category | first }}">{{ category | first }}</h3>
+<ul class="arc-list">
+    {% for post in category.last %}
+        <li>{{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endfor %}
