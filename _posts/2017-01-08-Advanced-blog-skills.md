@@ -23,9 +23,15 @@ tag: 搭建博客
 
 ## 添加网站图标
 
-一个好的网站怎么能没有图标呢？一个32$\times$32的 favicon.ico 文件能够解决你的烦恼。把它丢到根目录下即可。
+一个好的网站怎么能没有图标呢？一个32$\times$32的 favicon.ico 文件能够解决你的烦恼。把它丢到根目录下，并在 default.html 中加上：
 
-本站的图标来自 Noun Project 的[这个页面](https://thenounproject.com/term/open-book/793832/)，未去水印，只是重做为 ico 图标。在此对作者 ProSymbols 表示感谢。
+    <link rel="shortcut icon" type="image/x-icon" href="{% raw %}{{ site.url }}{% endraw %}/favicon.ico">
+
+如果以上不成功，请使用 png 格式，或者尝试省略 site.url 变量。形如：
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+
+p.s. 本站的图标来自 Noun Project 的[这个页面](https://thenounproject.com/term/open-book/793832/)，未去水印，只是重做为 ico 图标。在此对作者 ProSymbols 表示感谢。
 
 ## 利用 MathJax 添加数学公式支持
 
