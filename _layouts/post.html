@@ -7,10 +7,23 @@ layout: default
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
   </header>
+  
+  <div class="related-post">
+  {% for tag in site.tags %}
+    <h3 style="font-family: 微软雅黑">相关文章列表</h3>
+    <ul class="arc-list">
+    {% for post in tag.last %}
+        <li>{{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endfor %}
+  </div>
 
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
+  
+  <a href="javascript:scroll(0,0)">-- 返回顶部 --</a>
 
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}

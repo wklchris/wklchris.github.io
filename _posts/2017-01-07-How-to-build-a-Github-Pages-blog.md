@@ -1,8 +1,11 @@
 ---
 layout: post
-title: 怎样用 Github Pages 来建立一个博客
+title: 怎样用 Github Pages 来建立一个博客（入门）
 category: Jekyll
+tag: 搭建博客
 ---
+
+本文基于 Jekyll，搭建成功后，博文可以使用 Markdown 进行书写。初级使用者只需初步了解 Github 推送方法，无需 html 相关知识。
 
 ## 安装 Ruby 和 dev-kit
 
@@ -12,6 +15,7 @@ category: Jekyll
 
 ## 安装 Jekyll 和 Bundle
 请确保电脑的 Internet 连接正常。转到 dev-kit 目录，空白处Shift+鼠标右键呼出运行cmd，输入：
+
 ```
 ruby dk.rb init
 ruby dk.rb install
@@ -23,6 +27,7 @@ gem install bundle
 
 ## 初始化博客文件夹
 切换到 *username*.github.io 仓库所在本地文件夹，进行普通的初始化。使用 bash 命令输入（以我的博客为例）：
+
 ```
 git init
 git remote add origin https://github.com/wklchris/wklchris.github.io.git
@@ -106,10 +111,12 @@ title: 怎样用 Github Pages 来建立一个博客
 *注：该评论区在非production环境（比如本地调试）下不能显示。*
 
 该模板针对 Disqus 专门做出了优化，只需要在 \_config.yml 中添加：
+
 ```
 disqus:
   shortname: my_disqus_shortname
 ```
+
 即可。注意将你注册的 Disqus 账号对应博客网址的短id正确填写。
 
 ## 发布前的测试
