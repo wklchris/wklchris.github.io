@@ -6,7 +6,7 @@ tag: 搭建博客
 ---
 
 本文是上一篇搭建 Jekyll 博客的进阶内容。详细的教程请参考：  
-- 全文英文站点：[链接](https://jekyllrb.com/docs/home/)
+- 全文英文站点：[链接](https://jekyllrb.com/docs/home/)  
 - 部分中翻站点：[链接](http://jekyllcn.com/docs/home/)
 
 ## 自定义 scss 
@@ -25,7 +25,7 @@ tag: 搭建博客
 
 一个好的网站怎么能没有图标呢？一个32$\times$32的 favicon.ico 文件能够解决你的烦恼。把它丢到根目录下即可。
 
-本站的图标来自 Noun Project 的[这个页面](https://thenounproject.com/term/open-book/793832/)，未去水印只是重做为 ico 图标。在此对作者 ProSymbols 表示感谢。
+本站的图标来自 Noun Project 的[这个页面](https://thenounproject.com/term/open-book/793832/)，未去水印，只是重做为 ico 图标。在此对作者 ProSymbols 表示感谢。
 
 ## 利用 MathJax 添加数学公式支持
 
