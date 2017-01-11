@@ -1,9 +1,3 @@
----
-layout: page
-title: 关于
-permalink: /about/
----
-
 [myblog]: https://wklchris.github.io
 [GithubPages]: https://pages.github.com/
 
