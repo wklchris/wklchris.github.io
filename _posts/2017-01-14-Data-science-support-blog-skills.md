@@ -32,7 +32,7 @@ plt.show()
 ```
 
 
-![png](https://github.com/wklchris/wklchris.github.io/tree/master/assets/ipynb-images/Data-science-support-blog-skills_1_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Data-science-support-blog-skills_1_0.png)
 
 
 ## 实现原理
@@ -111,7 +111,7 @@ shutil.rmtree(ipynb_image_path)
 
 ```python
 # Copy the string needed to clipboard
-clipboard.copy(r'https://github.com/wklchris/wklchris.github.io/tree/master/assets')
+clipboard.copy(r'https://wklchris.github.io/assets/ipynb-images')
 ```
 
 要替换的对象是 \<ipynb-filename\>\_files，在本文中是`data-science-support-blog-skills_files`，把它换成以上字符串即可。例如：
@@ -120,7 +120,7 @@ clipboard.copy(r'https://github.com/wklchris/wklchris.github.io/tree/master/asse
     
 替换成：
 
-    ![png](https://github.com/wklchris/wklchris.github.io/tree/master/assets/Data-science-support-blog-skills_1_0.png)
+    ![png](https://wklchris.github.io/assets/ipynb-images/Data-science-support-blog-skills_1_0.png)
 
 ## 写在最后
 

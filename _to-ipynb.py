@@ -36,4 +36,4 @@ moveallfiles(ipynb_image_path, destination_path)
 shutil.rmtree(ipynb_image_path)
 
 # Copy the string needed to clipboard
-clipboard.copy(r'https://github.com/wklchris/wklchris.github.io/tree/master/assets/ipynb-images')
+clipboard.copy(r'https://wklchris.github.io/assets/ipynb-images')
