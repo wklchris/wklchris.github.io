@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 怎样用 Github Pages 来建立一个博客（进阶）
+title: 怎样用 Github Pages 建立博客（2. 进阶）
 category: Jekyll
 tag: 搭建博客
 ---

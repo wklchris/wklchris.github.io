@@ -4,3 +4,8 @@ Gemfile.lock
 _site
 .sass-cache
 *.gem
+
+# ipynb
+ipynb/
+!ipynb/*.md
+!ipynb/_convert.bat

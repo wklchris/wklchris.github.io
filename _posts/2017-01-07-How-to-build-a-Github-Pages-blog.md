@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 怎样用 Github Pages 来建立一个博客（入门）
+title: 怎样用 Github Pages 建立博客（1. 入门）
 category: Jekyll
 tag: 搭建博客
 ---
@@ -26,6 +26,9 @@ gem install bundle
 下载和安装会自动进行。
 
 ## 初始化博客文件夹
+
+**以下初始化内容可以通过 fork 对应的[主题仓库](https://pages.github.com/themes/)完成。**
+
 切换到 *username*.github.io 仓库所在本地文件夹，进行普通的初始化。使用 bash 命令输入（以我的博客为例）：
 
 ```
