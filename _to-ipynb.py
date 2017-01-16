@@ -39,7 +39,7 @@ shutil.rmtree(ipynb_image_path)
 headstr  = '---\n'
 headstr += 'layout: post\n'
 headstr += 'title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）\n'
-headstr += 'category: Jekylln\n'
+headstr += 'category: Jekyll\n'
 headstr += 'tag: 搭建博客\n'
 headstr += '---\n\n'
 

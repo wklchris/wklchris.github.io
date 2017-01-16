@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）
-category: Jekylln
+category: Jekyll
 tag: 搭建博客
 ---
 
@@ -58,6 +58,8 @@ Jupyer 支持将 ipynb 转为 Markdown 文件，步骤是：
 以后每次写完 ipynb ，用 \_to-ipynb.py 脚本运行一遍即可。对应的图片会自动归档到 `assets/ipynb-images` 目录下，并修复转换好的 markdown 文件中的图片链接。
 
 ## \_to-ipynb.py 文件内容
+
+**~ 下载链接在此：[点我](https://github.com/wklchris/wklchris.github.io/blob/master/_to-ipynb.py)**
 
 首先是读取时间（作为博客文件名的一部分），比如 1900-01-30. 然后是读取当前文件位置。用户只需要输入 ipynb 文件的名称（比如 Data-science-support-blog-skills），最好是连字符支持的——因为这将直接在 \_posts 文件夹下生成形如 1900-01-30-Data-science-support-blog-skills.md 文件。
 
@@ -118,7 +120,7 @@ shutil.rmtree(ipynb_image_path)
 headstr  = '---\n'
 headstr += 'layout: post\n'
 headstr += 'title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）\n'
-headstr += 'category: Jekylln\n'
+headstr += 'category: Jekyll\n'
 headstr += 'tag: 搭建博客\n'
 headstr += '---\n\n'
 
