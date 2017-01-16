@@ -35,5 +35,25 @@ $on-laptop:        800px;
 //     }
 // }
 
+@media screen and (min-width:1024px) {
+	aside{
+		position:fixed;
+		left:75%;
+		top:0;
+		right:0;
+		height:100%;
+		overflow:hidden;
+        background-color:#eeeeee;
+		padding:2em 3em;
+		box-shadow:5px 0 5px rgba(0,0,0,.1) inset;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	aside{
+		padding: 1em;
+	}
+}
+
 // Import partials from the `minima` theme.
 @import "minima";
