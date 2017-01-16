@@ -19,23 +19,12 @@ layout: default
   {% endfor %}
   </div>
 
+  {% include sidebar-toc.html %}
+
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
   
-  <aside>
-    <h2>本文目录</h2>
-    <script src="/assets/Javascript/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/assets/Javascript/toc.js"></script>
-    <div id="toc"></div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-      $('#toc').toc();
-    });
-    </script>
-    <p><a href="javascript:scroll(0,0)">--【 返回顶部 】--</a></p>
-  </aside>
-
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}

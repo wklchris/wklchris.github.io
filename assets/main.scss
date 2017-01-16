@@ -35,10 +35,17 @@ $on-laptop:        800px;
 //     }
 // }
 
+// Import partials from the `minima` theme.
+@import "minima";
+
 @media screen and (min-width:1024px) {
+	.wrapper{
+		margin-right: 30%; // 文字右侧到页边30%
+	}
+
 	aside{
 		position:fixed;
-		left:75%;
+		left:75%;  // 侧边栏宽25%
 		top:0;
 		right:0;
 		height:100%;
@@ -54,6 +61,3 @@ $on-laptop:        800px;
 		padding: 1em;
 	}
 }
-
-// Import partials from the `minima` theme.
-@import "minima";

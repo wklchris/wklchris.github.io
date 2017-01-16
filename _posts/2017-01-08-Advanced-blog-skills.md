@@ -84,37 +84,37 @@ $$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
 
 这里需要用到 JavaScript. 从我的 [assets/Javascript 仓库](https://github.com/wklchris/wklchris.github.io/tree/master/assets/Javascript)可以下载到需要的 toc.js 文件。此文件出处在[这里](https://github.com/ghiculescu/jekyll-table-of-contents)。
 
-侧边栏这里使用 `<aside>` 标签进行处理。找到 assets/main.scss，添加：
+侧边栏这里使用 `<aside>` 标签进行处理。找到 assets/main.scss，并把以下内容放在 `@import "minima";` 的下方：
 
 ```css
 @media screen and (min-width:1024px) {
-    aside{
-        position:fixed;
-        left:75%;
-        top:0;
-        right:0;
-        height:100%;
-        overflow:hidden;
+	.wrapper{
+		margin-right: 30%; // 文字右侧到页边30%
+	}
+
+	aside{
+		position:fixed;
+		left:75%;  // 侧边栏宽25%
+		top:0;
+		right:0;
+		height:100%;
+		overflow:hidden;
         background-color:#eeeeee;
-        padding:2em 3em;
-        box-shadow:5px 0 5px rgba(0,0,0,.1) inset;
-    }
+		padding:2em 3em;
+		box-shadow:5px 0 5px rgba(0,0,0,.1) inset;
+	}
 }
 
 @media screen and (max-width: 1023px) {
-    aside{
-        padding: 1em;
-    }
+	aside{
+		padding: 1em;
+	}
 }
 ```
 
-上面指明的 left 75% 表示侧边栏宽度是靠右的 25%. 再到 \_sass/minima/\_base.scss 中，找到 .wrapper，改动：
+上面指明的 left 75% 表示侧边栏宽度是靠右的 25%.
 
-    margin-right: 30%;
-
-因为我们这里给出的 30% 是文字右侧到页面右侧的距离，也就是文字与侧边栏左侧还有 5% 总页面宽的空距。
-
-然后在 post.html 文件中，post-content 这个 `<div>` 标签的下方，添加以下内容。当然，jquery支持的那部分（jquery-1.7.2.min.js）可以直接从其网站上引用，我是直接下载到文件夹中了。
+然后在 post.html 文件中，post-content 这个 `<div>` 标签的上方，添加以下内容。当然，jquery支持的那部分（jquery-1.7.2.min.js）可以直接从其网站上引用，我是直接下载到文件夹中了。
 
 ```html
   <aside>
@@ -130,7 +130,13 @@ $$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
   </aside>
 ```
 
-虽然如此，侧边栏还是略显空荡。以后再更新吧。
+以上这段也可以写成 sidebar-toc.html ，放在 \_includes 下，然后在 post.html 中换成：
+
+```html
+{% raw %}{% include sidebar-toc.html %}{% endraw %}
+```
+
+此外，非博文页我另做了一份 sidebar.html，真是麻烦。侧边栏还是略显空荡，以后再更新吧。
 
 ## 添加相关文章栏目
 
