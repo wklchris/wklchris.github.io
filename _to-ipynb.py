@@ -1,4 +1,4 @@
-import os
+import os, re
 import shutil
 import datetime
 import clipboard
@@ -35,5 +35,21 @@ moveallfiles(ipynb_image_path, destination_path)
 # Delete the origin image path
 shutil.rmtree(ipynb_image_path)
 
-# Copy the string needed to clipboard
-clipboard.copy(r'https://wklchris.github.io/assets/ipynb-images')
+# Replace the image link strings
+headstr  = '---\n'
+headstr += 'layout: post\n'
+headstr += 'title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）\n'
+headstr += 'category: Jekylln\n'
+headstr += 'tag: 搭建博客\n'
+headstr += '---\n\n'
+
+with open(post_path, 'r', encoding='utf8') as f:
+    fstr = f.read()
+
+fstr = re.compile(r'{}_files'.format(fname)).sub(r'https://wklchris.github.io/assets/ipynb-images', fstr)
+fstr = headstr + fstr
+
+os.remove(post_path)
+with open(post_path, 'w', encoding='utf8') as f:
+    f.write(fstr)
+

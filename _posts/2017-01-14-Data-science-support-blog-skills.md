@@ -1,9 +1,10 @@
 ---
 layout: post
 title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）
-category: Jekyll Jupyter
+category: Jekylln
 tag: 搭建博客
 ---
+
 
 本文基于前两篇的搭建 Jekyll 的基础上，向博客添加能够方便地撰写科学计算内容的功能，主要是通过 Jupyter Notebook 将 ipynb 文件转换为 Markdown 文件，实现方便地插入 Python/R 的代码及其图像。
 
@@ -43,23 +44,25 @@ Jupyer 支持将 ipynb 转为 Markdown 文件，步骤是：
 2. 自动生成的文件：
     - 生成一个名为 *filename*\_files 文件夹，存放 ipynb 生成的图片；  
     - 生成同名的 *filename*.md 文件，图片以如下形式链接（以本文为例）：
-    
-          ![png](data-science-support-blog-skills_files/data-science-support-blog-skills_1_0.png)
-          
+
+```
+![png](data-science-support-blog-skills_files/data-science-support-blog-skills_1_0.png)
+```
+
 因此我们要做的事情就很简单了：
 
 1. 在博客下新建一个名为 ipynb 的文件夹，以后 Jupyter Notebook 文件都放在里面；  
 2. 在主文件夹（ipynb 文件夹的上级）下，建立一个 python 文件 \_to-ipynb.py，用于转换。具体代码见下一节。
 3. 将 ipynb 文件夹下不需要进行版本控制的内容添加到 .gitignore 文件中。
 
-以后每次写完 ipynb ，用 convert.bat 脚本运行一遍即可。对应的图片会自动归档到 `assets/ipynb-images` 目录下，并修复转换好的 markdown 文件中的图片链接。
+以后每次写完 ipynb ，用 \_to-ipynb.py 脚本运行一遍即可。对应的图片会自动归档到 `assets/ipynb-images` 目录下，并修复转换好的 markdown 文件中的图片链接。
 
 ## \_to-ipynb.py 文件内容
 
 首先是读取时间（作为博客文件名的一部分），比如 1900-01-30. 然后是读取当前文件位置。用户只需要输入 ipynb 文件的名称（比如 Data-science-support-blog-skills），最好是连字符支持的——因为这将直接在 \_posts 文件夹下生成形如 1900-01-30-Data-science-support-blog-skills.md 文件。
 
 ```python
-import os
+import os, re
 import shutil
 import datetime
 import clipboard
@@ -83,7 +86,8 @@ post_path = os.path.join(thepath, r'_posts/{}.md').format(today + '-' + fname)
 # Convert ipynb to markdown; 
 os.system('jupyter nbconvert --to markdown ipynb/{}.ipynb'.format(fname))
 # Move it to "/_posts" and renameit
-shutil.move(os.path.join(ipynb_path, '{}.md'.format(fname)), os.path.join(thepath, r'_posts/{}.md').format(fname))
+shutil.move(os.path.join(ipynb_path, '{}.md'.format(fname)), 
+            os.path.join(thepath, r'_posts/{}.md').format(fname))
 if os.path.isfile(post_path):
     os.remove(post_path)
 os.rename(os.path.join(thepath, r'_posts/{}.md').format(fname), post_path)
@@ -107,29 +111,25 @@ moveallfiles(ipynb_image_path, destination_path)
 shutil.rmtree(ipynb_image_path)
 ```
 
-最后一步是可选的。由于字符串替换这部分的功能我懒得实现了（读写 md 文件总是出各种问题），因此把需要替换的字符串拷贝到剪切板，之后就可以直接在 \_posts 中的博客文件 md 中直接查找替换,完成图片链接的修复。
+最后一步是字符串替，完成图片链接的修复，并加上 Jekyll 支持的文件头。**每次只需更改文件头即可应用于下一个 ipynb 文件。**
 
 ```python
-# Copy the string needed to clipboard
-clipboard.copy(r'https://wklchris.github.io/assets/ipynb-images')
-```
+# Replace the image link strings
+headstr  = '---\n'
+headstr += 'layout: post\n'
+headstr += 'title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）\n'
+headstr += 'category: Jekylln\n'
+headstr += 'tag: 搭建博客\n'
+headstr += '---\n\n'
 
-要替换的对象是 \<ipynb-filename\>\_files，在本文中是`data-science-support-blog-skills_files`，把它换成以上字符串即可。例如：
+with open(post_path, 'r', encoding='utf8') as f:
+    fstr = f.read()
 
-    ![png](data-science-support-blog-skills_files/data-science-support-blog-skills_1_0.png)
-    
-替换成：
+fstr = re.compile(r'{}_files'.format(fname)).sub(
+       r'https://wklchris.github.io/assets/ipynb-images', fstr)
+fstr = headstr + fstr
 
-    ![png](https://wklchris.github.io/assets/ipynb-images/Data-science-support-blog-skills_1_0.png)
-
-## 写在最后
-
-别忘了给生成的 md 文件添加 Jekyll 文件头：
-```
----
-layout: 
-title: 
-category: 
-tag: 
----
+os.remove(post_path)
+with open(post_path, 'w', encoding='utf8') as f:
+    f.write(fstr)
 ```
