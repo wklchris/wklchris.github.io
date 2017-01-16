@@ -6,5 +6,5 @@ _site
 *.gem
 
 # ipynb
-ipynb/
+ipynb/*
 !ipynb/*.ipynb

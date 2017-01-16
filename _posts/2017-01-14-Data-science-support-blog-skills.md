@@ -67,7 +67,6 @@ Jupyer 支持将 ipynb 转为 Markdown 文件，步骤是：
 import os, re
 import shutil
 import datetime
-import clipboard
 
 today = datetime.datetime.today()
 today = '{}-{:0>2d}-{:0>2d}'.format(today.year, today.month, today.day)

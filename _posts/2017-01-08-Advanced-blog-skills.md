@@ -53,13 +53,13 @@ p.s. 本站的图标来自 Noun Project 的[这个页面](https://thenounproject
 
 例子：
 
-    $$ \int_0^{\pi} \sin x \,\mathrm{d}x = \frac{\pi}{2} $$
+    $$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
 
-$$ \int_0^{\pi} \sin x \,\mathrm{d}x = \frac{\pi}{2} $$
+$$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
 
-    行间公式 $\sum_{i=0}^n a_i = 1$ 与前后字大小一致。
+    行内公式 $\sum_{i=0}^n a_i = 1$ 与前后字大小一致。
 
-行间公式 $\sum_{i=0}^n a_i = 1$ 与前后字大小一致。
+行内公式 $\sum_{i=0}^n a_i = 1$ 与前后字大小一致。
 
 ## 添加相关文章栏目
 

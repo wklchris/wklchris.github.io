@@ -136,9 +136,16 @@ bundle exec jekyll serve
 
 如果不想测试，可以直接：`jekyll build` 之后，将本地 git 推送。
 
-## 扩展功能
+## 其他
 
 1. 如果在仓库目录下新建一个 assets 文件夹，内放 main.scss 的文件，即可对一些细节进行定义。  
 2. layout 文件夹可以留空，但也可以从主题所在的 Github 仓库克隆。你也可以自定义新的 layout. 
+3. 对于 iOS 系统，需要改动 \_layouts/header.html 。本条由 Snowkylin 指出。
+   
+       <span class="menu-icon">
 
-具体的文件内容参考[本博客的 Github 仓库](https://github.com/wklchris/wklchris.github.io)。
+   换成：
+
+       <span class="menu-icon" onclick = "void(0)">
+
+其他具体的文件内容参考[本博客的 Github 仓库](https://github.com/wklchris/wklchris.github.io)，或者直接 fork。
