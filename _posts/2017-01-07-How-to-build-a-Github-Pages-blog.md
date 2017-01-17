@@ -2,7 +2,7 @@
 layout: post
 title: 怎样用 Github Pages 建立博客（1. 入门）
 category: Jekyll
-tag: 搭建博客
+tag: create-blog
 ---
 
 本文基于 Jekyll，搭建成功后，博文可以使用 Markdown 进行书写。初级使用者只需初步了解 Github 推送方法，无需 html 相关知识。

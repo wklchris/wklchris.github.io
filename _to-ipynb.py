@@ -6,6 +6,9 @@ import clipboard
 today = datetime.datetime.today()
 today = '{}-{:0>2d}-{:0>2d}'.format(today.year, today.month, today.day)
 fname = input("Input the file name (DO NOT include '.ipynb'):")
+date = input("Input the date YYYY-mm-dd of post (none means today):")
+if date != "":
+    today = date
 
 thepath = os.getcwd()
 ipynb_path = os.path.join(thepath, 'ipynb')
@@ -38,9 +41,9 @@ shutil.rmtree(ipynb_image_path)
 # Replace the image link strings
 headstr  = '---\n'
 headstr += 'layout: post\n'
-headstr += 'title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）\n'
-headstr += 'category: Jekyll\n'
-headstr += 'tag: 搭建博客\n'
+headstr += 'title: R语言学习与速查（1. 入门）\n'
+headstr += 'category: R\n'
+headstr += 'tag: R-learning\n'
 headstr += '---\n\n'
 
 with open(post_path, 'r', encoding='utf8') as f:

@@ -2,7 +2,7 @@
 layout: post
 title: 怎样用 Github Pages 建立博客（2. 进阶）
 category: Jekyll
-tag: 搭建博客
+tag: create-blog
 ---
 
 本文是上一篇搭建 Jekyll 博客的进阶内容，包括：代码高亮、网站图标、数学公式、相关文章链接列表。
@@ -154,18 +154,22 @@ tag: 搭建博客
 
 ```html
 <div class="related-post">
-{% raw %}{% for tag in site.tags %}
-    <h3 style="font-family: 微软雅黑">相关文章列表</h3>
+  {% for eachtag in site.tags %}
+    {% if page.tags.first != eachtag.first %}
+      {% continue %}
+    {% endif %}
+
+    <h3 style="font-family: Microsoft YaHei">{{ eachtag.first }} 系列博文</h3>
     <ul class="arc-list">
-    {% for post in tag.last %}
-    <li>
-        {{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
+    {% for post in eachtag.last %}
+        <li>{{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
-    </ul>
-{% endfor %}{% endraw %}
+  </ul>
+  {% endfor %}
 </div>
 ```
+
+其中，`site.tags` 是一个文章列表，里面的每个元素 eachtag 都是一个 tag 下辖的所有博文。其 first 成员则是 tag 名称。如果该名称与本页面所属 tag 一致（注：本站所有页面都只有一个 tag，用作相关文章列表），那么输出该 tag 下所有博文标题与链接。
 
 然后在 \_sass/minima/\_layout.scss 中，添加：
 
@@ -179,3 +183,6 @@ tag: 搭建博客
 详细的教程请参考：  
 - 全文英文站点：[链接](https://jekyllrb.com/docs/home/)  
 - 部分中翻站点：[链接](http://jekyllcn.com/docs/home/)
+
+相比 Jekyll 官方站点纷乱的内容，以下 Liquid 的 Designer 页面非常有参考价值：
+- 仅英文：[链接](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers)

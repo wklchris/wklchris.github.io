@@ -2,7 +2,7 @@
 layout: post
 title: 怎样用 Github Pages 建立博客（3. 绘图/科学计算）
 category: Jekyll
-tag: 搭建博客
+tag: create-blog
 ---
 
 
