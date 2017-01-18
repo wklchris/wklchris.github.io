@@ -1,4 +1,15 @@
-<aside>
+<aside class="sidebar">
+
   <h2>侧边栏建设中……</h2>
-  <p><i>如果您使用的设备分辨率过低，或者网页窗口宽度过小，您可能看不到侧边栏。</i></p>
+  
+  <h3 id="post-categories">分类文章</h3>
+  <ul class="arc-list">
+  {% for category in site.categories %}
+      <li><a href="/categories/#{{ category | first }}">{{ category | first }} </a>({{ category | last | size }})</li>
+  {% endfor %}  
+  </ul>
+
+
+  <p><i>如果您的设备分辨率过低，或者网页窗口宽度过小，您可能看不到侧边栏。</i></p>
+
 </aside>

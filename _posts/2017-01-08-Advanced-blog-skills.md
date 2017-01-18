@@ -82,7 +82,7 @@ $$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
 
 ## JS：添加文章目录与侧边栏
 
-这里需要用到 JavaScript. 从我的 [assets/Javascript 仓库](https://github.com/wklchris/wklchris.github.io/tree/master/assets/Javascript)可以下载到需要的 toc.js 文件。此文件出处在[这里](https://github.com/ghiculescu/jekyll-table-of-contents)。
+这里需要用到 JavaScript. 从我的 [js 仓库](https://github.com/wklchris/wklchris.github.io/tree/master/js)可以下载到需要的 toc.js 文件。此文件出处在[这里](https://github.com/ghiculescu/jekyll-table-of-contents)。
 
 侧边栏这里使用 `<aside>` 标签进行处理。找到 assets/main.scss，并把以下内容放在 `@import "minima";` 的下方：
 
@@ -119,8 +119,8 @@ $$ \int_0^{\pi} \sin x \,\mathrm{d}x = -\cos x \,\bigg| ^{\pi}_{0} = 2 $$
 ```html
   <aside>
     <h2>本文目录</h2><p><a href="javascript:scroll(0,0)">-- 返回顶部 --</a></p>
-    <script src="/assets/Javascript/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/assets/Javascript/toc.js"></script>
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/toc.js"></script>
     <div id="toc"></div>
     <script type="text/javascript">
       $(document).ready(function() {
