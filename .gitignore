@@ -7,4 +7,5 @@ _site
 
 # ipynb
 ipynb/*
+!ipynb/data
 !ipynb/*.ipynb

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: R语言学习与速查（1. 入门）
+title: R语言学习与速查（入门）
 category: R
 tag: R-learning
 ---

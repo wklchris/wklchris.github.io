@@ -8,7 +8,7 @@ tag: create-blog
 
 本文基于前两篇的搭建 Jekyll 的基础上，向博客添加能够方便地撰写科学计算内容的功能，主要是通过 Jupyter Notebook 将 ipynb 文件转换为 Markdown 文件，实现方便地插入 Python/R 的代码及其图像。
 
-该功能在 Jekyll 中并没有原生支持，因此我针对个人使用环境（Windows 平台）编写了 Python 脚本，来帮助我完成这一系列自动化工作。
+该功能在 Jekyll 中并没有原生支持，因此我针对个人使用环境（Windows 平台）编写了命令行脚本，来帮助我完成这一系列自动化工作。
 
 ## Python 例子
 
@@ -53,10 +53,9 @@ Jupyer 支持将 ipynb 转为 Markdown 文件，步骤是：
 
 1. 在博客下新建一个名为 ipynb 的文件夹，以后 Jupyter Notebook 文件都放在里面；  
 2. 在主文件夹（ipynb 文件夹的上级）下，建立一个 python 文件 \_to-ipynb.py，用于转换。具体代码见下一节。
-3. 新建一个 assets/ipynb-images 文件夹，用于存放所有 ipynb 生成的图片（从原位置移动过来）。
-4. 将 ipynb 文件夹下不需要进行版本控制的内容添加到 .gitignore 文件中。
+3. 将 ipynb 文件夹下不需要进行版本控制的内容添加到 .gitignore 文件中。
 
-以后每次写完 ipynb ，用 \_to-ipynb.py 脚本运行一遍即可。对应的图片会自动归档到 `assets/ipynb-images` 目录下，把生成的 markdown 文件自动移动到 \_posts 文件夹中，并按照当天日期进行重命名；最后，它还会修复 markdown 文件中的图片链接。
+以后每次写完 ipynb ，用 \_to-ipynb.py 脚本运行一遍即可。对应的图片会自动归档到 `assets/ipynb-images` 目录下，并修复转换好的 markdown 文件中的图片链接。
 
 ## \_to-ipynb.py 文件内容
 
@@ -113,7 +112,7 @@ moveallfiles(ipynb_image_path, destination_path)
 shutil.rmtree(ipynb_image_path)
 ```
 
-最后一步是字符串替，完成图片链接的修复，并加上 Jekyll 支持的文件头。**每次只需更改文件头即可应用于下一个 ipynb 文件。**
+然后是字符串替换，完成图片链接的修复，并加上 Jekyll 支持的文件头。**每次只需更改文件头即可应用于下一个 ipynb 文件。**
 
 ```python
 # Replace the image link strings
@@ -134,4 +133,16 @@ fstr = headstr + fstr
 os.remove(post_path)
 with open(post_path, 'w', encoding='utf8') as f:
     f.write(fstr)
+```
+
+**2017年1月18日更新：**从 ipynb 转到 markdown 时，如 R 中 dataframe 显示格式的表格都会变成 HTML 代码，且不能正常显示于博客中。因此我添加了一部分粗糙的正则表达式代码。而且诡异的是 `re.compile('.', re.DOTALL)` 在我这里怎么也不能匹配 `\n`，所以只好用 `[\s\S]` 代替。
+
+```python
+# Convert HTML table to markdown table
+def transfertable(tablehtml):
+
+<...略...>
+
+for table in tablehtmllst:
+    fstr = re.compile(table).sub(transfertable(table), fstr)
 ```
