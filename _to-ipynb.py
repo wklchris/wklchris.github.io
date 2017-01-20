@@ -9,7 +9,7 @@ date = "2017-01-18"
 headstr  = '---\n'
 headstr += 'layout: post\n'
 headstr += 'title: R语言学习与速查（聚类）\n'
-headstr += 'category: R\n'
+headstr += 'category: R ML\n'
 headstr += 'tag: R-learning\n'
 headstr += '---\n\n'
 
@@ -18,7 +18,7 @@ headstr += '---\n\n'
 thepath = os.getcwd()
 ipynb_path = os.path.join(thepath, 'ipynb')
 ipynb_image_path = os.path.join(ipynb_path, r'{}_files'.format(fname))
-destination_path = os.path.join(thepath, r'assets/ipynb-images')
+destination_path = os.path.join(os.path.join(thepath, 'assets'), 'ipynb-images')
 post_path = os.path.join(thepath, r'_posts/{}.md').format(date + '-' + fname)
 
 # Convert ipynb to markdown; 
@@ -31,7 +31,7 @@ os.rename(os.path.join(thepath, r'_posts/{}.md').format(fname), post_path)
 
 # Move the images under "/ipynb/<fname>_files" to "/assets/ipynb-images"
 def moveallfiles(origindir, destinationdir):
-    if ~os.path.exists(origindir):
+    if not os.path.exists(origindir):
         return
     for file in os.listdir(origindir):
         originfile = os.path.join(origindir, file)
@@ -78,6 +78,7 @@ def transfertable(tablehtml):
         tablehtml = re.compile('\t' + origincell).sub(cell, tablehtml)
 
     # Table body
+    tablehtml = re.compile(r'<tr><td>').sub('| ', tablehtml)
     tablehtml = re.compile(r'</td></tr>').sub(' |', tablehtml)
     tablehtml = re.compile(r'</th><td>').sub(' | ', tablehtml)
     tablehtml = re.compile(r'</td><td>').sub(' | ', tablehtml)

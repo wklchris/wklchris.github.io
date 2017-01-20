@@ -99,6 +99,8 @@ os.rename(os.path.join(thepath, r'_posts/{}.md').format(fname), post_path)
 ```python
 # Move the images under "/ipynb/<fname>_files" to "/assets/ipynb-images"
 def moveallfiles(origindir, destinationdir):
+    if not os.path.exists(origindir):
+        return
     for file in os.listdir(origindir):
         originfile = os.path.join(origindir, file)
         destinationfile = os.path.join(destinationdir, file)
@@ -106,6 +108,8 @@ def moveallfiles(origindir, destinationdir):
         if os.path.isfile(destinationfile):
             os.remove(destinationfile)
         shutil.move(originfile, destinationfile)
+    # Delete the origin image path
+    shutil.rmtree(ipynb_image_path)
 
 moveallfiles(ipynb_image_path, destination_path)
 # Delete the origin image path
@@ -141,7 +145,7 @@ with open(post_path, 'w', encoding='utf8') as f:
 # Convert HTML table to markdown table
 def transfertable(tablehtml):
 
-<...略...>
+<...略...请前往本节开始给出的链接查看>
 
 for table in tablehtmllst:
     fstr = re.compile(table).sub(transfertable(table), fstr)

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: R语言学习与速查（聚类）
-category: R
+category: R ML
 tag: R-learning
 ---
 
@@ -15,7 +15,7 @@ tag: R-learning
    2. **全联动（complete linkage ）**：
    3. **平均联动（average linkage）**：
    4. **质心（centroid）**：
-   5. **Ward 法**：
+   5. **Ward 法（ward.D）**：
 2. **划分聚类（partitioning clustering）**：事先指定类数 $K$，然后聚类。
    1. **K均值（K-means）**：
    2. **中心划分（Partitioning Around Medoids，即 PAM）**：
@@ -68,12 +68,28 @@ tag: R-learning
 ```R
 datapath <- paste(getwd(), '/data/iris.data.csv', sep='')  # 我将其改成了 csv 格式
 iris.raw <- read.csv(datapath, head=F)
+head(iris.raw)
 
 # 去掉非数值的第 5 列
 iris <- iris.raw[,-c(5)]
 ```
 
-### 欧式距离（Euclidean）
+
+
+| V1 | V2 | V3 | V4 | V5 |
+| --- | --- | --- | --- | --- |
+| 5.1         | 3.5         | 1.4         | 0.2         | Iris-setosa |
+| 4.9         | 3.0         | 1.4         | 0.2         | Iris-setosa |
+| 4.7         | 3.2         | 1.3         | 0.2         | Iris-setosa |
+| 4.6         | 3.1         | 1.5         | 0.2         | Iris-setosa |
+| 5.0         | 3.6         | 1.4         | 0.2         | Iris-setosa |
+| 5.4         | 3.9         | 1.7         | 0.4         | Iris-setosa |
+
+
+
+
+
+###  算例：欧式距离（Euclidean）
 
 R 内置的 `dist()` 函数默认使用欧式距离，以下与 `dist(iris, method='euclidean')` 等同。比如我们来计算 iris 的欧氏距离：
 
@@ -95,4 +111,227 @@ as.matrix(iris.e)[1:3, 1:3]
 
 
 
-*本文内容大量参考《R 语言实战》第二版 第16章*
+
+## 层次聚类
+
+层次聚类的逻辑是：依次把距离最近的两类合并为一个新类，直至所有数据点合并为一个类。
+
+- 单联动（single）：类 A 中的点与类 B 中的点间的最小距离。适合于细长的类。
+- 全联动（complete）：类 A 中的点与类 B 中的点间的最大距离。适合于相似半径的紧凑类，对异常值敏感。
+- 平均联动（average）：类 A 中的点与类 B 中的点间的平均距离，也称为 UPGMA。适合于聚合方差小的类。
+- 质心（centroid）：类 A 与类 B 的质心的距离。质心的定义是“类的变量均值向量”。对异常值不敏感，但表现可能稍弱。
+- Wrap 法（wrap）：两类之间的所有变量的方差分析平方和。适合于仅聚合少量值、类别数接近数据点数目的情况。
+
+层次聚类的 R 函数是 `hclust(d, method=)` ，其中 d 通常是一个 `dist()` 函数的运算结果。
+
+## HC算例：平均联动
+
+仍然使用上文的 Iris data 数据。
+
+### 标准化
+
+尽管标准化不一定会用到，但是这是通常的手段之一。
+
+
+```R
+iris.scaled <- scale(iris)
+head(iris)
+head(iris.scaled)
+```
+
+
+
+| V1 | V2 | V3 | V4 |
+| --- | --- | --- | --- |
+| 5.1 | 3.5 | 1.4 | 0.2 |
+| 4.9 | 3.0 | 1.4 | 0.2 |
+| 4.7 | 3.2 | 1.3 | 0.2 |
+| 4.6 | 3.1 | 1.5 | 0.2 |
+| 5.0 | 3.6 | 1.4 | 0.2 |
+| 5.4 | 3.9 | 1.7 | 0.4 |
+
+
+
+
+
+
+
+| V1 | V2 | V3 | V4 |
+| --- | --- | --- | --- |
+| -0.8976739 |  1.0286113 | -1.336794  | -1.308593  |
+| -1.1392005 | -0.1245404 | -1.336794  | -1.308593  |
+| -1.3807271 |  0.3367203 | -1.393470  | -1.308593  |
+| -1.5014904 |  0.1060900 | -1.280118  | -1.308593  |
+| -1.0184372 |  1.2592416 | -1.336794  | -1.308593  |
+| -0.5353840 |  1.9511326 | -1.166767  | -1.046525  |
+
+
+
+
+
+### 树状图与热力图
+
+层次聚类中的树状图是不可少的。这里使用欧式距离，聚类方法另行确定。
+
+
+```R
+dist_method <- "euclidean"
+cluster_method <- "ward.D"
+
+iris.e <- dist(iris.scaled, method=dist_method)
+iris.hc <- hclust(iris.e, method=cluster_method)
+plot(iris.hc, hang=-1, cex=.8, main="Hierachical Cluster Tree for Iris data")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_8_0.png)
+
+
+
+```R
+heatmap(as.matrix(iris.e),labRow = F, labCol = F)
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_9_0.png)
+
+
+### 确定聚类个数
+
+使用 NbClust 包。
+
+
+```R
+library(NbClust)
+nc <- NbClust(iris.scaled, distance=dist_method, min.nc=2, max.nc=10, method=cluster_method)
+```
+
+    *** : The Hubert index is a graphical method of determining the number of clusters.
+                    In the plot of Hubert index, we seek a significant knee that corresponds to a 
+                    significant increase of the value of the measure i.e the significant peak in Hubert
+                    index second differences plot. 
+     
+    
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_11_1.png)
+
+
+    *** : The D index is a graphical method of determining the number of clusters. 
+                    In the plot of D index, we seek a significant knee (the significant peak in Dindex
+                    second differences plot) that corresponds to a significant increase of the value of
+                    the measure. 
+     
+    ******************************************************************* 
+    * Among all indices:                                                
+    * 9 proposed 2 as the best number of clusters 
+    * 5 proposed 3 as the best number of clusters 
+    * 4 proposed 5 as the best number of clusters 
+    * 2 proposed 6 as the best number of clusters 
+    * 1 proposed 8 as the best number of clusters 
+    * 3 proposed 10 as the best number of clusters 
+    
+                       ***** Conclusion *****                            
+     
+    * According to the majority rule, the best number of clusters is  2 
+     
+     
+    ******************************************************************* 
+    
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_11_3.png)
+
+
+
+```R
+# 每个类数的投票数
+table(nc$Best.n[1,])
+barplot(table(nc$Best.n[1,]), xlab="Number of Clusters", ylab="Number of Supporting", main="Determine the Number of Clustering")
+```
+
+
+    
+     0  2  3  5  6  8 10 
+     2  9  5  4  2  1  3 
+
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_12_1.png)
+
+
+### 完成聚类
+
+从上图我们可以确定聚类数量（两类），但是原数据指出应该是三类。以下 `cutree` 以及最后一个函数中使用3类。
+
+
+```R
+cluster_num <- 3
+clusters <- cutree(iris.hc, k=cluster_num)
+table(clusters)  # 每类多少个值
+```
+
+
+    clusters
+     1  2  3 
+    49 74 27 
+
+
+
+```R
+# 每类的各变量中位数
+aggregate(iris, by=list(cluster=clusters), median)
+```
+
+
+
+| cluster | V1 | V2 | V3 | V4 |
+| --- | --- | --- | --- | --- |
+| 1    | 5.0  | 3.4  | 1.5  | 0.20 |
+| 2    | 6.0  | 2.8  | 4.5  | 1.45 |
+| 3    | 6.9  | 3.1  | 5.8  | 2.20 |
+
+
+
+
+
+
+```R
+# 画出矩形框
+plot(iris.hc, hang=-1, cex=.8, main="Hierachical Cluster Tree for Iris data")
+rect.hclust(iris.hc, k=cluster_num)
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_16_0.png)
+
+
+## 用 MDS 检验聚类结果
+
+使用多维缩放方法进行检验。原数据的三个种类被标记为三种不同的点形状，聚类结果则以颜色显示。
+
+可以看到setose品种聚类很成功，但有一些virginica品种的花被错误和virginica品种聚类到一起。
+
+
+```R
+mds=cmdscale(iris.e,k=2,eig=T)
+x = mds$points[,1]
+y = mds$points[,2]
+
+library(ggplot2)
+p=ggplot(data.frame(x,y),aes(x,y))
+p+geom_point(size=3,alpha=0.8,
+             aes(colour=factor(clusters),
+               shape=iris.raw[,5]))
+```
+
+
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_18_1.png)
+
+
+*本文内容大量参考：*
+
+1. 《R 语言实战》第二版 第16章。
+2. [此网页](https://www.r-bloggers.com/lang/chinese/619)
