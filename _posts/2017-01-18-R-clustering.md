@@ -1,7 +1,7 @@
 ---
 layout: post
 title: R语言学习与速查（聚类）
-category: R ML
+category: R
 tag: R-learning
 ---
 
@@ -11,11 +11,12 @@ tag: R-learning
 常用的两种聚类方法有：
 
 1. **层次聚类（hierachical clustering）**：每个数据点为一小类，两两通过树的方式合并，直到所有的数据点汇成一类。常用算法：
-   1. **单联动（single linkage）**：
-   2. **全联动（complete linkage ）**：
-   3. **平均联动（average linkage）**：
-   4. **质心（centroid）**：
-   5. **Ward 法（ward.D）**：
+   1. **单联动（single linkage）**：类 A 中的点与类 B 中的点间的最小距离。适合于细长的类。
+   2. **全联动（complete linkage ）**：类 A 中的点与类 B 中的点间的最大距离。适合于相似半径的紧凑类，对异常值敏感。
+   3. **平均联动（average linkage）**：类 A 中的点与类 B 中的点间的平均距离，也称为 UPGMA。适合于聚合方差小的类。
+   4. **质心（centroid）**：类 A 与类 B 的质心的距离。质心的定义是“类的变量均值向量”。对异常值不敏感，但表现可能稍弱。
+   5. **Ward 法（ward.D）**：两类之间的所有变量的方差分析平方和。适合于仅聚合少量值、类别数接近数据点数目的情况。
+
 2. **划分聚类（partitioning clustering）**：事先指定类数 $K$，然后聚类。
    1. **K均值（K-means）**：
    2. **中心划分（Partitioning Around Medoids，即 PAM）**：
@@ -88,8 +89,7 @@ iris <- iris.raw[,-c(5)]
 
 
 
-
-###  算例：欧式距离（Euclidean）
+###  算例：欧式距离
 
 R 内置的 `dist()` 函数默认使用欧式距离，以下与 `dist(iris, method='euclidean')` 等同。比如我们来计算 iris 的欧氏距离：
 
@@ -111,20 +111,11 @@ as.matrix(iris.e)[1:3, 1:3]
 
 
 
+## 层次聚类算例
 
-## 层次聚类
-
-层次聚类的逻辑是：依次把距离最近的两类合并为一个新类，直至所有数据点合并为一个类。
-
-- 单联动（single）：类 A 中的点与类 B 中的点间的最小距离。适合于细长的类。
-- 全联动（complete）：类 A 中的点与类 B 中的点间的最大距离。适合于相似半径的紧凑类，对异常值敏感。
-- 平均联动（average）：类 A 中的点与类 B 中的点间的平均距离，也称为 UPGMA。适合于聚合方差小的类。
-- 质心（centroid）：类 A 与类 B 的质心的距离。质心的定义是“类的变量均值向量”。对异常值不敏感，但表现可能稍弱。
-- Wrap 法（wrap）：两类之间的所有变量的方差分析平方和。适合于仅聚合少量值、类别数接近数据点数目的情况。
+层次聚类（HC）的逻辑是：**依次把距离最近的两类合并为一个新类，直至所有数据点合并为一个类。**
 
 层次聚类的 R 函数是 `hclust(d, method=)` ，其中 d 通常是一个 `dist()` 函数的运算结果。
-
-## HC算例：平均联动
 
 仍然使用上文的 Iris data 数据。
 
@@ -155,7 +146,6 @@ head(iris.scaled)
 
 
 
-
 | V1 | V2 | V3 | V4 |
 | --- | --- | --- | --- |
 | -0.8976739 |  1.0286113 | -1.336794  | -1.308593  |
@@ -168,13 +158,15 @@ head(iris.scaled)
 
 
 
-
 ### 树状图与热力图
 
-层次聚类中的树状图是不可少的。这里使用欧式距离，聚类方法另行确定。
+层次聚类中的树状图是不可少的。一般使用欧式距离，聚类方法另行确定。
+
+热力图不是必须的。
 
 
 ```R
+# 选择聚类方法
 dist_method <- "euclidean"
 cluster_method <- "ward.D"
 
@@ -203,7 +195,8 @@ heatmap(as.matrix(iris.e),labRow = F, labCol = F)
 
 ```R
 library(NbClust)
-nc <- NbClust(iris.scaled, distance=dist_method, min.nc=2, max.nc=10, method=cluster_method)
+nc <- NbClust(iris.scaled, distance=dist_method, 
+              min.nc=2, max.nc=10, method=cluster_method)
 ```
 
     *** : The Hubert index is a graphical method of determining the number of clusters.
@@ -247,7 +240,8 @@ nc <- NbClust(iris.scaled, distance=dist_method, min.nc=2, max.nc=10, method=clu
 ```R
 # 每个类数的投票数
 table(nc$Best.n[1,])
-barplot(table(nc$Best.n[1,]), xlab="Number of Clusters", ylab="Number of Supporting", main="Determine the Number of Clustering")
+barplot(table(nc$Best.n[1,]), xlab="Number of Clusters", ylab="Number of Supporting", 
+        main="Determine the Number of Clustering")
 ```
 
 
@@ -263,6 +257,8 @@ barplot(table(nc$Best.n[1,]), xlab="Number of Clusters", ylab="Number of Support
 ### 完成聚类
 
 从上图我们可以确定聚类数量（两类），但是原数据指出应该是三类。以下 `cutree` 以及最后一个函数中使用3类。
+
+*注：类别已确定是 3 种。在此前提下，ward.D 下的 HC 聚类效果最好，但是 NbClust 投票建议仍是分为 2 类。 complete 下的 HC 聚类投票建议是 3 类，但是效果反而不如 ward 法。*
 
 
 ```R
@@ -295,7 +291,6 @@ aggregate(iris, by=list(cluster=clusters), median)
 
 
 
-
 ```R
 # 画出矩形框
 plot(iris.hc, hang=-1, cex=.8, main="Hierachical Cluster Tree for Iris data")
@@ -320,9 +315,8 @@ y = mds$points[,2]
 
 library(ggplot2)
 p=ggplot(data.frame(x,y),aes(x,y))
-p+geom_point(size=3,alpha=0.8,
-             aes(colour=factor(clusters),
-               shape=iris.raw[,5]))
+p+geom_point(size=3, alpha=0.8, aes(colour=factor(clusters),
+             shape=iris.raw[,5]))
 ```
 
 
@@ -331,7 +325,57 @@ p+geom_point(size=3,alpha=0.8,
 ![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_18_1.png)
 
 
+### 附：全联动HC聚类图
+
+作为对比。全联动 NbClust 投票结果是3类，在此不再列出。
+
+
+```R
+dist_method <- "euclidean"
+cluster_method <- "ward.D"
+
+iris.e <- dist(iris.scaled, method=dist_method)
+iris.hc <- hclust(iris.e, method=cluster_method)
+
+cluster_num <- 3
+clusters <- cutree(iris.hc, k=cluster_num)
+table(clusters)  # 每类多少个值
+
+# 画出矩形框
+plot(iris.hc, hang=-1, cex=.8, main="Hierachical Cluster Tree for Iris data")
+rect.hclust(iris.hc, k=cluster_num)
+```
+
+
+    clusters
+     1  2  3 
+    49 74 27 
+
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_20_1.png)
+
+
+
+```R
+mds=cmdscale(iris.e,k=2,eig=T)
+x = mds$points[,1]
+y = mds$points[,2]
+
+p=ggplot(data.frame(x,y),aes(x,y))
+p+geom_point(size=3, alpha=0.8, aes(colour=factor(clusters),
+             shape=iris.raw[,5]))
+```
+
+
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_21_1.png)
+
+
+可以看出，setosa 聚类非常好； virginica 聚类非常纯粹，但不少数据被聚类到了 versicolor 中。此外，setosa 也有一个数据点在 versicolor 中。
+
 *本文内容大量参考：*
 
 1. 《R 语言实战》第二版 第16章。
-2. [此网页](https://www.r-bloggers.com/lang/chinese/619)
+2. [此网页](http://xccds1977.blogspot.com/2012/01/r.html)

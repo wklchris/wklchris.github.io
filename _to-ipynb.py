@@ -9,7 +9,7 @@ date = "2017-01-18"
 headstr  = '---\n'
 headstr += 'layout: post\n'
 headstr += 'title: R语言学习与速查（聚类）\n'
-headstr += 'category: R ML\n'
+headstr += 'category: R\n'
 headstr += 'tag: R-learning\n'
 headstr += '---\n\n'
 
