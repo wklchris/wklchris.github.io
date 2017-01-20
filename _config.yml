@@ -18,7 +18,7 @@ defaults:
 
 
 # Build settings
-permalink: none
+permalink: /:title.html
 markdown: kramdown
 
 kramdown:

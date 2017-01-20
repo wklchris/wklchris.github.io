@@ -1,27 +1,40 @@
 import os, re
 import shutil
-
-# Add Jekyll head strings
-
-fname = "R-clustering"
-date = "2017-01-18"
-
-headstr  = '---\n'
-headstr += 'layout: post\n'
-headstr += 'title: R语言学习与速查（聚类）\n'
-headstr += 'category: R\n'
-headstr += 'tag: R-learning\n'
-headstr += '---\n\n'
-
+import csv
 
 # Main
 thepath = os.getcwd()
 ipynb_path = os.path.join(thepath, 'ipynb')
+yaml_csv_path = os.path.join(ipynb_path, r'_post_head.csv')
+
+# Read head string from "_post_head.csv"
+with open(yaml_csv_path, 'r', encoding="utf8") as f:
+    hasPost = False
+    for row in csv.reader(f):
+        if len(row) == 1:  # First line is the default post name
+            fname = row[0]
+            continue
+        if fname == row[1]:
+            if not os.path.isfile(os.path.join(ipynb_path, '{}.ipynb'.format(fname))):
+                print('\n\tWarning: "{}.ipynb" doesn\'t exist.\n\n'.format(fname))
+                exit()
+            date = row[0]
+            headstr = '---\n'
+            headstr += 'layout: post\n'
+            headstr += 'title: {}\n'.format(row[2])
+            headstr += 'categories: {}\n'.format(row[3])
+            headstr += 'tags: {}\n---\n\n'.format(row[4])
+            hasPost = True
+            break
+    if not hasPost:
+        print('\n\tError: No record relevant to "{}" in csv file.\n\n'.format(fname))
+        exit()
+
 ipynb_image_path = os.path.join(ipynb_path, r'{}_files'.format(fname))
 destination_path = os.path.join(os.path.join(thepath, 'assets'), 'ipynb-images')
 post_path = os.path.join(thepath, r'_posts/{}.md').format(date + '-' + fname)
 
-# Convert ipynb to markdown; 
+# Convert ipynb to markdown
 os.system('jupyter nbconvert --to markdown ipynb/{}.ipynb'.format(fname))
 # Move it to "/_posts" and renameit
 shutil.move(os.path.join(ipynb_path, '{}.md'.format(fname)), os.path.join(thepath, r'_posts/{}.md').format(fname))
