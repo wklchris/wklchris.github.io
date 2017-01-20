@@ -153,6 +153,7 @@ tag: 搭建博客
 所有博客页面的 layout 类型都是 post，因此我们可以从 \_layouts/post.html 文件中下手：
 
 ```html
+{% raw %}
 <div class="related-post">
   {% for eachtag in site.tags %}
     {% if page.tags.first != eachtag.first %}
@@ -162,11 +163,14 @@ tag: 搭建博客
     <h3 style="font-family: Microsoft YaHei">{{ eachtag.first }} 系列博文</h3>
     <ul class="arc-list">
     {% for post in eachtag.last %}
-        <li>{{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li>
+        {{ post.date | date: '%Y-%m-%d'}}<a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
     {% endfor %}
   </ul>
   {% endfor %}
 </div>
+{% endraw %}
 ```
 
 其中，`site.tags` 是一个文章列表，里面的每个元素 eachtag 都是一个 tag 下辖的所有博文。其 first 成员则是 tag 名称。如果该名称与本页面所属 tag 一致（注：本站所有页面都只有一个 tag，用作相关文章列表），那么输出该 tag 下所有博文标题与链接。
@@ -177,6 +181,36 @@ tag: 搭建博客
       background-color: lightgray;
       margin-bottom: 10pt;
     }
+
+## 表格样式
+
+到 \_sass/minima/\_basem.scss 中添加：
+
+```css
+table{
+  table-layout: fixed;
+  border: 1px solid #000000; // 表线
+  width: 95%;  // 总宽
+  border-spacing: 1px; // 单元格间距
+  border-collapse: collapsed; 
+  word-wrap: break-word; // 自动换行
+  word-break: break-all;
+  margin-bottom: $spacing-unit / 2;
+}
+
+table th{ // 表头
+  text-align: center;
+}
+
+table td{ // 非表头单元格
+  text-align: center;
+  padding: 3px;
+}
+
+table th,td{
+  word-wrap: break-word;
+}
+```
 
 ## Jekyll 官方文档
 

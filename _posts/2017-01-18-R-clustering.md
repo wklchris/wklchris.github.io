@@ -1,8 +1,8 @@
 ---
 layout: post
 title: R语言学习与速查（聚类）
-category: R
-tag: R-learning
+categories: Machine-Learning R
+tags: R-learning
 ---
 
 
@@ -301,9 +301,9 @@ rect.hclust(iris.hc, k=cluster_num)
 ![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_16_0.png)
 
 
-## 用 MDS 检验聚类结果
+## 用 MDS 可视化结果
 
-使用多维缩放方法进行检验。原数据的三个种类被标记为三种不同的点形状，聚类结果则以颜色显示。
+使用多维缩放（Multidimensional Scaling）方法进行可视化。原数据的三个种类被标记为三种不同的点形状，聚类结果则以颜色显示。
 
 可以看到setose品种聚类很成功，但有一些virginica品种的花被错误和virginica品种聚类到一起。
 
@@ -332,7 +332,7 @@ p+geom_point(size=3, alpha=0.8, aes(colour=factor(clusters),
 
 ```R
 dist_method <- "euclidean"
-cluster_method <- "ward.D"
+cluster_method <- "complete"
 
 iris.e <- dist(iris.scaled, method=dist_method)
 iris.hc <- hclust(iris.e, method=cluster_method)
@@ -349,7 +349,7 @@ rect.hclust(iris.hc, k=cluster_num)
 
     clusters
      1  2  3 
-    49 74 27 
+    49 24 77 
 
 
 
@@ -373,7 +373,7 @@ p+geom_point(size=3, alpha=0.8, aes(colour=factor(clusters),
 ![png](https://wklchris.github.io/assets/ipynb-images/R-clustering_21_1.png)
 
 
-可以看出，setosa 聚类非常好； virginica 聚类非常纯粹，但不少数据被聚类到了 versicolor 中。此外，setosa 也有一个数据点在 versicolor 中。
+可以看出，setosa 聚类非常好； virginica 与 versicolor 的效果则是惨不忍睹。
 
 *本文内容大量参考：*
 
