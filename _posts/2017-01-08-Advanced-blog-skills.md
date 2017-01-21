@@ -189,20 +189,23 @@ tag: 搭建博客
 ```css
 table{
   table-layout: fixed;
-  border: 1px solid #000000; // 表线
-  width: 95%;  // 总宽
-  border-spacing: 1px; // 单元格间距
-  border-collapse: collapsed; 
-  word-wrap: break-word; // 自动换行
+  border: 2px solid #000000;
+  width: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  word-wrap: break-word; 
   word-break: break-all;
   margin-bottom: $spacing-unit / 2;
 }
 
-table th{ // 表头
+table th{
+  border: 2px solid #000000;
   text-align: center;
 }
 
-table td{ // 非表头单元格
+table td{
+  border-right: 2px solid #000000;
+  border-bottom: 1px solid #000000;
   text-align: center;
   padding: 3px;
 }

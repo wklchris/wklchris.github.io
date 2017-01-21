@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
   这里是 wklchris 的博客。如有转载，请注明出处页面。
 baseurl: ""
 github_username:  wklchris
-duoshuo: true
+google_analytics: UA-90643174-1
 
 defaults:
   -

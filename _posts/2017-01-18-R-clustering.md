@@ -41,23 +41,23 @@ tags: R-learning
 
 数据点之间的距离有多种度量方法。在 R 的 `dist()` 函数参数中，默认选项 `method=euclidean`。函数中内置的距离方法选项有：
 
-1. **欧几里得距离（euclidean）**：L2 norm. 在拥有 $n$ 个变量的数据集中，数据点 $i$ 与 $j$ 的欧式距离是
+- **欧几里得距离（euclidean）**：$\mathrm{L}_2$ norm. 在拥有 $n$ 个变量的数据集中，数据点 $i$ 与 $j$ 的欧式距离是
 
   $$ d_{ij} = \sqrt{\sum_{k=1}^{n} (x_{ik} - x_{jk})^2} $$
+  
+- **最大距离（maximun）**：$\mathrm{L}_\infty$ norm. 两点之间的最大距离，即$p\to \infty$ 时的明科夫斯基距离。
 
-2. **最大距离（maximun）**：supremum norm. 两点之间的最大距离，应该是通过改变明科夫斯基距离的 p 值来达到最大。
-
-3. **曼哈顿距离（manhattan）**: L1 norm.
+- **曼哈顿距离（manhattan）**: $\mathrm{L}_1$ norm.
 
   $$ d_{ij} = \sum_{k=1}^{n} |x_{ik}-x_{jk}| $$
-
-4. **堪培拉距离（canberra）**：
+  
+- **堪培拉距离（canberra）**：
 
   $$ d_{ij} = \sum_{k=1}^{n} (\frac{|x_{ik} - x_{jk}|}{|x_{ik} + x_{jk}|}) $$
+  
+- **二进制距离（binary）**：非 0 变量为 1，为 0 变量为 0.然后根据 0 的比例确定距离。
 
-5. **二进制距离（binary）**：非 0 变量为 1，为 0 变量为 0.然后根据 0 的比例确定距离。 
-
-6. **明科夫斯基距离（minkowski）**：Lp norm.
+- **明科夫斯基距离（minkowski）**：$\mathrm{L}_p$ norm.
 
   $$ d_{ij} = \sqrt[\uproot{20} p]{\sum_{k=1}^{n} |x_{ik}-x_{jk}|^p } $$
   
