@@ -1,7 +1,7 @@
 ---
 layout: post
 title: R语言学习与速查（聚类）
-categories: Machine-Learning R
+categories: R Machine-Learning
 tags: R-learning
 ---
 
