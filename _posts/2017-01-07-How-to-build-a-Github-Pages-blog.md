@@ -7,6 +7,8 @@ tag: create-blog
 
 本文基于 Jekyll，搭建成功后，博文可以使用 Markdown 进行书写。初级使用者只需初步了解 Github 推送方法，无需 html 相关知识。
 
+<!-- more -->
+
 ## 安装 Ruby 和 dev-kit
 
 前往 [Ruby 站点](http://rubyinstaller.org/downloads/) 下载 Ruby，下载Ruby后，将页面下拉，下载符合版本要求的 Development Kit. 在本文的测试中，环境是 Windows 10 x64，Ruby 版本 2.3.3 x64，dev-kit 版本 DevKit-mingw64-64-4.7.2-20130224-1432-sfx. 

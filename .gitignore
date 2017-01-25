@@ -10,3 +10,4 @@ _site
 ipynb/*
 !ipynb/data
 !ipynb/*.ipynb
+!ipynb/_post_head.csv

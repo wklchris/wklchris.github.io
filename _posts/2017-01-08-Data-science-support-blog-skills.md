@@ -5,10 +5,9 @@ category: Jekyll
 tag: create-blog
 ---
 
+本文基于前两篇的搭建 Jekyll 的基础上，向博客添加能够方便地撰写科学计算内容的功能，主要是通过 Jupyter Notebook 将 ipynb 文件转换为 Markdown 文件，实现方便地插入 Python/R 的代码及其图像。由于该功能在 Jekyll 中并没有原生支持，因此我编写了 Python 脚本，来帮助我完成这一系列自动化工作。
 
-本文基于前两篇的搭建 Jekyll 的基础上，向博客添加能够方便地撰写科学计算内容的功能，主要是通过 Jupyter Notebook 将 ipynb 文件转换为 Markdown 文件，实现方便地插入 Python/R 的代码及其图像。
-
-该功能在 Jekyll 中并没有原生支持，因此我编写了 Python 脚本，来帮助我完成这一系列自动化工作。
+<!-- more -->
 
 ## Python 例子
 

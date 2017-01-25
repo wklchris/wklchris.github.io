@@ -5,7 +5,9 @@ category: Jekyll
 tag: create-blog
 ---
 
-本文是上一篇搭建 Jekyll 博客的进阶内容，包括：代码高亮、网站图标、数学公式、相关文章链接列表。
+本文是上一篇搭建 Jekyll 博客的进阶内容，包括：代码高亮、网站图标、数学公式、相关文章链接列表、表格样式、摘要长度指定。
+
+<!-- more -->
 
 ## 自定义 scss 
 
@@ -213,6 +215,18 @@ table td{
 table th,td{
   word-wrap: break-word;
 }
+```
+
+## 摘要长度指定
+
+在 _config.yml 中加上一行：
+
+    excerpt_separator: "<!-- more -->"
+
+然后在所有博文中，分割正文和摘要的地方加入：
+
+```{html}
+<!-- more -->
 ```
 
 ## Jekyll 官方文档

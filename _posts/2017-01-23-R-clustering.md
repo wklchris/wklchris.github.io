@@ -1,12 +1,14 @@
 ---
 layout: post
-title: R语言学习与速查（聚类）
-categories: R Machine-Learning
+title: 算法交流：聚类
+categories: Algorithm R
 tags: R-learning
 ---
-
+（*博文最后更新于 2017-01-25*）
 
 “聚类分析是一种数据归约技术，旨在揭露一个数据集中观测值的子集。它可以把大量的观测值归约为若干个类。这里的类被定义为若干个观测值组成的群组，群组内观测值的相似度比群间相似度高。”——《R 语言实战》第二版
+
+<!-- more -->
 
 常用的两种聚类方法有：
 

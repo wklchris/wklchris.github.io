@@ -1,12 +1,14 @@
 ---
 layout: post
-title: R语言学习与速查（数据结构）
+title: R语言（数据结构）
 categories: R
 tags: R-learning
 ---
+（*博文最后更新于 2017-01-25*）
 
+本节介绍 R 的数据类型，包括 data.frame 相关的重要命令。
 
-本节介绍 R 的数据类型，包括 data.frame 与实用的 attach()/with() 命令。
+<!-- more -->
 
 ## 数据类型
 
@@ -24,6 +26,64 @@ R 中包含的数据类型有：
 | 统计学（本文） | 观测(observation) | 变量(variable) |
 | 数据库 | 记录(record) | 字段(field) |
 | 数据挖掘/机器学习 | 示例(example) | 属性(attribute) |
+
+## 变量类型与因子(factor)
+
+由一系列数据组成的变量，按照通常数据处理的分类，有：
+
+- 数值变量（或定量变量，quantitative）：
+    - 连续型（continuous）：又称定比。比如试卷在班级的及格率，其可以是 $[0,1]$ 之间的任意值。连续型变量内各数据间的大小（或优劣）关系是显然的。
+    - 离散型（discrete）：又称定距。比如班级的同学个数。这类变量常常是通过计数得到的，其任两个数据之间的差值必定为某基础值的整数倍，如不可能有 16.5 个同学。
+- 非数值变量（或定性变量，qualitative）：
+    - 类别型（categorical）：又称定类。比如同学的主修专业。这类变量中各数据点往往是字符，互相之间无优劣关系。
+    - 有序型（ordinal）：又称定序。比如成绩的等级，ABCD。互相之间有优劣顺序。
+
+在 R 中，后两类统称为**因子**（factor）。例如，我们有主修专业数据：
+
+
+```R
+prog <- c("Math", "Engineering", "Social Science", "Math")
+tmp <- factor(prog)
+
+print(levels(tmp))  # 返回因子的类别
+```
+
+    [1] "Engineering"    "Math"           "Social Science"
+    
+
+
+```R
+str(tmp)  # 显示因子类别数。str 是 structure 的缩写
+```
+
+     Factor w/ 3 levels "Engineering",..: 2 1 3 2
+    
+
+从上面的 str(tmp) 中可以看到，Level 1对应 Engineering，2对应Math，3对应Social Science。因为这是根据字符串首字母顺序编号的。
+
+如果你想从数值记录的变量生成一个因子，使用参数 levels 与 labels ：
+
+
+```R
+tmp <- factor(c(1, 2, 3, 1), levels=c(1,2,3), 
+              labels=c("Math", "Engineering", "Social Science"))
+str(tmp)
+```
+
+     Factor w/ 3 levels "Math","Engineering",..: 1 2 3 1
+    
+
+如果想把有序型变量转成因子，并指定顺序，可以使用参数 order= ：
+
+
+```R
+tmp <- factor(c("A", "B", "C", "B", "C", "A"), order=TRUE,
+             levels=c("B", "A", "C"))
+str(tmp)
+```
+
+     Ord.factor w/ 3 levels "B"<"A"<"C": 2 1 3 1 3 2
+    
 
 ## 同类元素集：向量、矩阵与数组
 
@@ -48,7 +108,7 @@ print(vector)
 
 
 ```R
-# matr <- matrix(vector, nrow=N, ncol=N, byrow=T/F, [dimnames=list(rownamestr,colnamestr)])
+# matr <- matrix(d, nrow=N, ncol=N, byrow=T/F, [dimnames=list(rownamestr,colnamestr)])
 
 matr <- matrix(1:12, nrow=3, ncol=4, byrow=T)
 print(matr)
@@ -126,7 +186,8 @@ array() 语法类似于 matrix() 。
 # arr <- array(vector, dimensions, dimnames)
 # dimensions: 指定数组有几维，以及各维的长度
 
-arr <- array(1:24, c(2, 3, 4), dimnames=list(c('A1', 'A2'), c('B1', 'B2','B3'), c('C1', 'C2', 'C3', 'C4')))
+arr <- array(1:24, c(2, 3, 4), 
+             dimnames=list(c('A1', 'A2'), c('B1', 'B2','B3'), c('C1', 'C2', 'C3', 'C4')))
 print(arr)
 ```
 
@@ -156,9 +217,51 @@ print(arr)
     
     
 
-### 数据框：data.frame
+## 列表
 
-数据框是多个等长向量的按列堆叠。这是 R 中最常用的数据结构。
+列表是一系列变量的有序组合。声明方式：
+
+    lst <- list(name1=obj1, name2=obj2, ...)
+
+
+```R
+lst <- list(prog=c("Math", "Engineering"), gender=c(1, 2), grade="No grade")
+lst
+```
+
+
+<dl>
+	<dt>$prog</dt>
+		<dd><ol class=list-inline>
+	<li>'Math'</li>
+	<li>'Engineering'</li>
+</ol>
+</dd>
+	<dt>$gender</dt>
+		<dd><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+</ol>
+</dd>
+	<dt>$grade</dt>
+		<dd>'No grade'</dd>
+</dl>
+
+
+
+你可以通过美元符来调用它们，如：
+
+
+```R
+print(lst$prog)
+```
+
+    [1] "Math"        "Engineering"
+    
+
+## 数据框：data.frame
+
+数据框是多个等长向量的按列堆叠。这是 R 中最常用的数据结构。由于此内容的重要性，我将其提升了一级大纲。
 
 
 ```R
@@ -249,7 +352,7 @@ print(df[1:3,"gender"])
     Levels: Female Male
     
 
-#### 临时环境：attach() 与 with()
+### 临时环境：attach() 与 with()
 
 df\$age 从语法上说很清晰，但是可读性却不高。因为我们一般总是在处理一个数据集，因此‘df’显得多余。这里可以借助 attach()/detach() 命令组：
 
