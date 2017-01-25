@@ -19,6 +19,7 @@ defaults:
 
 # Build settings
 permalink: /:title.html
+excerpt_separator: "<!-- more -->"
 markdown: kramdown
 
 kramdown:

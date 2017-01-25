@@ -1,11 +1,15 @@
 import os, re
 import shutil
 import csv
+import datetime
 
 # Main
 thepath = os.getcwd()
 ipynb_path = os.path.join(thepath, 'ipynb')
 yaml_csv_path = os.path.join(ipynb_path, r'_post_head.csv')
+
+today = datetime.datetime.today()
+today = '{}-{:0>2d}-{:0>2d}'.format(today.year, today.month, today.day)
 
 # Read head string from "_post_head.csv"
 with open(yaml_csv_path, 'r', encoding="utf8") as f:
@@ -19,11 +23,14 @@ with open(yaml_csv_path, 'r', encoding="utf8") as f:
                 print('\n\tWarning: "{}.ipynb" doesn\'t exist.\n\n'.format(fname))
                 exit()
             date = row[0]
+            updatestr = ""
+            if date != today:
+                updatestr = r"（*博文最后更新于 {}*）".format(today)
             headstr = '---\n'
             headstr += 'layout: post\n'
             headstr += 'title: {}\n'.format(row[2])
             headstr += 'categories: {}\n'.format(row[3])
-            headstr += 'tags: {}\n---\n\n'.format(row[4])
+            headstr += 'tags: {}\n---\n{}\n'.format(row[4], updatestr)
             hasPost = True
             break
     if not hasPost:
