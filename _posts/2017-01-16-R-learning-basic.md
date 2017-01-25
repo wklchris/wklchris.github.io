@@ -190,6 +190,7 @@ print(c(1 < 2, 3 > 2, 2 == 2, 3 != 2))
     4. 各块之间留一个空行。文档效果**以不阅读代码即能使用函数为准**。
     
 函数声明的例子：
+
 ```{r}
 CalculateSampleCovariance <- function(x, y, verbose = TRUE) {
   # Computes the sample covariance between two vectors.
