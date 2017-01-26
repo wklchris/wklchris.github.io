@@ -1,2 +1,2 @@
 python "_to-ipynb.py"
-jekyll serve
+bundle exec jekyll serve
