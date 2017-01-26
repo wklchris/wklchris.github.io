@@ -24,12 +24,13 @@ with open(yaml_csv_path, 'r', encoding="utf8") as f:
                 exit()
             date = row[0]
             updatestr = ""
-            if date != today:
-                updatestr = r"（*博文最后更新于 {}*）".format(today)
             headstr = '---\n'
             headstr += 'layout: post\n'
             headstr += 'title: {}\n'.format(row[2])
             headstr += 'categories: {}\n'.format(row[3])
+            if date != today:
+                updatestr = r"*更新于 {}*".format(today)
+                headstr += 'update: {}\n'.format(today)
             headstr += 'tags: {}\n---\n{}\n'.format(row[4], updatestr)
             hasPost = True
             break

@@ -229,6 +229,17 @@ table th,td{
 <!-- more -->
 ```
 
+注意：如果你选择了以此方式指定长度，那么每篇博文都必须有该注释字符串。
+
+## 站内按标题搜索
+
+Jekyll 下的站内搜索支持可以使用 Simple-Jekyll-Search，全文搜索支持，其官方插件页面[在此](https://github.com/christian-fei/Simple-Jekyll-Search)，免费的账户也够用了。但我折腾了许久也没弄好，最后从[这里](https://github.com/androiddevelop/jekyll-search)找到了一个简粗的基于 bootstrap 的解决方案。
+
+- 双击 Ctrl 或者 单击页面右下角的放大镜，进行站内搜索
+- 单击 Esc 或者 单击页面右上角的叉号，退出搜索界面
+- 即输即显的搜索展示
+- 搜索结果高亮与链接
+
 ## Jekyll 官方文档
 
 详细的教程请参考：  
