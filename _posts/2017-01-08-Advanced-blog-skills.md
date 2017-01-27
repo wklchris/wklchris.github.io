@@ -232,7 +232,11 @@ table th,td{
 
 注意：如果你选择了以此方式指定长度，那么每篇博文都必须有该注释字符串。
 
-## 站内按标题搜索
+## 站点搜索
+
+站点搜索包括站内搜索的支持（主要是 json 相关），以及加入站点到搜索引擎。
+
+### 站内搜索
 
 Jekyll 下的站内搜索支持可以使用 Simple-Jekyll-Search，全文搜索支持，其官方插件页面[在此](https://github.com/christian-fei/Simple-Jekyll-Search)，免费的账户也够用了。但我折腾了许久也没弄好，最后从[这里](https://github.com/androiddevelop/jekyll-search)找到了一个简粗的基于 bootstrap 的解决方案。
 
@@ -240,6 +244,14 @@ Jekyll 下的站内搜索支持可以使用 Simple-Jekyll-Search，全文搜索�
 - 单击 Esc 或者 单击页面右上角的叉号，退出搜索界面
 - 即输即显的搜索展示
 - 搜索结果高亮与链接
+
+### 加入站点到搜索引擎
+
+对于 Google 而言，只要你配置好了 Analytics，前往 Search Console 页面认证网页归属就可以了。
+
+对于度娘而言，也是类似地验证网页归属。
+
+你可以搜索：“关键词 site:(wklchris.github.io)” 来确定站点是否已纳入搜索引擎。
 
 ## Jekyll 官方文档
 
