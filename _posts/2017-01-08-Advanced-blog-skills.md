@@ -1,8 +1,9 @@
 ---
 layout: post
 title: 怎样用 Github Pages 建立博客（2. 进阶）
-category: Jekyll
-tag: create-blog
+categories: Jekyll
+update: 2017-01-25
+tags: create-blog
 ---
 
 本文是上一篇搭建 Jekyll 博客的进阶内容，包括：代码高亮、网站图标、数学公式、相关文章链接列表、表格样式、摘要长度指定。

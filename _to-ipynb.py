@@ -29,9 +29,8 @@ with open(yaml_csv_path, 'r', encoding="utf8") as f:
             headstr += 'title: {}\n'.format(row[2])
             headstr += 'categories: {}\n'.format(row[3])
             if date != today:
-                updatestr = r"*更新于 {}*".format(today)
                 headstr += 'update: {}\n'.format(today)
-            headstr += 'tags: {}\n---\n{}\n'.format(row[4], updatestr)
+            headstr += 'tags: {}\n---\n\n'.format(row[4])
             hasPost = True
             break
     if not hasPost:

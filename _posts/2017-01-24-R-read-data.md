@@ -1,11 +1,11 @@
 ---
 layout: post
-title: R语言（数据读写与操作）
+title: R语言（数据读写操作）
 categories: R
 update: 2017-01-26
 tags: R-learning
 ---
-*更新于 2017-01-26*
+
 
 本节介绍一些实用的数据处理函数（如行、列合并），以及如何从各种数据源读、写数据。
 

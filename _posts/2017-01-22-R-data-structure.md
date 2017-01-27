@@ -5,7 +5,7 @@ categories: R
 update: 2017-01-25
 tags: R-learning
 ---
-*更新于 2017-01-25*
+
 
 本节介绍 R 的数据类型，包括 data.frame 相关的重要命令。
 
