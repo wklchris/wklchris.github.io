@@ -2,7 +2,7 @@
 layout: post
 title: R语言（数据结构）
 categories: R
-update: 2017-01-25
+update: 2017-01-26
 tags: R-learning
 ---
 
@@ -388,3 +388,7 @@ print(tmp)
     Levels: Allen Bruth Chris Daisy
     [1] 2
     
+
+### 更多内容
+
+更多关于数据管理和 data.frame 处理的内容在本系列文章的 [数据管理]({{ site.url }}/R-manage-data.html) 一文中可以找到。
