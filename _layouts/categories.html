@@ -2,7 +2,9 @@
 layout: page
 ---
 
-{% for category in site.categories %}
+{% assign sorted_cat = site.categories | sort %}
+
+{% for category in sorted_cat %}
 <h3 id="{{ category | first }}">{{ category | first }}</h3>
 <ul class="arc-list">
     {% for post in category.last %}
