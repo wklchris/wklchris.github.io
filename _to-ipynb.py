@@ -80,14 +80,15 @@ def transfertable(tablehtml):
     # Table head
     tablehtml = re.compile(r'<tr><th>').sub(r'#', tablehtml)
     tablehead = re.compile(r'<thead>[\S\s]*?</thead>').findall(tablehtml)
-    tablehead = tablehead[0]
-    # Headline
-    col_num = len(re.compile(r'</th>').findall(tablehead))
-    tablehtml = re.compile(r'<tbody>').sub('|' + ' --- |' * col_num, tablehtml)
+    if tablehead:
+        tablehead = tablehead[0]
+        # Headline
+        col_num = len(re.compile(r'</th>').findall(tablehead))
+        tablehtml = re.compile(r'<tbody>').sub('|' + ' --- |' * col_num, tablehtml)
 
-    headcontent = re.compile(r'(?<=>)[\S]*?(?=</th>)').findall(tablehead)
-    newhead = '| ' + ' | '.join(headcontent) + ' |'
-    tablehtml = re.compile(tablehead).sub(newhead, tablehtml)
+        headcontent = re.compile(r'(?<=>)[\S]*?(?=</th>)').findall(tablehead)
+        newhead = '| ' + ' | '.join(headcontent) + ' |'
+        tablehtml = re.compile(tablehead).sub(newhead, tablehtml)
 
     # First column
     firstcol = re.compile(r'(?<=\s)<tr>[\S\s]*?<td>').findall(tablehtml)
@@ -102,6 +103,9 @@ def transfertable(tablehtml):
     tablehtml = re.compile(r'</td></tr>').sub(' |', tablehtml)
     tablehtml = re.compile(r'</th><td>').sub(' | ', tablehtml)
     tablehtml = re.compile(r'</td><td>').sub(' | ', tablehtml)
+    
+    # Final Check
+    tablehtml = re.compile(r'<tbody>').sub("", tablehtml)
 
     return tablehtml
 

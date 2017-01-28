@@ -1,8 +1,6 @@
 // New contents
 
-/**
- * Table
- */
+// Table
 
 table{
   table-layout: fixed;
@@ -29,6 +27,15 @@ table td{
 
 table th,td{
   word-wrap: break-word;
+}
+
+// sidebar
+
+.sidebar {
+  overflow-y: scroll;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 5px;
 }
 
 /**
@@ -229,15 +236,4 @@ pre {
   path {
     fill: $grey-color;
   }
-}
-
-
-
-/**
- * sidebar
- */
-
-.sidebar {
-  margin-right: auto;
-  margin-left: auto;
 }

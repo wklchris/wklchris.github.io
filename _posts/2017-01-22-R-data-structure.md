@@ -2,33 +2,73 @@
 layout: post
 title: R语言（数据结构）
 categories: R
-update: 2017-01-26
+update: 2017-01-27
 tags: R-learning
 ---
 
 
-本节介绍 R 的数据类型，包括 data.frame 相关的重要命令。
+本节介绍 R 的数据类型，包括 data.frame 相关的重要命令；也给出了转换数据类型的函数。
 
 <!-- more -->
 
 ## 数据类型
 
-R 中包含的数据类型有：
+R 中标志的数据类型有（部分在下文详细介绍）：
 
-- 数值；以及复数
-- 字符
-- 逻辑（TRUE/FALSE)
-- 字节
+- 数字：numeric
+- 字符：character
+- 向量：vector
+- 矩阵：matrix
+- 数据框：data.frame
+- 因子：factor
+- 逻辑：logical
 
-对于一般的二维数据集，其行与列在不同领域的称呼不同：
+### 类型判断与转换
 
-| 领域 | 行 | 列 |
-| --- | --- | --- |
-| 统计学（本文） | 观测(observation) | 变量(variable) |
-| 数据库 | 记录(record) | 字段(field) |
-| 数据挖掘/机器学习 | 示例(example) | 属性(attribute) |
+对于上述的每个类型的缩写 *abbr*，对应的判断与转换函数：
 
-## 变量类型与因子(factor)
+- 判断：is.{abbr}()，例如判断是否是数字 is.numeric()
+- 转换：as.{abbr}()
+
+
+```R
+tmp <- c(1:4)
+tmp.ch <- as.character(tmp)
+list(tmp, tmp.ch)
+```
+
+
+<ol>
+	<li><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ol>
+</li>
+	<li><ol class=list-inline>
+	<li>'1'</li>
+	<li>'2'</li>
+	<li>'3'</li>
+	<li>'4'</li>
+</ol>
+</li>
+</ol>
+
+
+
+此外，还有 class() 与 typeof() 函数可以参考：
+
+
+```R
+print(c(class(tmp),
+        typeof(tmp)))
+```
+
+    [1] "integer" "integer"
+    
+
+### 经典的数据类型
 
 由一系列数据组成的变量，按照通常数据处理的分类，有：
 
@@ -39,7 +79,17 @@ R 中包含的数据类型有：
     - 类别型（categorical）：又称定类。比如同学的主修专业。这类变量中各数据点往往是字符，互相之间无优劣关系。
     - 有序型（ordinal）：又称定序。比如成绩的等级，ABCD。互相之间有优劣顺序。
 
-在 R 中，后两类统称为**因子**（factor）。例如，我们有主修专业数据：
+对于一般的二维数据集，其行与列在不同领域的称呼不同：
+
+| 领域 | 行 | 列 |
+| --- | --- | --- |
+| 统计学（本文） | 观测(observation) | 变量(variable) |
+| 数据库 | 记录(record) | 字段(field) |
+| 数据挖掘/机器学习 | 示例(example) | 属性(attribute) |
+
+## 因子(factor)
+
+在 R 中，将非数值变量统称为**因子**（factor），并分为有序因子与无序因子两种。例如，我们有主修专业数据：
 
 
 ```R
