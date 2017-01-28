@@ -2,11 +2,12 @@
 layout: post
 title: R语言（数学函数与数据管理）
 categories: R
+update: 2017-01-28
 tags: R-learning
 ---
 
 
-本节内容可应用在数据读取之后。包括基本的运算（包括统计函数）、数据重整（排序、合并、子集、随机抽样、整合、重塑等）、异常值（NA/Inf/NaN）处理等内容。也包括 apply() 这种函数式编程函数的使用。
+本节内容可应用在数据读取之后。包括基本的运算（包括统计函数）、数据重整（排序、合并、子集、随机抽样、整合、重塑等）、字符串处理、异常值（NA/Inf/NaN）处理等内容。也包括 apply() 这种函数式编程函数的使用。
 
 字符串处理、函数声明等内容会单独归纳到本系列的另外的文章中。
 
@@ -500,6 +501,82 @@ newdf <- sqldf("select * from mtcars where carb=1 order by mpg", row.names=TRUE)
 ```
 
 这里就不过多涉及了。
+
+## 字符串处理
+
+R 中的字符串处理函数有以下几种：
+
+| 函数 | 含义 |
+| --- | --- |
+| nchar(x) | 计算字符串的长度 |
+| substr(x, start, stop) | 提取子字符串 |
+| grep(pattern, x, ignore.case=FALSE, fixed=FALSE) | 正则搜索，返回为匹配的下标。如果 fixed=T，则按字符串而不是正则搜索。 |
+| grepl() | 类似 grep()，只不过返回值是逻辑值向量。 |
+| sub(pattern, replacement, x, ignore.base=FALSE, fixed=FALSE) | 在 x 中搜索正则式，并以 replacement 将其替换。如果 fixed=T，则按字符串而不是正则搜索 |
+| strsplit(x, split, fixed=FALSE) | 在 split 处分割字符向量 x 中的元素，返回一个列表。 |
+| paste(x1, x2, ..., sep="") | 连接字符串，连接符为 sep。也可以连接重复字串：`paste("x", 1:3, sep="")` |
+| toupper(x) | 转换字符串为全大写 |
+| tolower(x) | 转换字符串为全小写 |
+
+一些例子。首先是正则表达式的使用：
+
+
+```R
+streg <- c("abc", "abcc", "abccc", "abc5")
+re1 <- grep("abc*", streg)
+re2 <- grep("abc\\d", streg)  # 注意反斜杠要双写来在 R 中转义
+re3 <- sub("[a-z]*", "Hey", streg)
+re4 <- sub("[a-z]*\\d", "NEW", streg)
+
+print(list(re1, re2, re3, re4))
+```
+
+    [[1]]
+    [1] 1 2 3 4
+    
+    [[2]]
+    [1] 4
+    
+    [[3]]
+    [1] "Hey"  "Hey"  "Hey"  "Hey5"
+    
+    [[4]]
+    [1] "abc"   "abcc"  "abccc" "NEW"  
+    
+    
+
+然后是字符串分割与连接。注意这里的 paste() 有非常巧妙的用法：
+
+
+```R
+splt <- strsplit(streg, "c")  # 结果中不含分隔符 "c"
+cat1 <- paste("a", "b", "c", sep="-")
+cat2 <- paste("x", 1:3, sep="")  # 生成列名时非常有用
+
+print(list(splt, cat1, cat2))
+```
+
+    [[1]]
+    [[1]][[1]]
+    [1] "ab"
+    
+    [[1]][[2]]
+    [1] "ab" ""  
+    
+    [[1]][[3]]
+    [1] "ab" ""   ""  
+    
+    [[1]][[4]]
+    [1] "ab" "5" 
+    
+    
+    [[2]]
+    [1] "a-b-c"
+    
+    [[3]]
+    [1] "x1" "x2" "x3"
+    
+    
 
 ## 异常值处理
 
