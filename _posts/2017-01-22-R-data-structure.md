@@ -441,4 +441,4 @@ print(tmp)
 
 ### 更多内容
 
-更多关于数据管理和 data.frame 处理的内容在本系列文章的 [数据管理]({{ site.url }}/R-manage-data.html) 一文中可以找到。
+更多关于数据管理和 data.frame 处理的内容在本系列文章的 [数据管理]({{ site.url }}/R-manage-data.html#section-7) 一文中可以找到。
