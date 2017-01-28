@@ -1,6 +1,6 @@
 ---
 layout: post
-title: R语言（数学函数与数据管理）
+title: R语言（常用函数与数据管理）
 categories: R
 update: 2017-01-28
 tags: R-learning
@@ -8,8 +8,6 @@ tags: R-learning
 
 
 本节内容可应用在数据读取之后。包括基本的运算（包括统计函数）、数据重整（排序、合并、子集、随机抽样、整合、重塑等）、字符串处理、异常值（NA/Inf/NaN）处理等内容。也包括 apply() 这种函数式编程函数的使用。
-
-字符串处理、函数声明等内容会单独归纳到本系列的另外的文章中。
 
 <!-- more -->
 
@@ -506,6 +504,8 @@ newdf <- sqldf("select * from mtcars where carb=1 order by mpg", row.names=TRUE)
 
 R 中的字符串处理函数有以下几种：
 
+### 通用函数
+
 | 函数 | 含义 |
 | --- | --- |
 | nchar(x) | 计算字符串的长度 |
@@ -577,6 +577,70 @@ print(list(splt, cat1, cat2))
     [1] "x1" "x2" "x3"
     
     
+
+### 日期型字符串
+
+与其他类型相似，日期型字符串能够通过 as.Date() 函数处理。各格式字符的含义如下：
+
+| 符号 | 含义 | 通用示例 | 中文示例 |
+| --- | --- | --- | --- |
+| %d | 日（1~31） | 22 | 22 |
+| %a | 缩写星期 | Mon | 周一 |
+| %A | 全写星期 | Monday | 星期一 |
+| %m | 月（1~12） | 10 | 10 |
+| %b | 缩写月 | Jan | 1月 |
+| %B | 全写月 | January | 一月 |
+| %y | 两位年 | 17 | 17 |
+| %Y | 四位年 | 2017 | 2017 |
+
+
+```R
+# 对字符串数据 x，用法：as.Date(x, format=, ...)
+dates <- as.Date("01-28-2017", format="%m-%d-%Y")
+print(dates)
+```
+
+    [1] "2017-01-28"
+    
+
+要想获得当前的日期或时间，有两种格式可以参考，并可以用 format() 函数辅助输出。
+
+
+```R
+# Sys.Date() 返回一个精确到日的标准日期格式
+dates1 <- Sys.Date()
+format(dates1, format="%A")  # 可以指定输出格式
+```
+
+
+'星期六'
+
+
+
+```R
+# date() 返回一个精确到秒的详细的字串
+dates2 <- date()
+dates2
+```
+
+
+'Sat Jan 28 14:51:54 2017'
+
+
+函数 difftime() 提供了计算时间差的方式。其中计量单位可以是以下之一："auto", "secs", "mins", "hours", "days", "weeks"。
+
+截至本文最后更新，我有 1100+ 周大。唔……这好像听起来没什么感觉
+
+
+```R
+dates1 <- as.Date("1994-11-23")
+dates2 <- Sys.Date()
+difftime(dates2, dates1, units="weeks")
+```
+
+
+    Time difference of 1157.429 weeks
+
 
 ## 异常值处理
 

@@ -23,7 +23,11 @@ layout: default
     <h3 style="font-family: Microsoft YaHei">{{ eachtag.first }} 系列博文</h3>
     <ul class="arc-list">
     {% for post in eachtag.last %}
-        <li>{{ post.date | date: '%Y-%m-%d'}} <a href="{{ post.url }}">{{ post.title }}</a></li>
+        <li>
+          {{ post.date | date: '%Y-%m-%d'}}
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          {% if post.url == page.url %} <<<< 当前 {% endif %}
+        </li>
     {% endfor %}
   </ul>
   {% endfor %}

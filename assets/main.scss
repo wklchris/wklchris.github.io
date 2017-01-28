@@ -49,7 +49,7 @@ $on-laptop:        800px;
 		top:0;
 		right:0;
 		height:100%;
-		overflow:hidden;
+		overflow-y:scroll;
         background-color:#eeeeee;
 		padding:2em 3em;
 		box-shadow:5px 0 5px rgba(0,0,0,.1) inset;
@@ -58,6 +58,7 @@ $on-laptop:        800px;
 
 @media screen and (max-width: 1023px) {
 	aside{
+		overflow:hidden;
 		padding: 1em;
 	}
 }
