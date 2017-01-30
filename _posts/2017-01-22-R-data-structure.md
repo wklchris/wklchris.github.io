@@ -2,7 +2,7 @@
 layout: post
 title: R语言（数据结构）
 categories: R
-update: 2017-01-27
+update: 2017-01-29
 tags: R-learning
 ---
 
@@ -34,28 +34,16 @@ R 中标志的数据类型有（部分在下文详细介绍）：
 ```R
 tmp <- c(1:4)
 tmp.ch <- as.character(tmp)
-list(tmp, tmp.ch)
+print(list(tmp, tmp.ch))
 ```
 
-
-<ol>
-	<li><ol class=list-inline>
-	<li>1</li>
-	<li>2</li>
-	<li>3</li>
-	<li>4</li>
-</ol>
-</li>
-	<li><ol class=list-inline>
-	<li>'1'</li>
-	<li>'2'</li>
-	<li>'3'</li>
-	<li>'4'</li>
-</ol>
-</li>
-</ol>
-
-
+    [[1]]
+    [1] 1 2 3 4
+    
+    [[2]]
+    [1] "1" "2" "3" "4"
+    
+    
 
 此外，还有 class() 与 typeof() 函数可以参考：
 
@@ -277,28 +265,19 @@ print(arr)
 
 ```R
 lst <- list(prog=c("Math", "Engineering"), gender=c(1, 2), grade="No grade")
-lst
+print(lst)
 ```
 
-
-<dl>
-	<dt>$prog</dt>
-		<dd><ol class=list-inline>
-	<li>'Math'</li>
-	<li>'Engineering'</li>
-</ol>
-</dd>
-	<dt>$gender</dt>
-		<dd><ol class=list-inline>
-	<li>1</li>
-	<li>2</li>
-</ol>
-</dd>
-	<dt>$grade</dt>
-		<dd>'No grade'</dd>
-</dl>
-
-
+    $prog
+    [1] "Math"        "Engineering"
+    
+    $gender
+    [1] 1 2
+    
+    $grade
+    [1] "No grade"
+    
+    
 
 你可以通过美元符来调用它们，如：
 
