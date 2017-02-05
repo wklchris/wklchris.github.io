@@ -249,7 +249,7 @@ axis(side, at=, labels=, pos=, lty=, col=, las=, tck=, ...)
 
 
 ```R
-library(Hmisc);
+library(Hmisc)
 ```
 
     Loading required package: lattice
@@ -309,7 +309,13 @@ text(location, "string", pos, ...)
 mtext("string", side, line=n, ...)
 ```
 
-可以参考“标签和标题文本”一节的例子。
+可以参考“标签和标题文本”一节的例子。其中：
+
+- pos：使用1下2左3上4右的对应关系，比如“颜色”一节中就使用了 pos=1 的参数。
+    - 如果指定了 pos，那么也可以指定 offset= 作为偏移量比值（相对单个字符宽）
+- side：指定放置文本的图片边界，同样是1下2左3上4右。
+    - 你可以使用 line= 来移动文本（正值向外，负值向内）；
+    - 还可以通过 adj=0/1 指定文本向左下/右上对齐。
 
 #### 数学标注
 
