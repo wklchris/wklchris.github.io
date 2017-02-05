@@ -2,7 +2,7 @@
 layout: post
 title: R语言（绘图入门）
 categories: R
-update: 2017-02-01
+update: 2017-02-04
 tags: R-learning
 ---
 
@@ -61,7 +61,7 @@ plot(x, y, type="b")
 ![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_1_0.png)
 
 
-## 绘图参数
+## 绘图参数：par()
 
 函数 par() 用来获取**当前图形**的参数。如果加入 no.readonly=TRUE, 表示该参数列表是非只读的，即用户可以进行修改。例如对于上图，我们获取其参数，进行更改后再传到新的图中（pch 参数可能有些费解，我们在下文讨论）：
 
@@ -69,7 +69,7 @@ plot(x, y, type="b")
 ```R
 # 方法一：类交互式的更改方法
 opar <- par(no.readonly=T)
-par(pch=21)  # 更改点样式
+par(pch=17)  # 更改点样式
 plot(x, y, type="b")
 par(opar)
 
@@ -278,9 +278,122 @@ abline(v=seq(0, 4, 0.5), h=seq(0, 4, 0.25), lty=2, col="darkred")
 
 ### 图例
 
+命令 legend() 用于添加图例。
+
+```{r}
+legend(location, legend, [title=, ...])
+```
+
+参数含义：
+
+- location：指定图例左上角的坐标，或者使用以下关键字：
+    - 关键字：left/right, bottom/top, bottomleft/right, topleft/right, center
+    - 如果使用了以上关键字，可以使用 inset= 参数指定向图形内移动的比例（分数形式）
+- legend：标签组成的字符型向量。 
+- title：图例标题的字符串
+- 其他参数：
+    - col/pch/lwd/lty：图例线条颜色/点样式/线宽/线型
+    - bty/fill：盒型样式/颜色填充（用于条形图、箱形图或饼图）
+    - bg：背景色
+    - text.col：文本颜色
+    - horiz：TRUE 会将图例水平放置
+
 ### 标注
 
+#### 文字标注
+
+主要有两个函数：text() 与 mtext()。前者向绘图区添加标注，后者向图形的边界添加标注。
+
+```{r]
+text(location, "string", pos, ...)
+mtext("string", side, line=n, ...)
+```
+
+可以参考“标签和标题文本”一节的例子。
+
+#### 数学标注
+
+类似 LaTeX 的标注方式，不过实质上仍有一些区别：
+
+| 代码 | 效果 | 代码 | 效果 | 代码 | 效果 |
+| --- | --- | --- | --- | --- | --- |
+| x%+-%y | $x\pm y$ | x%/%y | $x\div y$ | x%\*%y | $x\times y$ |
+| x%.%y | $x\cdot y$ | x[i] | $x_i$ | x^2 | $x^2$ |
+| x%prop%y | $x\propto y$ | sqrt(x, y) | $\sqrt[y]{x}$ | x!=y | $x\neq y$ |
+| x%\~\~%y | $x\approx y$ | x%=\~%y | $x\cong y$ | x%==%y | $x\equiv y$ |
+
+部分字体相关的命令：
+
+- plain(x)：正体
+- italic(x)：意大利字族（加斜）
+- bold(x)：加粗
+- bolditalic(x)：加斜加粗
+- underline(x)：下划线
+
 ### 子图
+
+#### 函数 layout()
+
+函数 layout() 是一个强大的命令。例如：
+    
+```{r}
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
+```
+
+就指定了图 1 占用第一行，图 2 和 3 共用第二行。也可以用 widths=/heights= 参数指定各列宽/各行高之间的比例：
+
+
+```R
+tmp <- c(rep("Cat", 3), rep("Dog", 4), rep("Rabbit", 2))
+dt <- table(tmp)
+
+layout(matrix(c(1, 1, 2, 3), 2, 2, byrow = TRUE),
+       widths=c(3, 1), heights=c(1, 2))
+barplot(dt)
+barplot(dt)
+barplot(dt)
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_15_0.png)
+
+
+#### 函数 par() 的 mfrow 参数
+
+前文介绍过的 par() 中的 mfrow= 参数也是一个控制子图的方式。下例是两行两列的子图：
+    
+```{r}
+opar <- par(no.readonly=TRUE)
+par(mfrow=c(2,2))
+plot(...)  # 图 1，左上
+plot(...)  # 图 2，右上
+plot(...)  # 图 3，左下
+plot(...)  # 图 4，右下
+par(opar)
+```
+
+#### 函数 par() 的 fig 参数
+
+这种方式支持你以任何的位置、组合任意的图形。它比规整的 layout() 更加灵活。以下不使用 0.8 而使用 0.65 是为了看上去更紧凑。
+
+
+```R
+opar <- par(no.readonly=TRUE)
+
+par(fig=c(0, 0.8, 0, 0.8))  # 主图：横向范围与纵向范围（左下为原点）
+barplot(dt)
+
+
+par(fig=c(0, 0.8, 0.65, 1), new=TRUE)  # 上方的图。注意 new 参数
+barplot(dt, axes=F)
+
+par(fig=c(0.65, 1, 0, 0.8), new=TRUE)  # 右侧的图
+barplot(dt, axes=F, names.arg="")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_17_0.png)
+
 
 ## 统计图
 
@@ -299,5 +412,5 @@ barplot(dt, main="Title of Barplot", xlab="Pets", ylab="Number",
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_16_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_19_0.png)
 

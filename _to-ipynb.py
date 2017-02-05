@@ -50,9 +50,13 @@ if os.path.isfile(post_path):
 os.rename(os.path.join(thepath, r'_posts/{}.md').format(fname), post_path)
 
 # Move the images under "/ipynb/<fname>_files" to "/assets/ipynb-images"
-def moveallfiles(origindir, destinationdir):
+def moveallfiles(origindir, destinationdir, filename):
     if not os.path.exists(origindir):
         return
+    # Delete all image files which contain "fname" in their filename
+    for file in os.listdir(destinationdir):
+        if file[:len(filename)] == filename:
+            os.remove(os.path.join(destinationdir, file))
     for file in os.listdir(origindir):
         originfile = os.path.join(origindir, file)
         destinationfile = os.path.join(destinationdir, file)
@@ -63,7 +67,7 @@ def moveallfiles(origindir, destinationdir):
     # Delete the origin image path
     shutil.rmtree(ipynb_image_path)
 
-moveallfiles(ipynb_image_path, destination_path)
+moveallfiles(ipynb_image_path, destination_path, fname)
 
 with open(post_path, 'r', encoding='utf8') as f:
     fstr = f.read()
@@ -117,4 +121,3 @@ if tablehtmllst:
 os.remove(post_path)
 with open(post_path, 'w', encoding='utf8') as f:
     f.write(fstr)
-
