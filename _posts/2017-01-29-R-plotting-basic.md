@@ -2,7 +2,7 @@
 layout: post
 title: R语言（绘图入门）
 categories: R
-update: 2017-02-04
+update: 2017-02-06
 tags: R-learning
 ---
 
@@ -10,6 +10,35 @@ tags: R-learning
 R 的绘图功能一直为业内所津津乐道。用了 Python 的 matplolibt 和 R 的 ggplot2 后，我再也不想用 MATLAB 画图了。
 
 <!-- more -->
+
+我现在这里先给出本博文用到的包：
+
+
+```R
+library(Hmisc)
+```
+
+    Loading required package: lattice
+    Loading required package: survival
+    Loading required package: Formula
+    Loading required package: ggplot2
+    
+    Attaching package: 'Hmisc'
+    
+    The following objects are masked from 'package:base':
+    
+        format.pval, round.POSIXt, trunc.POSIXt, units
+    
+    
+
+
+```R
+library(vioplot)
+```
+
+    Loading required package: sm
+    Package 'sm', version 2.2-5.4: type help(sm) for summary information
+    
 
 ## 基础命令
 
@@ -58,7 +87,7 @@ plot(x, y, type="b")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_1_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_4_0.png)
 
 
 ## 绘图参数：par()
@@ -78,7 +107,7 @@ par(opar)
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_3_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_6_0.png)
 
 
 ### 点样式、线宽与线型
@@ -139,7 +168,7 @@ OutputColors(colorLst, "25 Useful Colors", T)
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_5_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_8_0.png)
 
 
 R 中还有其他方式可以生成一系列的颜色，比如：
@@ -157,7 +186,7 @@ OutputColors(gray(1/25*c(0:25)), "Gray")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_7_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_10_0.png)
 
 
 ### 标签和标题文本
@@ -208,7 +237,7 @@ text(1, 1.05, paste("DejaVu Sans Mono\n",
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_9_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_12_0.png)
 
 
 如果你需要将图片输出到 pdf，这个参数也是可以使用的：
@@ -249,31 +278,14 @@ axis(side, at=, labels=, pos=, lty=, col=, las=, tck=, ...)
 
 
 ```R
-library(Hmisc)
-```
-
-    Loading required package: lattice
-    Loading required package: survival
-    Loading required package: Formula
-    Loading required package: ggplot2
-    
-    Attaching package: 'Hmisc'
-    
-    The following objects are masked from 'package:base':
-    
-        format.pval, round.POSIXt, trunc.POSIXt, units
-    
-    
-
-
-```R
+# 需要加载：library(Hmisc)
 plot(1:3, 1:3, type="b", xlim=c(0, 4), ylim=c(0, 4))
 minor.tick(nx=2, ny=4, tick.ratio=0.5)
 abline(v=seq(0, 4, 0.5), h=seq(0, 4, 0.25), lty=2, col="darkred")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_13_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_15_0.png)
 
 
 ### 图例
@@ -297,6 +309,8 @@ legend(location, legend, [title=, ...])
     - bg：背景色
     - text.col：文本颜色
     - horiz：TRUE 会将图例水平放置
+
+例子参见“直方图”一节的最后一例。
 
 ### 标注
 
@@ -361,7 +375,7 @@ barplot(dt)
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_15_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_17_0.png)
 
 
 #### 函数 par() 的 mfrow 参数
@@ -398,12 +412,12 @@ barplot(dt, axes=F, names.arg="")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_17_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_19_0.png)
 
 
 ## 统计图
 
-### 条形图
+### 条形图：barplot()
 
 直接上例子。
 
@@ -418,5 +432,164 @@ barplot(dt, main="Title of Barplot", xlab="Pets", ylab="Number",
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_19_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_21_0.png)
+
+
+### 饼图：pie()
+
+并不推荐的统计图类型，因此 R 中的功能也很有限。
+
+```r
+pie(x, labels=, ...)
+```
+
+
+```R
+dt <- 1:4
+lbl <- c("A", "B", "C", "D")
+pie(dt, labels=paste(lbl, " ", round(dt/sum(dt)*100), "%", sep=""),
+    col=topo.colors(length(lbl)), main="Pie Chart with Percentage")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_23_0.png)
+
+
+### 直方图：hist() 及核密度曲线
+
+直方图表示的是一维的数据（连续型）特征，纵轴是其在对应横轴区间内的频数或者频率。
+
+```r
+hist(x, freq=TRUE, breaks=, ...)
+```
+
+其中 freq 参数默认指定纵轴为频数而不是频率，break 用于指定横轴上分组的个数。
+
+
+```R
+set.seed(123)
+dt <- rnorm(100, mean=0, sd=1)
+par(mfrow=c(1,2))
+
+# 左图：频率直方图，以及轴须图
+hist(dt, freq=F, breaks=10, col="cyan", main="Hist fig 1")
+rug(jitter(dt))  # 如果有许多相同值，参数 amount=0.01 可将其随机化
+lines(density(dt), col="purple", lwd=2)
+
+# 右图：频数直方图，以及正态密度曲线
+h.plot <- hist(dt, breaks=10, col="lightgreen", main="Hist fig 2")
+xfit <- seq(min(dt), max(dt), length.out=40)
+yfit <- dnorm(xfit, mean=mean(dt), sd=sd(dt))
+yfit <- yfit*diff(h.plot$mids[1:2])*length(dt)
+lines(xfit, yfit, col="blue", lwd=2)
+box()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_25_0.png)
+
+
+轴须图是一种一维的数据呈现，而上面的左图中的密度曲线是一种核密度估计。要比较核密度图，参考 sm 包的 sm.density.compare() 函数。如果只是要绘制，使用 density() 函数辅助即可：
+
+
+```R
+plot(density(dt), main="Kernel Denisty")
+polygon(density(dt), col="lightgreen", border="blue", lwd=2)  # 绘制多边形的函数
+# 叠加正态曲线
+xfit <- seq(min(dt), max(dt), length.out=40)
+yfit <- dnorm(xfit, mean=mean(dt), sd=sd(dt))
+lines(xfit, yfit, col="red", lwd=2)
+legend("topright", lty=c(1,1), col=c("blue", "red"),
+       legend=c("Kernel Density", "Normality Curve"))
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_27_0.png)
+
+
+### 箱形图：boxplot() 及小提琴图
+
+或者叫箱线图、盒须图。它描述了连续变量的五个特征参数：
+
+
+```R
+fig <- boxplot(dt, main="Box Plot")
+paras <- c("Min", "25 percentile", "Mean", "75 percentile", "Max")
+text(1.25, fig$stats, paras, pos=4)
+text(0.9, fig$out, "Abnormal Points", pos=2)
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_29_0.png)
+
+
+如果是 dataframe 数据集中的类别型变量 A ，使用如下语句生成并列箱形图：
+
+```{r}
+boxplot(y~A, data=dataframe)
+```
+
+如果将公式改写成 `y~A*B`，那么会将类别型变量 A 和 B 的各水平两两组合，再生成箱形图。
+
+其他参数：
+
+- varwidth=F/T：为 TRUE 时，箱形图的宽度与样本数的算术平方根成正比。
+- horizontal=F/T：为 TRUE 时，箱形图被横置。
+- notch=F/T：为 TRUE 时，箱形图在绘制时会显示“凹槽”。
+
+
+```R
+df <- data.frame(x=dt, type=NA)
+df <- df[order(df$x),]
+df$type <- c(rep("Smaller", 50), rep("Larger",50))
+boxplot(x ~ type, data=df, col="darkgray", main="Boxplot")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_31_0.png)
+
+
+最后再提一下箱形图与核密度图的一个结合体：小提琴图（violin plot）。这种图的绘制需要 vioplot 包。
+
+在小提琴图中，核密度曲线被竖直放置，并对称地显示于数据轴的两侧：
+
+
+```R
+# 需要加载：library(vioplot)
+vioplot(df$x[df$type == "Larger"], df$x[df$type == "Smaller"],
+        names=c("L", "S"), col="gold")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_33_0.png)
+
+
+### 点图
+
+用于在水平刻度上绘制大量标签。本例选自参考书目同名章节。各参数：
+
+- groups：选定一个因子，作为分组依据。
+- gcolor：各组标签的颜色。
+
+
+```R
+# mtcars 是 R 预装的数据集，其 cyl 变量有三个水平
+x <- mtcars[order(mtcars$mpg),]
+x$cyl <- factor(x$cyl)
+x$color[x$cyl==4] <- "red"
+x$color[x$cyl==6] <- "blue"
+x$color[x$cyl==8] <- "darkgreen"
+dotchart(x$mpg,
+         labels = row.names(x),
+         cex=.7,
+         groups = x$cyl,
+         gcolor = "black",
+         color = x$color,
+         pch=19,
+         main = "Gas Mileage for Car Models\ngrouped by cylinder",
+         xlab = "Miles Per Gallon")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_35_0.png)
 
