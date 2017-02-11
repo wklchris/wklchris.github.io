@@ -2,7 +2,7 @@
 layout: post
 title: R语言（常用函数与数据管理）
 categories: R
-update: 2017-01-28
+update: 2017-02-10
 tags: R-learning
 ---
 
@@ -51,6 +51,8 @@ print(c(a, b, c))
     - 四舍五入为有效数字共 N 位 singif(x, digits=N)
 
 ### 统计、概率与随机数
+
+描述性统计等更多的统计内容，参考 [“描述性统计”一文]({{ site.url }}/R-descriptive-statistics.html)。
 
 #### 统计函数
 
