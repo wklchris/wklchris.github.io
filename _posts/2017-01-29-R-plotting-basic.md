@@ -2,7 +2,7 @@
 layout: post
 title: R语言（绘图入门）
 categories: R
-update: 2017-02-06
+update: 2017-02-19
 tags: R-learning
 ---
 
@@ -270,7 +270,7 @@ axis(side, at=, labels=, pos=, lty=, col=, las=, tck=, ...)
 - las：标签平行于（=0）或垂直于（=2）坐标轴
 - tck：刻度线。负值表示在图形外侧，0表示禁用刻度，1表示全长（即网格线）；默认 -0.01
 
-### 次要刻度与网格线
+### 网格线：abline() 与次要刻度
 
 如果想使用次要刻度，请安装 Hmisc 包。次要刻度的长度将会是主刻度的 `tick.ratio` 倍。
 
@@ -350,6 +350,30 @@ mtext("string", side, line=n, ...)
 - bolditalic(x)：加斜加粗
 - underline(x)：下划线
 
+### 叠加绘图
+
+叠加绘图最简单的方法，就是使用绘图的 `new=TRUE`：
+
+```r
+plot( ... )
+plot( ... , new=TRUE)  # 记得用 axes=FALSE 将坐标轴、标签、标题隐藏掉
+```
+
+如果想要添加额外的点、线，使用 `points()` 命令与 `lines()` 命令。以及上面提到的参考线 `abline()` 命令：
+
+
+```R
+plot(1:3, c(1,3,2), type="b", pch=2)
+
+points(1:3, seq(1.5, 2.5, 0.5), col="blue", pch=16)
+lines(1:3, seq(1.5, 2.5, 0.5), col="red")
+abline(v=1.5, h=2.25, lty=2,col="purple")
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_17_0.png)
+
+
 ### 子图
 
 #### 函数 layout()
@@ -375,7 +399,7 @@ barplot(dt)
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_17_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_19_0.png)
 
 
 #### 函数 par() 的 mfrow 参数
@@ -412,7 +436,7 @@ barplot(dt, axes=F, names.arg="")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_19_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_21_0.png)
 
 
 ## 统计图
@@ -432,7 +456,7 @@ barplot(dt, main="Title of Barplot", xlab="Pets", ylab="Number",
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_21_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_23_0.png)
 
 
 ### 饼图：pie()
@@ -452,7 +476,7 @@ pie(dt, labels=paste(lbl, " ", round(dt/sum(dt)*100), "%", sep=""),
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_23_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_25_0.png)
 
 
 ### 直方图：hist() 及核密度曲线
@@ -486,7 +510,7 @@ box()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_25_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_27_0.png)
 
 
 轴须图是一种一维的数据呈现，而上面的左图中的密度曲线是一种核密度估计。要比较核密度图，参考 sm 包的 sm.density.compare() 函数。如果只是要绘制，使用 density() 函数辅助即可：
@@ -504,7 +528,7 @@ legend("topright", lty=c(1,1), col=c("blue", "red"),
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_27_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_29_0.png)
 
 
 ### 箱形图：boxplot() 及小提琴图
@@ -520,7 +544,7 @@ text(0.9, fig$out, "Abnormal Points", pos=2)
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_29_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_31_0.png)
 
 
 如果是 dataframe 数据集中的类别型变量 A ，使用如下语句生成并列箱形图：
@@ -546,7 +570,7 @@ boxplot(x ~ type, data=df, col="darkgray", main="Boxplot")
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_31_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_33_0.png)
 
 
 最后再提一下箱形图与核密度图的一个结合体：小提琴图（violin plot）。这种图的绘制需要 vioplot 包。
@@ -561,7 +585,7 @@ vioplot(df$x[df$type == "Larger"], df$x[df$type == "Smaller"],
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_33_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_35_0.png)
 
 
 ### 点图
@@ -591,5 +615,5 @@ dotchart(x$mpg,
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_35_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/R-plotting-basic_37_0.png)
 
