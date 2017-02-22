@@ -1,4 +1,7 @@
-R-plotting-basic
+R-ggplot2
+2017-02-21,R-ggplot2,R语言（ggplot2绘图）,R,R-learning
+2017-02-10,R-descriptive-statistics,R语言（描述性统计）,R,R-learning
+2017-02-06,Py3-computing-efficiency,Python高效计算,Python,Py-compute
 2017-01-29,R-plotting-basic,R语言（绘图入门）,R,R-learning
 2017-01-28,R-create-functions,R语言（函数编写）,R,R-learning
 2017-01-28,Regular-Expression,正则表达式,Other,
@@ -9,4 +12,4 @@ R-plotting-basic
 2017-01-16,R-learning-basic,R语言（入门及风格指导）,R,R-learning
 2017-01-08,Data-science-support-blog-skills,怎样用 Github Pages 建立博客（3. 绘图/科学计算）,Jekyll,create-blog
 2017-01-08,Advanced-blog-skills,怎样用 Github Pages 建立博客（2. 进阶）,Jekyll,create-blog
-2017-01-07,How-to-build-a-Github-Pages-blog,怎样用 Github Pages 建立博客（1. 入门）,Jekyll,create-blog
+2017-01-07,How-to-build-a-Github-Pages-blog,怎样用 Github Pages 建立博客（1. 入门）,Jekyll,create-blog 

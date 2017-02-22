@@ -2,7 +2,7 @@
 layout: post
 title: R语言（数据结构）
 categories: R
-update: 2017-01-29
+update: 2017-02-21
 tags: R-learning
 ---
 
@@ -123,6 +123,12 @@ str(tmp)
 
      Ord.factor w/ 3 levels "B"<"A"<"C": 2 1 3 1 3 2
     
+
+还有一点需要注意：在我们对数据框进行了合并、筛选等处理后，**因子可能不再含有全部水平对应的值**（比如原有3个水平，但其中一个水平的值都被筛除了）。这时候需要使用 droplevels() 命令来抛弃多余的水平：
+
+```r
+dt["factor"] <- droplevels(dt["dactor"])
+```
 
 ## 同类元素集：向量、矩阵与数组
 
