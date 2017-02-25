@@ -1,8 +1,8 @@
 [myblog]: https://wklchris.github.io
 [GithubPages]: https://pages.github.com/
 
-*This welcoming page was last updated on Feb 4, 2017.
-本欢迎页最后更新于2017年2月4日。*
+*This welcoming page was last updated on Feb 24, 2017.
+本欢迎页最后更新于 2017 年 2 月 24 日。*
 
 # Welcome to wklchris' Github Blog!
 
@@ -12,6 +12,8 @@ My blog includes:
 
 - How to build your [Github Pages][GithubPages] Blog for free
 - How to play data under R
+- How to do scientific computing with Python 3
+    - Pandas: [Post Link](https://wklchris.github.io/Py3-pandas.html)
 - [A simple introduction to Regular Expression](https://wklchris.github.io/Regular-Expression.html)
 
 
@@ -23,4 +25,6 @@ My blog includes:
 
 - 怎样搭建一个免费的 [Github Pages][GithubPages] 博客平台
 - 怎样用 R 做数据处理
+- 怎样用 Python 做科学计算
+    - Pandas: [博文链接](https://wklchris.github.io/Py3-pandas.html)
 - [一份简单的正则表达式介绍](https://wklchris.github.io/Regular-Expression.html)
