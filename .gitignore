@@ -6,6 +6,10 @@ _site
 .vscode
 *.gem
 
+# _posts
+_posts/*
+!_posts/*.md
+
 # ipynb
 ipynb/*
 !ipynb/data
