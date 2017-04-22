@@ -2,7 +2,7 @@
 layout: post
 title: R语言（入门及风格指导）
 categories: R
-update: 2017-01-27
+update: 2017-03-23
 tags: R-learning
 ---
 
@@ -58,13 +58,22 @@ help("function")  # 查看函数 function 的帮助
 ?function  # 同上
 ```
 
-### 工作目录
+### 工作空间
 
-工作目录不是一个陌生的概念，简单来说就是在哪个文件夹下进行文件操作（包括部分临时文件、读取设置、读写数据等）。但是指定工作目录似乎没有 Python 那样方便，在不同设备上运行时很是头痛。
+在 R 中，路径中需要使用正斜杠(/)。如果你使用 Windows 系统，也可以使用双反斜杠。
 
-```r
-getcwd()  # 显示当前工作目录
-setcwd(*where)  # 设置工作目录到某路径
+
+```R
+# getwd()  # 获取当前工作空间路径
+# setwd(path_string)  # 设置工作空间
+```
+
+在 Rstudio 中，右下角的文件浏览器板块显示的位置即代表了你当前的工作空间。通过该板块右上角的“...”符号可以浏览并定位到你想要的文件夹。
+
+
+```R
+# 常用的做法：拼接字符串路径。注意要将分隔符设置为 Null。
+# df <- read.csv(paste(getwd(), "/data/sample.csv", sep=""))
 ```
 
 ### 输入/输出选项
@@ -74,7 +83,7 @@ R 可以在当前环境有运行已有的 R 文件，算一种广义输入。调
 R 的文字、图片输出可以分离，分别使用 sink(*filename*) 和 以下图片输出函数：bmp (.bmp), pdf (.pdf), jpeg (.jpg), png (.png), postscript (.ps), svg (.svg), win.metafile (.wmf)。例如：
 
 ```r
-# 直接输出到屏幕
+# 直接输出到屏幕。或者直接引用文件，相当于 import.
 source("script1.R")
 # 文本追加模式 append ，输出到文件的同时输出到屏幕 split
 sink("myoutput", append=TRUE, split=TRUE) 
@@ -105,18 +114,6 @@ print(tmp)
     [1] 3
     
 
-### 大小写敏感
-
-
-```R
-tmp = "ThisisText"
-tmp2 = "thisisText"
-print(tmp == tmp2)
-```
-
-    [1] FALSE
-    
-
 ### 逻辑函数
 
 - **逻辑关系符：**分别有：<, <=, >, >=, ==, 以及 !=。**判断两个浮点数值关系时请谨慎使用 ==**,这一点与其他科学计算语言一样。
@@ -130,18 +127,6 @@ print(c(1 < 2, 3 > 2, 2 == 2, 3 != 2))
 
     [1] TRUE TRUE TRUE TRUE
     
-
-### 工作空间
-
-在 R 中，路径中需要使用正斜杠(/)。如果你使用 Windows 系统，也可以使用双反斜杠。
-
-
-```R
-# getwd()  # 获取当前工作空间路径
-# setwd(path_string)  # 设置工作空间
-```
-
-在 Rstudio 中，右下角的文件浏览器板块显示的位置即代表了你当前的工作空间。通过该板块右上角的“...”符号可以浏览并定位到你想要的文件夹。
 
 ## 风格指导
 

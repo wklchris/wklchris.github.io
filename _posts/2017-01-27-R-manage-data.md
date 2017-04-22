@@ -2,7 +2,7 @@
 layout: post
 title: R语言（常用函数与数据管理）
 categories: R
-update: 2017-02-10
+update: 2017-04-22
 tags: R-learning
 ---
 
@@ -626,7 +626,7 @@ dates2
 ```
 
 
-'Sat Jan 28 14:51:54 2017'
+'Sat Apr 22 15:30:54 2017'
 
 
 函数 difftime() 提供了计算时间差的方式。其中计量单位可以是以下之一："auto", "secs", "mins", "hours", "days", "weeks"。
@@ -641,7 +641,7 @@ difftime(dates2, dates1, units="weeks")
 ```
 
 
-    Time difference of 1157.429 weeks
+    Time difference of 1169.429 weeks
 
 
 ## 异常值处理
@@ -788,9 +788,24 @@ aggregate(cbind(df$v1) ~ by1+by2, FUN = "mean")
 
 还有一个强大的整合包 reshape2，这里就不多介绍了。
 
-## 函数式编程：批量应用函数
+## 函数式编程：apply 函数族
 
-这是每个科学计算语言中的重要内容。在 R 中，通过 apply() 可以将函数运用于多维对象。基本语法是：
+函数式编程是每个科学计算语言中的重要内容；操作实现的优先级依次是**矢量运算（例如 df+1）、函数式书写，最后才是循环语句**。在 R 中，函数式编程主要是由 apply 函数族承担。R 中的 apply 函数族包括：
+
+- apply()：指定轴向。传入 data.frame，返回 vector.
+- tapply()：
+- vapply()：
+- lapply()：
+- sapply()：
+- mapply()：
+- rapply()：
+- eapply()：
+
+下面依次介绍。
+
+### apply()：指定多维对象的轴
+
+在 R 中，通过 apply() 可以将函数运用于多维对象。基本语法是：
 
     apply(d, N, FUN, ...)
 
@@ -831,6 +846,139 @@ print(list(colmean, rowquan))
     [1] 2.50 3.50 2.75
     
     
+
+### lapply()：列表式应用
+
+lapply 函数的本意是对 list 对象进行操作。返回值是 list 类型。
+
+
+```R
+lst <- list(a=c(0,1), b=c(1,2), c=c(3,4))
+lapply(lst, function(x) {sum(x^2)})
+```
+
+
+<dl>
+	<dt>$a</dt>
+		<dd>1</dd>
+	<dt>$b</dt>
+		<dd>5</dd>
+	<dt>$c</dt>
+		<dd>25</dd>
+</dl>
+
+
+
+但同样可以作用于 DataFrame 对象的各个列（因为 DataFrame 对象是类似于各列组成的 list）：
+
+
+```R
+lapply(df, sum)
+```
+
+
+<dl>
+	<dt>$x</dt>
+		<dd>6</dd>
+	<dt>$y</dt>
+		<dd>11</dd>
+	<dt>$z</dt>
+		<dd>23</dd>
+	<dt>$s</dt>
+		<dd>14</dd>
+</dl>
+
+
+
+### sapply()/vapply()：变种 lapply()
+
+sapply() 实质上是一种异化的 lapply()，返回值可以转变为 vector 而不是 list 类型。 
+
+
+```R
+class(sapply(lst, function(x) {sum(x^2)}))
+class(lapply(lst, function(x) {sum(x^2)}))
+```
+
+
+'numeric'
+
+
+
+'list'
+
+
+
+```R
+print(sapply(df, sum))
+```
+
+     x  y  z  s 
+     6 11 23 14 
+    
+
+参数 simplify=TRUE 是默认值，表示返回 vector 而不是 list。如果改为 FALSE，就退化为 lapply() 函数。
+
+
+```R
+sapply(df, sum, simplify=FALSE)
+```
+
+
+<dl>
+	<dt>$x</dt>
+		<dd>6</dd>
+	<dt>$y</dt>
+		<dd>11</dd>
+	<dt>$z</dt>
+		<dd>23</dd>
+	<dt>$s</dt>
+		<dd>14</dd>
+</dl>
+
+
+
+vapply() 函数可以通过 FUN.VALUE 参数传入行名称，但这一步往往可以借助 lapply()/sapply() 加上外部的 row.names() 函数完成。
+
+### mapply()：多输入值的应用
+
+mapply() 函数支持多个输入值：
+
+    mapply(FUN, [input1, input2, ...], MoreArgs=NULL)
+    
+其中各 input 的**长度应该相等或互为整数倍数**。该函数的用处在于避免了事先将数据合并。
+
+
+```R
+print(mapply(min, seq(0, 2, by=0.5), -2:7))
+```
+
+     [1] -2.0 -1.0  0.0  1.0  2.0  0.0  0.5  1.0  1.5  2.0
+    
+
+### tapply()：分组应用
+
+tapply() 函数可以借助 factor 的各水平进行分组，然后进行计算。类似于 group by 操作：
+
+    tapply(X, idx, FUN)
+
+其中 X 是数据，idx 是分组依据。
+
+
+```R
+df <- data.frame(x=1:6, groups=rep(c("a", "b"), 3))
+print(tapply(df$x, df$groups, cumsum))
+```
+
+    $a
+    [1] 1 4 9
+    
+    $b
+    [1]  2  6 12
+    
+    
+
+其他的 apply() 函数很少用到，在此就不介绍了。
 
 ## 其他实用函数
 
