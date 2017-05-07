@@ -2,7 +2,7 @@
 layout: post
 title: 概率论
 categories: Basic
-update: 2017-05-04
+update: 2017-05-06
 tags: Prob-Stats
 ---
 
@@ -10,11 +10,13 @@ tags: Prob-Stats
 
 <!-- more -->
 
+$\newcommand{\ud}{\mathop{}\negthinspace\mathrm{d}}$
+
 ## 概率的基础
 
 ### 随机现象与样本空间
 
-现象可以分为两种，概率论研究的是随机事件。
+现象可以分为两种，概率论研究的是随机现象。
 - **随机现象(Random Phenomenon)**：并不总是显现相同结果。两个特点：
     1. 可能的结果不止一种。
     2. 无法预知显现的结果。
@@ -108,9 +110,9 @@ $$\Omega = \lbrace (0, 0), (0, 1), (1,0), (1, 1) \rbrace$$
 
 通过大量重复试验来求近似值的方法，称为随机模拟，或**蒙特卡罗法(Monte Carlo Method)**。例如著名的**布丰投针问题(Buffon's Needle Problem)**：平面上画有间隔为 $d$ 的等距平行线，向平面投掷一枚长度为 $l (l<d)$ 的针，求其与任一平行线相交的概率。
 
-以 $x$ 表示针的中点到最近的一条平行线的距离，以 $\varphi$ 表示针与此直线的交角，那么：$0\leq x\leq d/2, 0\leq \varphi\leq \pi$。样本空间的面积为 $S_\Omega = \pi d/2$。将“针与平行线相交”记为事件 $A$，其充要条件是：$x\leq l/2 \sin\varphi$。因此概率为：
+以 $x$ 表示针的中点到最近的一条平行线的距离，以 $\varphi$ 表示针与此直线的交角，那么：$0\leq x\leq d/2, 0\leq \varphi\leq \pi$。样本空间的面积为 $S_\Omega = \pi d/2$。将“针与平行线相交”记为事件 $A$，其充要条件是：$x\leq \frac{l}{2}\sin\varphi $。因此概率为：
 
-$$ \newcommand{\ud}{\mathop{}\negthinspace\mathrm{d}}  P(A) = \frac{S_A}{S_\Omega} = \frac{\int_0^\pi \frac{l\sin\varphi}{2}\ud\varphi}{\frac{d}{2}\pi}
+$$ P(A) = \frac{S_A}{S_\Omega} = \frac{\int_0^\pi \frac{l\sin\varphi}{2}\ud\varphi}{\frac{d}{2}\pi}
 =  \frac{2l}{d\pi} $$
 
 因此通过大量重复试验的方法（比如在 $N$ 次试验中事件发生了 $k$ 次），可以近似用频率估计概率：$ k/N \approx P(A) = \frac{2l}{d\pi} $，从而能够以此求 $\pi$ 的近似值：
@@ -126,8 +128,8 @@ $$ \pi \approx \frac{2lN}{kd}$$
     - 推论：若 $B\subset A$，则 $P(A)\geq P(B)$
 5. 概率的差公式：对任意事件 $A, B$, 有：$P(A-B) = P(A) - P(AB)$
 6. 概率的并公式：对任意两个事件 $A, B$，有：$P(A\cup B)=P(A)+P(B)-P(AB)$
-    - 推广到 $n$ 的情形：$P\left(\bigcup\limits_{i=1}^n A_i\right)=\sum_{i=1}^n A_i - \sum_{1\leq i<j\leq n} P(A_iA_j) + \sum_{1\leq i<j<k\leq n} P(A_iA_jA_k) +\ldots + (-1)^{n-1}P(A_1A_2\cdots A_n)$
-    - 推论 - 半可加性：$P(A\cup B)\leq P(A)+P(B)$，对 $n$ 的情形：$P\left(\bigcup\limits_{i=1}^n A_i\right)\leq \sum_{i=1}^n A_i$
+    - 推广到 $n$ 的情形：$$P\left(\bigcup\limits_{i=1}^n A_i\right)=\sum\limits_{i=1}^n A_i - \sum\limits_{1\leq i<j\leq n} P(A_iA_j) + \sum\limits_{1\leq i<j<k\leq n} P(A_iA_jA_k) +\ldots + (-1)^{n-1}P(A_1A_2\cdots A_n)$$
+    - 推论 - 半可加性：$P(A\cup B)\leq P(A)+P(B)$，对 $n$ 的情形：$P\left(\bigcup\limits_{i=1}^n A_i\right)\leq \sum\limits_{i=1}^n P(A_i)$
 
 ### 条件概率
 
@@ -172,7 +174,94 @@ $$ P(B\vert A)' = \frac{0.332\times 0.99}{0.332\times 0.99 + 0.668\times 0.01} \
 
 ### 独立性
 
+独立性是指一个事件的发生不影响另一个事件的发生。对于条件概率 $P(A\vert B)$，如果事件 $A$ 与 $B$ 是独立的，那么 $P(A\vert B)=P(A), P(B\vert A)=P(B)$。此时再由条件概率的定义式：$P(A\vert B)=P(AB)/P(B)$ ，推出：
 
+$$ P(AB) = P(A)P(B) $$
+
+显然上式对于 $P(A)=0$ 或者 $P(B)=0$ 的情形也是成立的。我们把满足上式的事件 $A$ 与 $B$ 定义为相互独立的，简称为 $A$ 与 $B$ **独立(Independent)**；否则，则称 $A$ 与 $B$ 不独立（或相依）。
+
+如果 $A$ 与 $B$ 独立，那么 $\overline{A}$ 与 $B$ 独立， $A$ 与 $\overline{B}$ 独立，且 $\overline{A}$ 与 $\overline{B}$ 独立。
+
+#### 多事件的独立性
+
+对于三个事件 $A, B, C$，如果：$P(AB)=P(A)P(B), P(AC)=P(A)P(C), P(BC)=P(B)P(C)$，那么称它们**两两独立(Pairwise Independent)**；若在此外还有：$P(ABC)=P(A)P(B)P(C)$，那么称事件 $A, B, C$ **相互独立(Mutually Independent)**。
+
+推广到 $n$ 个事件的情形：对事件 $A_1, A_2, \ldots, A_n$，如果满足（其中 $i, j, k$ 两两不相同）：
+
+$$ \begin{align*}
+P(A_iA_j) &= P(A_i)P(A_j),\\
+P(A_iA_jA_k) &= P(A_i)P(A_j)P(A_k),\\
+&\vdots \\
+P(A_1A_2\cdots A_n) &= P(A_1)P(A_2)\cdots P(A_n),
+\end{align*} $$
+
+那么，称此 $n$ 个事件相互独立。
+
+#### 多重独立重复试验
+
+试验的任一结果都是一个事件；如果试验 $E_1, E_2, \ldots, E_n$ 的试验 $E_i$ 的任一结果与试验 $E_j (j\neq i)$ 的任一结果都是独立的，那么称此 $n$ 个试验相互独立。如果这 $n$ 个试验是等同的，则称为 $n$ 重**独立重复试验(Independent Repeated Trials)**。如果在此独立重复试验下，每次试验的结果只有两种（$A$ 与 $\overline{A}$，通常是“成功”与“失败”），那么称为 $n$ 重**伯努利试验(Bernouli Trial, or Binomial Trial)**；例如掷硬币 $n$ 次。
+
+## 随机变量及其分布
+
+随机变量常用大写字母 $X, Y, Z$ 表示，其取值一般用 $x, y, z$ 表示。如果一个随机变量的取值是有限个或者可列个，那么称为离散随机变量；否则，称为连续随机变量。对于随机变量 $X$ 与任意实数 $x$，如果函数 $F(x)$ 满足：
+
+$$ F(x) = P(X\leq x) $$
+
+那么称其为随机变量 $X$ 的**分布函数(Distribution Function)**，或**累计分布函数(Cumulative Distribution Function, or cdf)**。对于离散随机变量，其分布函数是分段函数，也被称为分布列，形如：$F(x_i) = c_i$，其中 $\lbrace c_i\rbrace$ 是一个递增的常数数列。
+
+如果实数轴上存在一个非负可积函数 $p(x)$，使得对任意 $x$：
+
+$$ F(x) = \int_{-\infty}^x p(t)\ud t $$
+
+那么，称此 $p(x)$ 为 $X$ 的**概率密度函数(Probability Density Function, or pdf)**或密度函数。在导数存在的点，有：$F'(x)=p(x)$。
+
+### 期望
+
+离散随机变量的分布列：$p(x_i)=P(X=x_i)$，如果 $\sum_{i=1}^\infty \vert x_i\vert p(x_i) < \infty$，则称 $E(X)=\sum_{i=1}^\infty x_i p(x_i)$ 为随机变量 $X$ 的**期望(Expectation)**，或称均值。连续随机变量的密度函数：$p(x)$，如果$\int_{-\infty}^\infty \vert x\vert p(x)\ud x < \infty$，那么 $E(x) = \int_{-\infty}^\infty x p(x)\ud x$ 为随机变量 $X$ 的期望，或称均值。
+
+如果以上式不是有限值，那么对应期望不存在。
+
+期望的性质（用 $p(x_i)$ 表示离散随机变量 $X$ 的分布列，$p(x)$ 表示连续随机变量 $X$ 的密度函数）：
+1. $X$ 的某一函数 $g(X)$ 的期望（若存在，下同）：
+
+$$ E[g(X)] = \begin{cases}
+\sum_i g(x_i)p(x_i), X\text{ is discrete},\\
+\int_{-\infty}^\infty g(x)p(x)\ud x, X\text{ is continuous}.
+\end{cases} $$
+
+2. 对于常数 $c$，$E(c)=c$。
+3. 对于任意常数 $a$，$E(aX) = aE(X)$。
+4. 对于任意两个函数 $g_1, g_2$，$E[g_1(X)\pm g_2(X)] = E[g_1(X)]\pm E[g_2(X)]$。
+
+### 方差与标准差
+
+如果随机变量 $X^2$ 的期望存在，则 $X$ 的**方差(Variance)**定义为偏差平方 $(X - EX)^2$ 的数学期望：
+
+$$ Var(X) = \begin{cases}
+\sum_i (x_i-EX)^2 p(x_i), X\text{ is discrete},\\
+\int_{-\infty}^\infty (x-EX)^2 p(x)\ud x, X\text{ is continuous}.
+\end{cases} $$
+
+并将方差的算术平方根定义为**标准差(Standard Deviation, or SD)**，记为 $\sigma (X)$ 或 $\sigma_X$。
+
+#### 方差的性质
+
+方差（如果存在）有如下的性质：
+- $Var(X) = E(X^2) - [E(X)]^2$。
+- 对任意常数 $c$，$Var(c)=0$。
+- 对任意常数 $a, b$，$Var(aX\pm b)=a^2Var(X)$。
+
+#### 切比雪夫不等式
+
+下面给出一个不等式，用于确定大偏差 $\vert X-EX\vert \geq \varepsilon$ 的概率的上界，称为切比雪夫（Chebyshev）不等式：
+
+$$ P(\vert X-EX\vert\geq \varepsilon) \leq \frac{Var(X)}{\varepsilon^2} $$
+
+证明：$$ P(\vert X-EX\vert\geq \varepsilon) = \int\limits_{x: \vert X-EX\vert\geq \varepsilon} p(x)\ud x \leq \int\limits_{x: \vert X-EX\vert\geq \varepsilon} \frac{(x-EX)^2}{\varepsilon^2} p(x)\ud x\leq \int\limits_{-\infty}^\infty \frac{(x-EX)^2}{\varepsilon^2} p(x)\ud x= \frac{Var(X)}{\varepsilon^2} $$
+
+### 常用离散分布
+
+#### 二项分布
 
 ## 参考文献
 
