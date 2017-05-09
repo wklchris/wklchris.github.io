@@ -10,7 +10,10 @@ tags: Prob-Stats
 
 <!-- more -->
 
-$\newcommand{\ud}{\mathop{}\negthinspace\mathrm{d}}$
+$
+\newcommand{\ud}{\mathop{}\negthinspace\mathrm{d}}
+\newcommand{\ue}{\mathop{}\negthinspace\mathrm{e}}
+$
 
 ## 概率的基础
 
@@ -261,7 +264,59 @@ $$ P(\vert X-EX\vert\geq \varepsilon) \leq \frac{Var(X)}{\varepsilon^2} $$
 
 ### 常用离散分布
 
-#### 二项分布
+#### 泊松分布
+
+对满足分布列 $P(X=k) = \frac{\lambda^k}{k!}\ue^{-\lambda} \,(\lambda>0)$ 的 $X$，称其服从**泊松分布(Poisson Distribution)**，记为 $X\sim P(\lambda)$。它常与单位时间上的计数过程联系。
+
+泊松分布 $X\sim P(\lambda)$ 的期望与方差：$EX=\lambda, Var(X)=\lambda$。
+
+#### 二项分布及其泊松近似
+
+记 $X$ 为 $n$ 重伯努利试验中成功（记为事件 $A$）的次数，则 $X$ 可能的取值为不大于 $n$ 的自然数。记 $p=P(A)$，那么：
+
+$$ P(X=k) = \binom{n}{k} p^k (1-p)^{n-k},\quad k=0,1,\ldots, n $$
+
+该分布称为**二项分布(Binomial Distribution)**，记为 $X\sim b(n, p)$。在 $n=1$ 时的情形：$b(1, p)$，又被称为**两点分布(Two-point Distribution)**。二项分布 $X\sim b(n,p)$ 的期望与方差：$EX = np, Var(X)=np(1-p)$. 
+
+在二项分布 $b(n, p)$ 中，如果 $n$ 是一个较大的值，计算量也会很大。如果当 $n\to \infty$ 时有 $np\to \lambda$，则有近似：
+
+$$ \lim_{n\to\infty} \binom{n}{k} p^k(1-p)^{n-k} = \frac{\lambda^k}{k!}\ue^{-\lambda} $$
+
+由此得：**当 $n$ 较大而 $n\times p$ 是一个大小适中的值时，可以用泊松分布 $P(np)$ 作为二项分布 $b(n, p)$ 的近似。**
+
+#### 超几何分布及其二项近似
+
+从一个有限总体中进行不放回抽样，就是**超几何分布(Hypergeometric Distribution)**的原型。例如，从含有 $M$ 件次品的 $N$ 件产品中不放回地抽取 $n$ 件，其中含有次品的件数 $X$ 就服从超几何分布 $X\sim h(n, N, M)$，其分布列：
+
+$$ P(X=k) = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}, \quad k=0,1,\ldots,r. $$
+
+其中，$r=\min{M,n}, M\leq N, n\leq N$, 且 $n, N, M$ 均为正整数。数学期望是 $EX=\frac{nM}{N}$，方差 $Var(X)=\frac{nM(N-M)(N-n)}{N^2(N-1)}$。
+
+当抽取个数远小于产品总数（即 $n\ll N$）时，每次抽取后的次品率 $p=M/N$ 改变很小，因此能够近似为放回抽样：
+
+$$ \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}} \approx \binom{n}{k} \left(\frac{M}{N}\right)^k \left(1-\frac{M}{N}\right)^{n-k} $$
+
+#### 几何分布及其无记忆性
+
+在伯努利试验中，记每次试验中事件 $A$ 发生的概率为 $p$，如果 $X$ 表示事件 $A$ 首次出现的试验次数，则称 $X$ 服从**几何分布(Geometric Distribution)**，记为 $X\sim Ge(p)$，分布列很显然：
+
+$$ P(X=k) = (1-p)^{k-1}p,\quad k=1,2,\ldots $$
+
+期望与方差：$EX=\frac{1}{p}, Var(X)=\frac{1-p}{p^2} $ 。一个典型的例子是连续掷硬币数次直到掷出正面时的试验次数 $X$ ：$X\sim Ge(0.5)$。
+
+**无记忆性(Memoryless Property)**是指：对 $X$ 与任意的正整数 $m,n$，有$ P(X>m+n\vert X>m) = P(X>n) $。该式对于 $X\sim Ge(p)$ 的情形是成立的。即：在前 $m$ 次未出现 $A$ 的情形下，接下来 $n$ 次试验中仍未出现 $A$ 的概率只与 $n$ 有关而与 $m$ 无关。 
+
+#### 负二项分布
+
+作为几何分布的延伸，记 $X$ 为事件 $A$ 第 $r$ 次出现时的试验次数（$X$ 的可能值为 $r, r+1, \ldots$），则 $X$ 服从**负二项分布(Negative Binomial Distribution)**，记为 $X\sim Nb(r,p)$。其分布列：
+
+$$ P(X=k) = \binom{k-1}{r-1} p^r(1-p)^{k-r}, \quad k=1,2,\ldots $$
+
+该式实际由二项分布以及“$k$次试验中最后一次一定以 $A$结束”推导而得。期望与方差：$EX=\frac{r}{p}, Var(X)=\frac{r(1-p)}{p^2} $。
+
+由几何分布的无记忆性，负二项分布实际可以看做 $r$ 个几何分布之和：$X=X_1+X_2+\cdots+X_r\sim Nb(r,p)$，其中诸 $X_i\sim Ge(p)$ 独立同分布。
+
+### 常用连续分布
 
 ## 参考文献
 
