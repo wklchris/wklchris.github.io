@@ -2,7 +2,7 @@
 layout: post
 title: 概率论
 categories: Basic
-update: 2017-05-06
+update: 2017-05-09
 tags: Prob-Stats
 ---
 
@@ -228,8 +228,8 @@ $$ F(x) = \int_{-\infty}^x p(t)\ud t $$
 1. $X$ 的某一函数 $g(X)$ 的期望（若存在，下同）：
 
 $$ E[g(X)] = \begin{cases}
-\sum_i g(x_i)p(x_i), X\text{ is discrete},\\
-\int_{-\infty}^\infty g(x)p(x)\ud x, X\text{ is continuous}.
+\sum_i g(x_i)p(x_i), & X\text{ is discrete},\\
+\int_{-\infty}^\infty g(x)p(x)\ud x, & X\text{ is continuous}.
 \end{cases} $$
 
 2. 对于常数 $c$，$E(c)=c$。
@@ -241,8 +241,8 @@ $$ E[g(X)] = \begin{cases}
 如果随机变量 $X^2$ 的期望存在，则 $X$ 的**方差(Variance)**定义为偏差平方 $(X - EX)^2$ 的数学期望：
 
 $$ Var(X) = \begin{cases}
-\sum_i (x_i-EX)^2 p(x_i), X\text{ is discrete},\\
-\int_{-\infty}^\infty (x-EX)^2 p(x)\ud x, X\text{ is continuous}.
+\sum_i (x_i-EX)^2 p(x_i), & X\text{ is discrete},\\
+\int_{-\infty}^\infty (x-EX)^2 p(x)\ud x, & X\text{ is continuous}.
 \end{cases} $$
 
 并将方差的算术平方根定义为**标准差(Standard Deviation, or SD)**，记为 $\sigma (X)$ 或 $\sigma_X$。
@@ -317,6 +317,92 @@ $$ P(X=k) = \binom{k-1}{r-1} p^r(1-p)^{k-r}, \quad k=1,2,\ldots $$
 由几何分布的无记忆性，负二项分布实际可以看做 $r$ 个几何分布之和：$X=X_1+X_2+\cdots+X_r\sim Nb(r,p)$，其中诸 $X_i\sim Ge(p)$ 独立同分布。
 
 ### 常用连续分布
+
+#### 正态分布
+
+对于具有以下密度函数的随机变量 $X$，我们称其服从**正态分布(Normal Distribution)**（或**高斯分布(Gauss Distribution)**），记作 $X\sim N(\mu, \sigma^2)$：
+
+$$ p(x) = \frac{1}{\sigma\sqrt{2\pi}} \ue^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+
+正态分布具有以下性质：
+- 期望 $\mu$，方差 $\sigma^2$。
+- $p(x)$ 是关于 $x=\mu$ 对称的一条钟形曲线，在对称轴处达到最大值。$\mu\pm\sigma$ 是曲线的拐点。
+- 如果固定 $\sigma$ 只改变 $\mu$，$p(x)$ 图形仅作平移而形状不变，因此称 $\mu$ 为**位置参数**。
+- 如果固定 $\mu$ 只改变 $\sigma$，$p(x)$ 图形分布的集中程度改变（$\sigma$ 越大，图形越“矮胖”），称 $\sigma$ 为**尺度参数**。 
+- $3\sigma$ 原则：绝大部分（$99.73%$）的值落在 $\mu\pm 3\sigma$ 的范围内。
+
+$$ P(\vert X-\mu\vert < k\sigma) = \begin{cases}
+0.6826, \quad k=1, \\
+0.9545, \quad k=2, \\
+0.9973, \quad k=3.
+\end{cases} $$
+
+
+我们在通常研究时，将 $N(0, 1)$ 称为**标准正态分布(Standard Normal Distribution)**，其密度函数记为 $\varphi(x)$，分布函数记为 $\Phi(x)$。
+- 标准化：如果 $X\sim N(\mu, \sigma)$，那么 $U=\frac{X-\mu}{\sigma}\sim N(0, 1) $
+
+#### 均匀分布
+
+若随机变量 $X$ 的密度函数为以下 $p(x)$：
+
+$$ p(x) = \begin{cases}
+\dfrac{1}{b-a},  & a<x<b, \\
+0,  &\text{otherwise}.
+\end{cases}, \quad F(x) = \begin{cases}
+0,  & x<a, \\
+\dfrac{x-a}{b-a},  & a\leq x<b, \\
+1, & x\geq b.
+\end{cases} $$
+
+那么称 $X$ 服从区间 $(a, b)$ 上的**均匀分布(Uniform Distribution)**，记作 $X\sim U(a, b)$。其分布函数如上述的 $F(x)$。其期望是区间中点 $EX = \frac{a+b}{2}$，方差为 $Var(X) = \frac{(b-a)^2}{12} $。
+
+#### 指数分布及其无记忆性
+
+$X$ 服从**指数分布(Exponential Distribution)**，记为 $X\sim Exp(\lambda)$：
+
+$$ p(x) = \begin{cases}
+\lambda \ue^{-\lambda x},  & x\geq 0, \\
+0,  & x<0.
+\end{cases}, \quad F(x) = \begin{cases}
+1 - \ue^{-\lambda x}, & x\geq 0, \\
+0,  & x<0.
+\end{cases} $$
+
+其期望 $ EX = \frac{1}{\lambda}$，方差 $Var(X) = \frac{1}{\lambda^2} $。指数分布是非负的，因此常常被用作元件寿命的分布；在可靠性与排队论中也有应用。其他性质：
+
+- 指数分布的无记忆性：$ P(X>s+t\vert X>s) = P(X>t) $，很容易证明。
+- 泊松分布与指数分布的关系：例如，在时段 $[0, t]$ 内某机器故障的次数 $N(t)\sim P(\lambda t)$，那么连续两次故障之间的时间间隔 $T\sim Exp(\lambda)$。 
+
+#### 伽马分布与卡方分布
+
+$X$ 服从**伽马分布(Gamma Distribution)**，记为 $X\sim Ga(\alpha, \lambda)$：
+
+$$ p(x) = \begin{cases}
+\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\ue^{-\lambda x},  & x\geq 0, \\
+0,  & x<0.
+\end{cases}$$
+
+其中 $\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}\ue^{-t}\ud t, \quad \alpha>0$，称为伽马函数。伽马函数有如下的性质：
+
+1. $\Gamma(1) = 0, \Gamma(\frac{1}{2}) = \sqrt{\pi},$
+2. $\Gamma(\alpha+1) = \alpha\Gamma(\alpha),$
+3. 当 $n$ 为自然数时，有：$\Gamma(n+1) = n\Gamma(n) = n!$。
+
+伽马分布的性质：
+- 期望 $EX=\frac{\alpha}{\lambda}$，方差 $Var(X) = \frac{\alpha}{\lambda^2}$
+- 当 $0<\alpha\leq 1$，密度函数是严格下降的；当 $1<\alpha\leq 2$，密度函数是先上凸后下凸的单峰函数；当 $\alpha>2$，密度函数仍单峰，先下凸、再上凸、最后下凸。
+- $\alpha$ 越大，它越接近正态分布；但它始终是偏峰函数。
+
+伽马分布的两个特例：
+- 当 $\alpha=1$ 时，伽马分布就是指数分布；
+- 当 $\alpha=n/2, \lambda=1/2$ 时，伽马分布是自由度为 $n$ 的**卡方分布(Chi-square Distribution)**，记为 $X\sim \chi^2(n)$。这里 $n$ 可以是任意正实数，但通常取正整数。其期望与方差：$EX = n, Var(X) = 2n$
+
+#### 其他连续分布
+
+- 贝塔分布 $Be(a,b)$：$p(x) = \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} x^{a-1}(1-x)^{b-1}, 0<x<1$，期望 $EX = \frac{a}{a+b}$，方差 $\frac{ab}{(a+b)^2(a+b+1)}$。
+- 对数正态分布 $LN(\mu, \sigma)$：$p(x) = \frac{1}{\sqrt{2\pi}\sigma x}\ue^{-\frac{(\ln x-\mu)^2}{2\sigma^2}}, x>0 $，期望 $EX=\ue^{\mu+\frac{\sigma^2}{2}}$，方差 $\ue^{2\mu+\sigma^2}(\ue^{\sigma^2}-1)$。
+- 柯西分布 $Cau(\mu, \lambda)$： $p(x) = \frac{1}{\pi}\frac{\lambda}{\lambda^2+(x-\mu)^2} $，期望与方差不存在。
+- 威布尔分布：$p(x) = \frac{\ud}{\ud x} \left(1 - \ue^{-\left(\frac{x}{\eta}\right)^m}\right), x>0$，期望 $EX = \eta\Gamma(1+\frac{1}{m})$，方差 $\eta^2\left[\Gamma\left(1+\frac{2}{m}\right) - \Gamma^2(1+\frac{1}{m}) \right]$。
 
 ## 参考文献
 
