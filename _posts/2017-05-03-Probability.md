@@ -400,9 +400,61 @@ $$ p(x) = \begin{cases}
 #### 其他连续分布
 
 - 贝塔分布 $Be(a,b)$：$p(x) = \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} x^{a-1}(1-x)^{b-1}, 0<x<1$，期望 $EX = \frac{a}{a+b}$，方差 $\frac{ab}{(a+b)^2(a+b+1)}$。
-- 对数正态分布 $LN(\mu, \sigma)$：$p(x) = \frac{1}{\sqrt{2\pi}\sigma x}\ue^{-\frac{(\ln x-\mu)^2}{2\sigma^2}}, x>0 $，期望 $EX=\ue^{\mu+\frac{\sigma^2}{2}}$，方差 $\ue^{2\mu+\sigma^2}(\ue^{\sigma^2}-1)$。
+- 对数正态分布 $LN(\mu, \sigma^2)$：$p(x) = \frac{1}{\sqrt{2\pi}\sigma x}\ue^{-\frac{(\ln x-\mu)^2}{2\sigma^2}}, x>0 $，期望 $EX=\ue^{\mu+\frac{\sigma^2}{2}}$，方差 $\ue^{2\mu+\sigma^2}(\ue^{\sigma^2}-1)$。
 - 柯西分布 $Cau(\mu, \lambda)$： $p(x) = \frac{1}{\pi}\frac{\lambda}{\lambda^2+(x-\mu)^2} $，期望与方差不存在。
 - 威布尔分布：$p(x) = \frac{\ud}{\ud x} \left(1 - \ue^{-\left(\frac{x}{\eta}\right)^m}\right), x>0$，期望 $EX = \eta\Gamma(1+\frac{1}{m})$，方差 $\eta^2\left[\Gamma\left(1+\frac{2}{m}\right) - \Gamma^2(1+\frac{1}{m}) \right]$。
+
+### 随机变量函数的分布
+
+离散随机变量在分布列的基础上直接计算即可，以下主要讨论连续随机变量。
+
+#### 基本定理
+
+对于连续随机变量 $X$ 及其密度函数 $p_X(x)$。如果有一**严格单调**函数 $g(x)$ 且其反函数 $h(y)$ 有连续导函数，那么随机变量 $Y=g(X)$ 的密度函数为：
+
+$$ p_Y(y) = \begin{cases}
+p_X[h(y)]\cdot \vert h'(y)\vert, & a<y<b \\
+0, & \text{otherwise.}
+\end{cases} $$
+
+其中 $a=\min\lbrace g(\infty), g(-\infty)\rbrace, b=\max\lbrace g(\infty), g(-\infty)\rbrace $。
+
+#### 推论
+
+- 对于 $X\sim N(\mu, \sigma^2)$ 与实数 $a\neq 0$，有：$Y=aX+b\sim N(a\mu+b, a^2\sigma^2)$。
+- 对于 $X\sim N(\mu, \sigma^2)$，有：$Y=\ue^{X}\sim LN(\mu, \sigma^2)$。
+- 对于 $X\sim Ga(\alpha, \lambda)$ 与实数 $k>0$，有：$Y=kX\sim Ga(\alpha, \lambda/k)$。
+- 对于分布函数 $F_X(x)$ 为严格单调增函数的随机变量 $X$，若反函数 $F^{-1}_X(y)$ 存在，则 $Y=F_X(X)\sim U(0, 1)$。利用该推论，可以通过生成均匀分布随机数的方法生成一些其他分布的随机数。
+
+### 其他特征数
+
+#### k 阶矩
+
+对于正整数 $k$ 与随机变量 $X$，如果以下数学期望都存在，则有：
+- **原点矩(Raw moment)**：$\mu_k = E(X^k)$
+- **中心矩(Central moment)**：$v_k = E\left[(X-EX)^k\right]$
+- **标准矩(Standardized moment)**：$\hat\mu_k = \frac{\mu_k}{[Var(X)]^{k/2}}$
+
+对以上整数 $k$ 的情形，统称为**k阶矩(k-th moment)**。性质：
+- 由于 $ \vert X\vert^{k-1}\leq \vert X\vert^k + 1 $，因此如果 $k$ 阶矩存在，则低于 $k$ 阶的矩也都存在。
+- 中心矩与原点矩的关系：$v_k = E(X-\mu_1)^k = \sum_{i=0}^k \binom{k}{i}\mu_i(-\mu_1)^{k-i}$，因此有：
+$$ \begin{align*} v_1 &= 0 \\ v_2 &= \mu_2-\mu_1^2 \\ v_3 &= \mu_3 -3\mu_2\mu_1 + 2\mu_1^3 \end{align*} $$。
+
+#### 偏度
+
+偏度是随机变量 $X$ 的三阶标准矩，用于描述分布偏离对称性。如果随机变量 $X$ 的前三阶矩存在，则比值：
+
+$$ \beta_s = \frac{v_3}{v_2^{\frac{3}{2}}} = \frac{E(X-EX)^3}{[Var(X)]^{3/2}} = E\left[\left(\frac{X-EX}{SD(X)}\right)^3\right] $$
+
+称为 $X$ 的偏度系数，简称**偏度(Skewness)**。偏度值大于 0 时称为正偏或右偏(right-skewed)，小于零时称为负偏或左偏(left-skewed)。
+
+#### 峰度
+
+峰度是随机变量 $X$ 的四阶标准矩，用于描述分布尖峭程度与（或）尾部粗细。如果随机变量 $X$ 的前四阶矩存在，则：
+
+$$ \beta_k = \frac{v_4}{v_2^2} - 3 = \frac{E(X-EX)^4}{[Var(X)]^2} $$
+
+称为 $X$ 的峰度系数，简称**峰度(Kurtosis)**，有时也记作 $\mathrm{Kurt}[X]$。峰度值大于 0 表示分布比标准正态分布更尖峭、尾部更粗；小于 0 表示比标准正态分布更平坦、尾部更细。
 
 ## 参考文献
 
