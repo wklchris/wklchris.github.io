@@ -2,7 +2,7 @@
 layout: post
 title: 围棋术语简介
 categories: Go
-update: 2017-05-09
+update: 2017-06-06
 tags: Go
 ---
 
