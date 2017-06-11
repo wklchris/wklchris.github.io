@@ -2,6 +2,7 @@
 layout: post
 title: Python科学计算：matplotlib
 categories: Python
+update: 2017-06-11
 tags: Py-compute
 ---
 
@@ -115,9 +116,36 @@ f.savefig(filename, transparent='True', format='pdf')
 
 如果是 png 格式，还可以用 dpi=... 参数标定其图片质量。
 
+## 图像控制
+
+下面介绍一些常用的控制参数，如坐标轴区间、标签、标题文字等等。
+
+### 坐标轴区间
+
 ## 图像绘制
 
 下面介绍不同种类的图像的绘制，如条形图、散点图等等。
+
+### 水平竖直线或区域：Axes.axhline / axhspan
+
+参数：图像中坐标轴的百分比位置 xmin/xmax/ymin/ymax。
+
+
+```python
+plt.close("all")
+f, ax = plt.subplots()
+ax.axis([0, 3, 0, 2])
+ax.axhline(1, lw=8, color='g')
+ax.axhline(y=1.5, ls="--", lw=2, xmin=0.25, xmax=0.75)
+ax.axvline(2.5, color="y")
+ax.axhspan(0.25, 0.75, xmin=0.25, facecolor='0.5')
+ax.axvspan(0.5, 1.5, facecolor="#74D2D5", alpha=0.2)
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_14_0.png)
+
 
 ### 散点图：Axes.scatter
 
@@ -137,7 +165,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_12_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_16_0.png)
 
 
 ### 条形图：Axes.bar / barh
@@ -194,17 +222,80 @@ ax[1,1].set_xticklabels(list("ABCDE"))
 ax[1,1].legend(loc="center left", bbox_to_anchor=(1.0, 0.5))
 ## 设置 y 轴刻度
 ax[1,1].yaxis.set_major_formatter(mpl.ticker.FuncFormatter(
-                                  lambda y, pos: "%d%%" % (100*y)))
+                                  lambda y, pos: r"{:.0f}%".format(100*y)))
 
 plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_14_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_18_0.png)
 
 
-## 图像控制
+### 填充：Axes.fill_between / fill_betweenx
 
-下面介绍一些常用的控制参数，如坐标轴区间、标签、标题文字等等。
+参数：填充指定区域where，使用插值的精确点而不是原有的数据点interpolate=True。
 
-### 坐标轴区间
+
+```python
+x = np.linspace(0, 2 * np.pi, 1000)
+
+plt.close("all")
+f, ax = plt.subplots(3, 2, sharex="col", figsize=(12, 8))
+y1 = np.sin(x)
+y2 = 1.6 * np.sin(2 * x)
+
+ax[0,0].fill_between(x, 0, y1)
+ax[0,0].set_title("Fill between 0 and y1")
+
+ax[1,0].fill_between(x, y1, 1)
+ax[1,0].set_title("Fill between y1 and 1")
+
+ax[2,0].plot(x, y1, x, y2, color="k")
+ax[2,0].fill_between(x, y1, y2)
+ax[2,0].set_title("Fille between y1 and y2")
+
+ax[0,1].fill_between(x, y1, y2, where = y2>y1, facecolor="g")
+ax[0,1].fill_between(x, y1, y2, where = y2<y1, facecolor="y")
+ax[0,1].set_title("Fill between where")
+
+ax[1,1].fill_betweenx(x, 0, 4)
+ax[1,1].set_title("Fill between 0 and 4")
+
+ax[2,1].fill_betweenx(x, y1, y2, alpha=0.6)
+ax[2,1].set_title("Fill between 0 and y1")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_20_0.png)
+
+
+### 对数坐标轴：Axes.loglog / semilogx / semilogy
+
+
+```python
+x = np.arange(0.01, 20, 0.01)
+
+plt.close("all")
+f, ax = plt.subplots(2, 2, figsize=(14, 6))
+f.subplots_adjust(hspace=0.3)
+
+ax[0,0].semilogy(x, np.exp(x))
+ax[0,0].set_title("semilogy")
+
+ax[0,1].semilogx(x, np.sin(2 * np.pi * x))
+ax[0,1].set_title("semilogx")
+
+ax[1,0].loglog(x, 20*np.exp(x), basex=2)
+ax[1,0].set_title("loglog base 2 on x-axis")
+
+ax[1,1].loglog(x, x, visible=False)
+ax[1,1].set_title("loglog invisible")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_22_0.png)
+
