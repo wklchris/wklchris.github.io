@@ -2,7 +2,7 @@
 layout: post
 title: Python科学计算：matplotlib
 categories: Python
-update: 2017-06-11
+update: 2017-06-12
 tags: Py-compute
 ---
 
@@ -15,6 +15,7 @@ tags: Py-compute
 
 
 ```python
+import os
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
@@ -115,6 +116,8 @@ f.savefig(filename, transparent='True', format='pdf')
 ```
 
 如果是 png 格式，还可以用 dpi=... 参数标定其图片质量。
+
+有时候我们需要操作动态图；**对于动态图 GIF 的保存，请参考本文附录**。
 
 ## 图像控制
 
@@ -299,3 +302,77 @@ plt.show()
 
 ![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_22_0.png)
 
+
+## 附：GIF 动态图保存
+
+这是一个非常有趣的功能。GIF 动态图的绘制与生成不同于静态图像。主要使用 matplotlib 中的 animation 模块。
+
+### 前提工作
+
+在开始绘制动态图之前，你可能需要一些工作来保证命令正常运行：
+
+1. 下载并安装 [ImageMagick](https://www.imagemagick.org/script/download.php)，比如 Windows 用户选择“ImageMagick-x.x.x-0-Q16-x64-dll.exe”版本。其中 Q16 表示颜色的位深度，x.x.x是版本号。**请记录你将它安装到了何处。**安装成功后，在命令行下输入“convert”应当会正常调用ImageMagick。
+2. 如果在安装后仍不能生成 GIF，那可能需要编辑你的 matplotlib 配置文件。你可以这样查找你的配置文件路径：
+
+
+```python
+import matplotlib as mpl
+mpl.matplotlib_fname()
+```
+
+
+
+
+    'e:\\python\\lib\\site-packages\\matplotlib\\mpl-data\\matplotlibrc'
+
+
+
+然后用文本编辑器打开 matplotlibrc，找到被“\#”注释的以下两行：
+
+    #animation.ffmpeg_path: 'ffmpeg'
+    #animation.convert_path: 'convert'
+
+替换为（路径改成你的 ImageMagick 安装路径）：
+
+    animation.ffmpeg_path: F:\ProgramFiles\ImageMagick-7.0.5-Q16\ffmpeg.exe
+    animation.convert_path: F:\ProgramFiles\ImageMagick-7.0.5-Q16\convert.exe
+
+### 例子
+
+至于如何生成 GIF，例子如下。一些要点：
+
+- 通常需要定义一个 update 函数。
+- 通过 `FuncAnimation` 函数的 interval 参数，控制每帧停留的时间。
+- 你可以使用 `set_data`（需要传入一个两行 n 列的 np.array 对象，或者两个类 List 对象） 代替 `set_ydata / set_xdata`。
+
+
+```python
+from matplotlib.animation import FuncAnimation
+
+x = np.linspace(0, 1, 100)
+y = np.arange(0.05, 5, 0.05)
+
+fig, ax = plt.subplots(figsize=(8,6))
+# 注意这里把 plot 的结果保存到一个 Lines 对象
+# 这个初始帧不会写入到 GIF
+frames, = ax.plot(x, x)  
+
+def update_gif(k, X=x):
+    frames.set_ydata(np.power(X, k))
+    ax.set_title("Curve of $y=x^k$ when k={:.2f}".format(k))
+    ax.axis([0, 1, 0, 1])
+    return frames, 
+
+anim = FuncAnimation(fig, update_gif, y, interval=0.1*1000)  # 依次传入y并更新帧
+gif_path = os.path.join(os.getcwd(), "{0}_files".format("Py3-matplotlib"))
+if not os.path.exists(gif_path):
+    os.makedirs(gif_path)
+                        
+anim.save(os.path.join(gif_path, "{0}_01.gif".format("Py3-matplotlib")), dpi=100, writer='imagemagick')
+```
+
+由于不能直接 plt.show（否则会把每一帧输出为单独的图片），这里我用 Markdown 的语法来嵌入这个 GIF:
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_01.gif)
+
+如果你觉得 matplotlib + ImageMagick 的操作仍不能满足一些复杂的 GIF 要求，我推荐使用第三方的、带有图形界面的 GIF 制作软件，例如 Ulead Gif Animator. 
