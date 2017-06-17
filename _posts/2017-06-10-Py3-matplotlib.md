@@ -2,7 +2,7 @@
 layout: post
 title: Python科学计算：matplotlib
 categories: Python
-update: 2017-06-12
+update: 2017-06-16
 tags: Py-compute
 ---
 
@@ -99,8 +99,8 @@ plt.show()
 - sharex, sharey：轴对齐True，不对齐False，每行对齐"row"，每列对齐"col"。
 
 有些参数可以直接在 subplots 中使用，但其实会进一步传递给其他函数。一并在这里介绍：
-- figsize：元组，图片长与宽。
-- gridspec_kw：字典。给出图片的宽/长之比，例如“条形图”一节：gridspec_kw={'height_ratios':[1, 2]}。
+- figsize：元组。总图的长与宽。
+- gridspec_kw：字典。给出各列/行子图之间的宽/长之比，例如“条形图”一节：gridspec_kw={'height_ratios':[1, 2]}。
 
 调整函数 `subplots_adjust` 是一个视觉命令：
 - left, right, bottom, top：间距。
@@ -234,6 +234,100 @@ plt.show()
 ![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_18_0.png)
 
 
+### 直方图：Axes.hist
+
+参数：`histtype` 可以指定为 "bar"（默认）或者 "barstacked", "step", "stepfilled" 四种类型，其中 "barstacked" 与 "bar" 参数外加 "stacked=True" 的效果是一样的。`rwidth` 可以指定每组的柱形宽度占组宽的多少。`normed` 参数用于控制标准化，使各条形面积总和为 1。`weights` 参数用于添加计数权重，尺寸与数据尺寸一致。最后，`color` 参数来传入一个控制颜色的元组。
+
+
+```python
+np.random.seed(0)
+x = np.random.rand(100, 3)
+bins_num = 10
+
+plt.close("all")
+f, ax = plt.subplots(2, 2, sharex=True, figsize=(12, 8))
+ax[0,0].hist(x, bins_num)
+ax[0,0].set_title("Simple")
+ax[0,1].hist(x, bins_num, histtype="bar", stacked=True, rwidth=0.5)
+ax[0,1].set_title("Stacked histogram")
+ax[1,0].hist(x, bins_num, normed=True)
+ax[1,0].set_title("Normalized histogram")
+ax[1,1].hist(x, bins_num, color=("c", "y", "b"), weights=1/x)
+ax[1,1].set_title("Weighted histogram")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_20_0.png)
+
+
+### 箱形图：Axes.boxplot
+
+箱形图的参数比较多：
+- `labels`：字符串列表。作为分组标签。
+- `width`：列表。指定各箱形图的宽度。
+- `vert`：默认为 True。为 False 时，箱形图将横向绘制。
+- `whis`：数字，列表，或者“range”，用于指定正常值范围。一般地，箱形图中会找到低、高两个四分位点 Q1 与 Q3，并在它们之间（IQR=Q3-Q1）绘制箱形图的主体。而箱形图中的高、低的两个 cap 所确定的正常值范围，则是由 `Q3 + whis * IQR` 与 `Q1 - whis * IQR` 决定的，其中 `whis` 的默认值是 1.5。除了给该参数传入数字，也可以传入：
+    - 字符串“range”，表示将所有数据点纳入正常值范围。
+    - 数字列表：以 `[a, b]` 的形式传入，表示正常值范围从 a 百分位到 b 百分位。
+- 均值相关的参数：
+    - `showmeans`：布尔型，默认 False。显示均值。以下参数在 showmean=True 时有效。
+    - `meanline`：布尔型。在箱形图中绘制一条横线，表示均值的位置。
+    - `meanprops`：字典。指定均值参数。可以是点属性，也可以是线属性，参考下例。
+- 中位数相关的参数：
+    - `medianprops` 用法类似均值参数。
+    - `usermedians`传入一个 n 乘 2 数组，数组中**非None**的元素会取代对应位置的正常计算的中位数。
+- 箱体相关的参数：`showbox`，`boxprops`。
+- 异常值（flier）、须（whisker）与区间壁（cap）相关的参数：`showcaps`，`showfliers`，`flierprops`，`capprops`， `whiskerprops`。
+- 置信区间参数：
+    - `notch`：布尔型。绘制 V 型（中值处内缩的）箱形图。
+    - `conf_intervals `：置信区间，n 乘 2 数组（n为单组数据点个数，下例为1000）。
+    - `bootstrap`：整数。用自助抽样法抽取指定个数的样本，并标注 95\% 置信区间。
+- 美化参数：`patch_artist` 默认 False。如果为 True，会填充箱形区域，并支持更改颜色。比如 `facecolor` 参数，它在 `patch_artist=False` 时是无法传入给 boxprops 字典的，因为两种模式下 `boxplot` 返回的类型是不同的。 
+
+
+```python
+# 本例源自：http://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.boxplot.html
+mu, sigma = 1, 1/3
+np.random.seed(0)
+x = np.random.normal(mu, sigma, size=(1000, 3))
+
+# Properties 
+boxprops = dict(linestyle='--', linewidth=3, color='tan')
+flierprops = dict(marker='o', markerfacecolor='lightgreen', markersize=4,
+                  linestyle='none')
+medianprops = dict(linestyle='-.', linewidth=2.5, color='firebrick')
+meanpointprops = dict(marker='D', markeredgecolor='black',
+                      markerfacecolor='firebrick', markersize=6)
+meanlineprops = dict(linestyle='--', linewidth=2.5, color='purple')
+
+# Plot
+plt.close("all")
+f, ax = plt.subplots(2, 3, figsize=(15, 8))
+ax[0,0].boxplot(x)
+ax[0,0].set_title("Default boxplot")
+ax[0,1].boxplot(x, whis=1, labels=list("ABC"),
+                patch_artist=True, boxprops = dict(facecolor=("lightblue")))
+ax[0,1].set_title("Bboxplot with labels and 1X range")
+ax[0,2].boxplot(x, medianprops=medianprops, whis="range", labels=list("ABC"))
+ax[0,2].set_title("Boxplot with medianline and\nfull-length whiskers")
+ax[1,0].boxplot(x, showcaps=False, showfliers=False, labels=list("ABC"),
+                showmeans=True, meanline=True, meanprops=meanlineprops,)
+ax[1,0].set_title("Customized boxplot: meanline")
+ax[1,1].boxplot(x, showmeans=True, flierprops=flierprops, 
+                meanprops=meanpointprops, labels=list("ABC"))
+ax[1,1].set_title("Customized boxplot: meanpoint")
+ax[1,2].boxplot(x, vert=False, boxprops=boxprops, labels=list("ABC"))
+ax[1,2].set_title("Horizontal customized boxplot")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_22_0.png)
+
+
 ### 填充：Axes.fill_between / fill_betweenx
 
 参数：填充指定区域where，使用插值的精确点而不是原有的数据点interpolate=True。
@@ -257,8 +351,9 @@ ax[2,0].plot(x, y1, x, y2, color="k")
 ax[2,0].fill_between(x, y1, y2)
 ax[2,0].set_title("Fille between y1 and y2")
 
-ax[0,1].fill_between(x, y1, y2, where = y2>y1, facecolor="g")
-ax[0,1].fill_between(x, y1, y2, where = y2<y1, facecolor="y")
+ax[0,1].plot(x, y1, x, y2, color="k")
+ax[0,1].fill_between(x, y1, y2, where = y2>y1, facecolor="lightgreen")
+ax[0,1].fill_between(x, y1, y2, where = y2<y1, facecolor="lightblue")
 ax[0,1].set_title("Fill between where")
 
 ax[1,1].fill_betweenx(x, 0, 4)
@@ -271,7 +366,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_20_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_24_0.png)
 
 
 ### 对数坐标轴：Axes.loglog / semilogx / semilogy
@@ -300,7 +395,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_22_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_26_0.png)
 
 
 ## 附：GIF 动态图保存
@@ -364,11 +459,13 @@ def update_gif(k, X=x):
     return frames, 
 
 anim = FuncAnimation(fig, update_gif, y, interval=0.1*1000)  # 依次传入y并更新帧
-gif_path = os.path.join(os.getcwd(), "{0}_files".format("Py3-matplotlib"))
-if not os.path.exists(gif_path):
-    os.makedirs(gif_path)
-                        
-anim.save(os.path.join(gif_path, "{0}_01.gif".format("Py3-matplotlib")), dpi=100, writer='imagemagick')
+
+# 以下是保存为 gif
+
+# gif_path = os.path.join(os.getcwd(), "{0}_files".format("Py3-matplotlib"))
+# if not os.path.exists(gif_path):
+#     os.makedirs(gif_path)                 
+# anim.save(os.path.join(gif_path, "{0}_01.gif".format("Py3-matplotlib")), dpi=100, writer='imagemagick')
 ```
 
 由于不能直接 plt.show（否则会把每一帧输出为单独的图片），这里我用 Markdown 的语法来嵌入这个 GIF:
