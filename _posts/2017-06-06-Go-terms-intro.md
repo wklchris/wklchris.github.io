@@ -2,7 +2,7 @@
 layout: post
 title: 围棋术语简介
 categories: Go
-update: 2017-06-06
+update: 2017-06-17
 tags: Go
 ---
 
@@ -29,8 +29,12 @@ WGo.js 虽然界面美观，但是对变化图的支持却不佳。在有变化�
 <div class="eidogo-player-auto" sgf="go-support/sgf/Go-terms-intro.sgf" align="center"></div>
 ```
 
+注意这两个 js 是有冲突的。
+
 ## 规则
 
+- 胜、负：win/lose
+- 无胜负：void
 - 猜先：guessing the stones
 - 变化图：variation
 - 参考图：reference
@@ -82,6 +86,7 @@ WGo.js 虽然界面美观，但是对变化图的支持却不佳。在有变化�
 - 妖刀：magic sword（对小目一间高挂进行二间高夹）
 - 初棋无劫：There are no ko threat in the opening.
 
+常见的布局法：
 <div class="eidogo-player-auto" sgf="go-support/sgf/Go-terms-intro.sgf" align="center"></div>
 
 中盘：
@@ -262,10 +267,33 @@ WGo.js 虽然界面美观，但是对变化图的支持却不佳。在有变化�
 - 强硬：strong
 - 权利：privilege
 - 胜负手：all-or-nothing move
-- 俗手：crude move
+- 俗手：crude/vulgar move
 - 随手：hasty move
 - 稳妥：stable
 - 唯一手：only move
 - 无理：overplay
 - 有余味：aji
 - 转换：exchange
+
+## 特殊棋形
+
+一些特殊棋形出现时，棋局结果会被标记为“无胜负(void)”。中国规则原则上禁止“全局同形”（这也是劫不能立即反提的原因），形成同形的着手被视为“禁手”（类似“禁着点”）。但在某些场合，特殊棋形被视为无胜负的局。
+
+### 长生 Eternal Life
+
+长生是一种特殊棋形，双方均不愿退让（退让的一方损失过大），一般是指不断扑提的以下棋形：
+
+<div class="eidogo-player-auto" sgf="go-support/sgf/Go-terms-eternal-life.sgf" align="center"></div>
+
+### 三劫循环 Triple ko
+
+有时可能是四劫循环或更多。
+
+<div class="eidogo-player-auto" sgf="go-support/sgf/Go-terms-triple-ko.sgf" align="center"></div>
+
+### 两子双提 Double capture
+
+一种可能更鲜为人知的棋形。
+
+<div class="eidogo-player-auto" sgf="go-support/sgf/Go-terms-double-capture.sgf" align="center"></div>
+

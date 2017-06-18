@@ -16,6 +16,7 @@ My blog includes:
     - Basic Python 3: [Post Link](https://wklchris.github.io/Py3-basic.html)
     - Pandas: [Post Link](https://wklchris.github.io/Py3-pandas.html)
     - NumPy: [Post Link](https://wklchris.github.io/Py3-numpy.html)
+    - Matplotlib：[Post Link](https://wklchris.github.io/Py3-matplotlib.html)
 - [A simple introduction to Regular Expression](https://wklchris.github.io/Regular-Expression.html)
 - Basic knowledge:
     - Probability: [Post Link](https://wklchris.github.io/Probability.html)
@@ -35,6 +36,7 @@ My blog includes:
     - 基础 Python 3: [博文链接](https://wklchris.github.io/Py3-basic.html)
     - Pandas: [博文链接](https://wklchris.github.io/Py3-pandas.html)
     - NumPy: [博文链接](https://wklchris.github.io/Py3-numpy.html)
+    - Matplotlib：[博文链接](https://wklchris.github.io/Py3-matplotlib.html)
 - [一份简单的正则表达式介绍](https://wklchris.github.io/Regular-Expression.html)
 - 基础知识
     - 概率论：[博文链接](https://wklchris.github.io/Probability.html)

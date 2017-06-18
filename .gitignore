@@ -15,3 +15,6 @@ ipynb/*
 !ipynb/data
 !ipynb/*.ipynb
 !ipynb/_post_head.csv
+
+# go-support
+go-support/wgo

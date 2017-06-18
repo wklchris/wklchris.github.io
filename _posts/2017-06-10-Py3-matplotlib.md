@@ -260,7 +260,8 @@ plt.close("all")
 f, ax = plt.subplots()
 
 plt.rc("lines", linewidth=2)
-plt.rc("axes", prop_cycle=(cycler('color', ['Salmon', 'Orange', 'SeaGreen', 'DodgerBlue']) +
+plt.rc("axes", prop_cycle=(cycler('color', ['Salmon', 'Orange', 
+                                            'SeaGreen', 'DodgerBlue']) +
                            cycler('linestyle', ['-', '--', ':', '-.'])))
 
 for i in range(line_num):
@@ -516,11 +517,15 @@ plt.show()
 plt.close('all')
 f, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 ax1.plot([0, 10], [0, 15], 'b')
-ax1.annotate(r'A text', xy=(6,8), xytext=(20, -30), textcoords='offset pixels', arrowprops=dict(arrowstyle='->'))
+ax1.annotate(r'A text', xy=(6,8), xytext=(20, -30), textcoords='offset pixels', 
+             arrowprops=dict(arrowstyle='->'))
 
 ax2.plot([0, 10], [0, 15], 'r')
-ax2.annotate(r'Another', xy=(6,8), xytext=(10, -60), textcoords='offset pixels', fontsize=12, 
-             arrowprops=dict(arrowstyle='-|>', connectionstyle='arc3, rad=-0.3'))  # 指定圆弧半径，负值表示顺时针画弧
+ax2.annotate(r'Another', xy=(6,8), xytext=(10, -60), 
+             textcoords='offset pixels', fontsize=12, 
+             # 指定圆弧半径，负值表示顺时针画弧
+             arrowprops=dict(arrowstyle='-|>',
+                             connectionstyle='arc3, rad=-0.3'))  
 
 plt.show()
 ```
@@ -1164,11 +1169,11 @@ anim = FuncAnimation(fig, update_gif, y, interval=0.1*1000)  # 依次传入y并�
 # gif_path = os.path.join(os.getcwd(), "{0}_files".format("Py3-matplotlib"))
 # if not os.path.exists(gif_path):
 #     os.makedirs(gif_path)                 
-# anim.save(os.path.join(gif_path, "{0}_01.gif".format("Py3-matplotlib")), dpi=100, writer='imagemagick')
+# anim.save(os.path.join(gif_path, "matplotlib-eg.gif"), dpi=100, writer='imagemagick')
 ```
 
 由于不能直接 plt.show（否则会把每一帧输出为单独的图片），这里我用 Markdown 的语法来嵌入这个 GIF:
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_01.gif)
+![png](https://wklchris.github.io/assets/ipynb-images/matplotlib-eg.gif)
 
 如果你觉得 matplotlib + ImageMagick 的操作仍不能满足一些复杂的 GIF 要求，我推荐使用第三方的、带有图形界面的 GIF 制作软件，例如 Ulead Gif Animator. 
