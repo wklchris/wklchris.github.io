@@ -2,7 +2,7 @@
 layout: post
 title: Python科学计算：matplotlib
 categories: Python
-update: 2017-06-16
+update: 2017-06-17
 tags: Py-compute
 ---
 
@@ -23,6 +23,20 @@ from matplotlib import pyplot as plt
 
 from numpy.random import rand
 ```
+
+本文最后编辑时，使用的各版本号如下：
+
+
+```python
+np.__version__, pd.__version__, mpl.__version__
+```
+
+
+
+
+    ('1.12.1', '0.19.2', '2.0.1')
+
+
 
 ## 绘制与保存
 
@@ -47,11 +61,11 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_4_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_6_0.png)
 
 
 一些常用的性质：
-- **color**：线的颜色。红r，绿g，蓝b，青c，洋红m，黄y，黑k，白w。
+- **color**：线的颜色。基础的有红r，绿g，蓝b，青c，洋红m，黄y，黑k，白w。**参考本节的“颜色”小节。**
   - 一些其他的颜色表述：color="#66ccff" HTML码；(1, 0, 0) 标准化的RGB元组；"0.5" 灰度字串。
 - **linestyle(ls)**：线型。实线"-"，虚线"--"，点划线"-."，点线":"。
   - dashes: 虚线比例。传入元组 (a,b)，那么划线长与间隔长之比为 a/b。
@@ -84,6 +98,7 @@ plt.close("all")
 # f, (ax1, ax2, ax3) = ... 也是一种写法
 f, axarr = plt.subplots(3, sharex=True, sharey=True)
 f.subplots_adjust(hspace=0)  # 调整函数
+# 如果是多行多列，可以使用 axarr = axarr.ravel() 再以 for 遍历
 for i in range(len(y)):
     axarr[i].plot(x, y[i])
 
@@ -91,7 +106,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_8_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_9_0.png)
 
 
 `plt.subplots()` 是一个实用的命令：
@@ -100,6 +115,7 @@ plt.show()
 
 有些参数可以直接在 subplots 中使用，但其实会进一步传递给其他函数。一并在这里介绍：
 - figsize：元组。总图的长与宽。
+- subplot_kw：传递给命令 `add_subplot()` 的参数，常用的是极坐标 dict(projection='polar')。
 - gridspec_kw：字典。给出各列/行子图之间的宽/长之比，例如“条形图”一节：gridspec_kw={'height_ratios':[1, 2]}。
 
 调整函数 `subplots_adjust` 是一个视觉命令：
@@ -119,11 +135,472 @@ f.savefig(filename, transparent='True', format='pdf')
 
 有时候我们需要操作动态图；**对于动态图 GIF 的保存，请参考本文附录**。
 
+### 颜色
+
+matplotlib 中的颜色支持用以下的方式指定：
+
+- 标准化的 RGB：以三元元组的形式，比如 `(0, 0, 1)` 代表 (0, 0, 255)，即纯蓝。
+- HTML 16进制颜色码：以字符串的形式，比如 `"#0F0F0F}"`。
+- 标准化的灰度值：以字符串形式，比如 `0.5` 。
+- RGB 与 CMYK 标准色字符：以单个字符形式，有：`r,g,b,c,m,y,k,w` 八种，其中 w 是白色。
+- X11/CSS4 标准的颜色名：
+- XKCD 颜色调查（参考[此页面](https://xkcd.com/color/rgb/)）：例如"xksd:sky blue"。
+
+以及 matplotlib 采用的：
+- matplotlib 默认的十色环："C0", "C1", ……，"C9"。这是 matplotlib 绘图默认依次使用的颜色。
+- 十色环的另一种形式：'tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:pink', 'tab:gray', 'tab:olive', 'tab:cyan'。
+
+以上字符串（除16进制码外）均是大小写敏感的。
+
+
+```python
+# A list of X11 color names from: http://cng.seas.rochester.edu/CNG/docs/x11color.html
+# Total 140 colors included.
+colors = [("LightPink", "#FFB6C1"),("Pink", "#FFC0CB"),("Crimson", "#DC143C"),("LavenderBlush", "#FFF0F5"),
+          ("PaleVioletRed", "#DB7093"),("HotPink", "#FF69B4"),("DeepPink", "#FF1493"),("MediumVioletRed", "#C71585"),        
+          ("Orchid", "#DA70D6"),("Thistle", "#D8BFD8"),("Plum", "#DDA0DD"),("Violet", "#EE82EE"),                            
+          ("Magenta", "#FF00FF"),("Fuchsia", "#FF00FF"),("DarkMagenta", "#8B008B"),("Purple", "#800080"),                    
+          ("MediumOrchid", "#BA55D3"),("DarkViolet", "#9400D3"),("DarkOrchid", "#9932CC"),("Indigo", "#4B0082"),             
+          ("BlueViolet", "#8A2BE2"),("MediumPurple", "#9370DB"),("MediumSlateBlue", "#7B68EE"),("SlateBlue", "#6A5ACD"),     
+          ("DarkSlateBlue", "#483D8B"),("Lavender", "#E6E6FA"),("GhostWhite", "#F8F8FF"),("Blue", "#0000FF"),                
+          ("MediumBlue", "#0000CD"),("MidnightBlue", "#191970"),("DarkBlue", "#00008B"),("Navy", "#000080"),                 
+          ("RoyalBlue", "#4169E1"),("CornflowerBlue", "#6495ED"),("LightSteelBlue", "#B0C4DE"),("LightSlateGray", "#778899"),
+          ("SlateGray", "#708090"),("DodgerBlue", "#1E90FF"),("AliceBlue", "#F0F8FF"),("SteelBlue", "#4682B4"),              
+          ("LightSkyBlue", "#87CEFA"),("SkyBlue", "#87CEEB"),("DeepSkyBlue", "#00BFFF"),("LightBlue", "#ADD8E6"),            
+          ("PowderBlue", "#B0E0E6"),("CadetBlue", "#5F9EA0"),("Azure", "#F0FFFF"),("LightCyan", "#E0FFFF"),                  
+          ("PaleTurquoise", "#AFEEEE"),("Cyan", "#00FFFF"),("Aqua", "#00FFFF"),("DarkTurquoise", "#00CED1"),                 
+          ("DarkSlateGray", "#2F4F4F"),("DarkCyan", "#008B8B"),("Teal", "#008080"),("MediumTurquoise", "#48D1CC"),           
+          ("LightSeaGreen", "#20B2AA"),("Turquoise", "#40E0D0"),("Aquamarine", "#7FFFD4"),("MediumAquamarine", "#66CDAA"),   
+          ("MediumSpringGreen", "#00FA9A"),("MintCream", "#F5FFFA"),("SpringGreen", "#00FF7F"),("MediumSeaGreen", "#3CB371"),
+          ("SeaGreen", "#2E8B57"),("Honeydew", "#F0FFF0"),("LightGreen", "#90EE90"),("PaleGreen", "#98FB98"),                
+          ("DarkSeaGreen", "#8FBC8F"),("LimeGreen", "#32CD32"),("Lime", "#00FF00"),("ForestGreen", "#228B22"),               
+          ("Green", "#008000"),("DarkGreen", "#006400"),("Chartreuse", "#7FFF00"),("LawnGreen", "#7CFC00"),                  
+          ("GreenYellow", "#ADFF2F"),("DarkOliveGreen", "#556B2F"),("YellowGreen", "#9ACD32"),("OliveDrab", "#6B8E23"),      
+          ("Beige", "#F5F5DC"),("LightGoldenrodYellow", "#FAFAD2"),("Ivory", "#FFFFF0"),("LightYellow", "#FFFFE0"),          
+          ("Yellow", "#FFFF00"),("Olive", "#808000"),("DarkKhaki", "#BDB76B"),("LemonChiffon", "#FFFACD"),                   
+          ("PaleGoldenrod", "#EEE8AA"),("Khaki", "#F0E68C"),("Gold", "#FFD700"),("Cornsilk", "#FFF8DC"),                     
+          ("Goldenrod", "#DAA520"),("DarkGoldenrod", "#B8860B"),("FloralWhite", "#FFFAF0"),("OldLace", "#FDF5E6"),           
+          ("Wheat", "#F5DEB3"),("Moccasin", "#FFE4B5"),("Orange", "#FFA500"),("PapayaWhip", "#FFEFD5"),                      
+          ("BlanchedAlmond", "#FFEBCD"),("NavajoWhite", "#FFDEAD"),("AntiqueWhite", "#FAEBD7"),("Tan", "#D2B48C"),           
+          ("BurlyWood", "#DEB887"),("Bisque", "#FFE4C4"),("DarkOrange", "#FF8C00"),("Linen", "#FAF0E6"),                     
+          ("Peru", "#CD853F"),("PeachPuff", "#FFDAB9"),("SandyBrown", "#F4A460"),("Chocolate", "#D2691E"),                   
+          ("SaddleBrown", "#8B4513"),("Seashell", "#FFF5EE"),("Sienna", "#A0522D"),("LightSalmon", "#FFA07A"),               
+          ("Coral", "#FF7F50"),("OrangeRed", "#FF4500"),("DarkSalmon", "#E9967A"),("Tomato", "#FF6347"),                     
+          ("MistyRose", "#FFE4E1"),("Salmon", "#FA8072"),("Snow", "#FFFAFA"),("LightCoral", "#F08080"),                      
+          ("RosyBrown", "#BC8F8F"),("IndianRed", "#CD5C5C"),("Red", "#FF0000"),("Brown", "#A52A2A"),                         
+          ("FireBrick", "#B22222"),("DarkRed", "#8B0000"),("Maroon", "#800000"),("White", "#FFFFFF"),                        
+          ("WhiteSmoke", "#F5F5F5"),("Gainsboro", "#DCDCDC"),("LightGrey", "#D3D3D3"),("Silver", "#C0C0C0"),                 
+          ("DarkGray", "#A9A9A9"),("Gray", "#808080"),("DimGray", "#696969"),("Black", "#000000")]                           
+
+plt.close("all")
+f, ax = plt.subplots(figsize=(15, 12))
+w, h = 10, 4
+rowpad, colpad = 2, 9 
+for i in range(140):
+    curname = colors[i][0]
+    cols, rows = divmod(i, 35)
+    rows = 34 - rows
+    ax.fill_between([w * cols, w * (cols + 1) - colpad],
+                    [h * rows, h * rows], 
+                    [h * (rows + 1) - rowpad, h * (rows + 1) - rowpad],
+                    facecolor=curname)
+    ax.text(w * (cols + 1) - 0.95*colpad, h * rows + (h - rowpad) / 2, "{}, {}".format(*colors[i]), 
+            horizontalalignment="left", verticalalignment='center')
+ax.axis(xmax=4*w)
+ax.set_axis_off()
+ax.set_title("X11 colors table", fontsize=16)
+    
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_12_0.png)
+
+
+### rcParams：默认参数
+
+从上面的绘图中可以看到，即使没有指定线型、点样式，matplotlib 也能以其默认的颜色、样式绘图。这些默认参数是可以修改的。它们都存储在 `matplotlib.rcParams` 这个大字典变量中。例如默认的线颜色：
+
+
+```python
+mpl.rcParams["lines.color"]
+```
+
+
+
+
+    'C0'
+
+
+
+使用 `rc` 命令来更改默认参数的值，例如下例将更改 `mpl.rcParams["lines.linewidth"]` 与 ``mpl.rcParams["lines.color"]`` 两个键值：
+
+
+```python
+# 更改默认的值：
+# mpl.rc('lines', linewidth=2, color='r')
+
+# 仅在接下来绘制的图片中应用值：
+# plt.rc(...)
+```
+
+一个绘图的例子：
+
+
+```python
+from cycler import cycler
+
+n = 6
+line_num = 8
+x = np.linspace(0, 2 * np.pi, n)
+np.random.seed(0)
+y = np.random.rand(line_num, n)
+
+plt.close("all")
+f, ax = plt.subplots()
+
+plt.rc("lines", linewidth=2)
+plt.rc("axes", prop_cycle=(cycler('color', ['Salmon', 'Orange', 'SeaGreen', 'DodgerBlue']) +
+                           cycler('linestyle', ['-', '--', ':', '-.'])))
+
+for i in range(line_num):
+    ax.plot(x, y[i], label="Line {}".format(i+1))
+
+ax.legend(loc="lower left", ncol=4)
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_18_0.png)
+
+
+要想下面的图片绘制不受影响，使用以下命令恢复默认值：
+
+
+```python
+mpl.rcParams.update(mpl.rcParamsDefault)
+```
+
 ## 图像控制
 
 下面介绍一些常用的控制参数，如坐标轴区间、标签、标题文字等等。
 
-### 坐标轴区间
+### 图像、坐标轴标题：Axes.set_title / set_x(y)label
+
+设置标题时可以传入字体参数字典 `fontdict` （或者将其中的键单独传递，如下例），默认值是：
+
+```Python
+{'fontsize': rcParams['axes.titlesize'],
+ 'fontweight' : rcParams['axes.titleweight'],
+ 'verticalalignment': 'baseline',
+ 'horizontalalignment': loc}
+ ```
+坐标轴标题 `set_xlabel/set_ylabel` 可以使用 `labelpad` 参数，设定到坐标轴的距离的倍数值。
+ 
+如果要设定标题到图像的距离，使用 `set_title` 的 `y` 参数 ，例如 y = 1.05. 
+
+
+```python
+x = np.linspace(0, 2 * np.pi, 1000)
+y = np.sin(x)
+
+plt.close("all")
+f, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_title(r"Title even support LaTeX: $\alpha\geq\beta$", loc="left", fontsize=12)
+ax.set_xlabel("This is a X far from x-axis!", labelpad=20)
+ax.set_ylabel("This is a small fontsize Y!", fontsize=8)
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_23_0.png)
+
+
+### 坐标轴命令：
+
+坐标轴命令有很多：
+
+1. 设置坐标轴区间：`Axes.axis`，可以通过选项 `xmin/xmax/ymin/ymax` 指定单侧边界。
+2. 设置单轴区间：`Axes.set_xlim/ylim`
+3. 显示、隐藏坐标轴：`Axes.set_axis_on/off`
+4. 隐藏坐标框:`Axes.set_frame_on`，传入 False 以隐藏。
+5. 设置坐标轴背景色：`Axes.set_facecolor`，传入颜色字符串。
+
+
+```python
+x = np.linspace(0, 2 * np.pi, 1000)
+y = np.sin(x)
+titles = ["Default", "Default without axes", "Default without frames",
+          "Given all boundaries", "Given Xmax only", 
+          "X-limit with background color"]
+
+plt.close("all")
+f, axarr = plt.subplots(2, 3, figsize=(15, 6))
+f.subplots_adjust(hspace=0.35, wspace=0.35)
+
+axarr = axarr.ravel()
+for ax, t in zip(axarr, titles):
+    ax.plot(x, y)
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_title(t)
+
+# axarr[0]：default
+axarr[1].set_axis_off()
+axarr[2].set_frame_on(False)
+axarr[3].axis([0, 7, -1.5, 1.5])
+axarr[4].axis(xmax=2 * np.pi)
+axarr[5].set_xlim([1, 5])
+axarr[5].set_facecolor("lightgreen")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_25_0.png)
+
+
+### 坐标轴框架：Axes.spines
+
+坐标轴框架可以设置其可见性与否 `set_visible`，并且移动其位置。
+
+
+```python
+x = np.linspace(-1, 3, 1000)
+y = x ** 2
+
+plt.close('all')
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_position(('data', 0))
+ax.spines['left'].set_position(('data', 0))
+ax.axis([-1, 2, -2, 6])
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_27_0.png)
+
+
+### 图例：Axes.legend
+
+图例配合 `plot` 函数的 label 参数使用，文字部分会直接使用 label 参数的字串。图例放置位置由 `loc` 参数指定，具体的取值有：
+- 自动‘best’或0
+- 右上‘upper right’或1
+- 左上‘upper left’或2，左下‘lower left’或3，左中‘center left’或6
+- 右下‘lower right’或4，右侧‘right’5，右中‘center right’或7
+- 中下‘lower center’或8，中上‘upper center’或9，中部‘center’或10。
+
+并可以结合 `bbox_to_anchor` 参数灵活地设置对齐参考，甚至放置在图框外侧。
+
+图例由图线（handle）与文字（text）两部分组成，每对图线与文字组成一个标签（label）。由此理解：`borderpad`，`labelspacing`，`handlelength`，`handletextpad`，`borderaxespad`，`columnspacing` 这些空距控制参数。注意：`borderpad` 是一个比例值。
+
+其他参数参考下面的例子。
+
+
+```python
+x = np.linspace(0, 2 * np.pi, 30)
+y1, y2 = np.sin(x), np.cos(x)
+titles = ["Simple legend", "Legend with more and larger markers", 
+          "Legend outside the figure frame",
+          "Legend with a title but no frame",
+          "Legend with face & edge color",
+          "Legend with adjusted size & spacings"]
+
+plt.close("all")
+f, axarr = plt.subplots(2, 3, sharey=True, figsize=(15, 8))
+f.subplots_adjust(hspace=0.35)
+axarr = axarr.ravel()
+for ax, t in zip(axarr, titles):
+    ax.plot(x, y1, "o-", label=r"$y=\sin x$")
+    ax.plot(x, y2, "s--", label=r"$y=\cos x$")
+    ax.set_title(t)
+
+axarr[0].legend(loc="lower left")
+axarr[1].legend(numpoints=2, markerscale=1.5, fontsize=14)
+axarr[2].legend(loc="upper center", ncol=2, bbox_to_anchor=(0.5, -0.08))
+axarr[3].legend(frameon=False, title="LgTitle")
+axarr[4].legend(facecolor="lightgreen", edgecolor="k")
+axarr[5].legend(handlelength=3, handletextpad=0.5,
+                labelspacing=1, columnspacing=1)
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_29_0.png)
+
+
+### 刻度与刻度标签：Axes.set_x(y)ticks / x(y)ticklabels
+
+刻度标签字符串的格式如何修改，也在下例中给出。
+
+附注：方法 `Axes.set_xticks` 与 `Axes.xaxis.set_ticks` 是等价的。
+
+
+```python
+from matplotlib.ticker import FormatStrFormatter
+import string
+
+np.random.seed(0)
+x, y = np.random.rand(2, 100)
+titles = ["Default ticks", "Given ticks", 
+          "Given ticks and their format", "Given ticklabels"]
+xticksnum, yticksnum = 10, 5
+xticks = np.linspace(0, 1, xticksnum + 1)
+yticks = np.linspace(0, 1, yticksnum + 1)
+
+plt.close("all")
+f, axarr = plt.subplots(2, 2, figsize=(15, 7))
+axarr =axarr.ravel()
+for i in range(4):
+    ax = axarr[i]
+    ax.plot(x, y, "o")
+    ax.set_title(titles[i])
+    ax.axis([0, 1, 0, 1])
+    if i > 0:
+        ax.set_xticks(xticks)
+        ax.set_yticks(yticks)
+    
+axarr[2].xaxis.set_major_formatter(FormatStrFormatter('%0.2f'))
+axarr[3].set_xticklabels(string.ascii_uppercase[:xticksnum + 1])
+axarr[3].set_yticklabels([])  # y 轴刻度标签留空
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_31_0.png)
+
+
+### 添加文字：Axes.text / annotate
+
+一个简明的 `text` 命令的例子：
+
+
+```python
+# 本例改编自：http://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html
+plt.close("all")
+plt.plot([1 , 1], [0, 3], color='k', linewidth=0.5 , linestyle='--')
+
+# 单独使用字号控制命令
+plt.text(2, 1, 'Hmm', fontsize=12)  
+
+# 使用字典形式的字体控制
+plt.text(1, 1, 'Two lines \n text ', horizontalalignment='center', 
+         fontdict={'size': 12, 'color': 'r'})  
+
+# bbox 是一个复杂的参数，在此不多深入
+plt.text(1, 3, 'With box', bbox=dict(facecolor='r', alpha=0.3))  
+
+plt.axis([0, 3, 0, 4])
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_33_0.png)
+
+
+`annotate` 的例子：
+
+
+```python
+plt.close('all')
+f, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+ax1.plot([0, 10], [0, 15], 'b')
+ax1.annotate(r'A text', xy=(6,8), xytext=(20, -30), textcoords='offset pixels', arrowprops=dict(arrowstyle='->'))
+
+ax2.plot([0, 10], [0, 15], 'r')
+ax2.annotate(r'Another', xy=(6,8), xytext=(10, -60), textcoords='offset pixels', fontsize=12, 
+             arrowprops=dict(arrowstyle='-|>', connectionstyle='arc3, rad=-0.3'))  # 指定圆弧半径，负值表示顺时针画弧
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_35_0.png)
+
+
+上例中，arrowprops 要传入一个字典。该字典的 arrowwstyle 键可选的值（大致都是象形的，不再注释中文含义）有：
+
+| arrowstyle 参数 | 等效参数形式 | 
+| --- | --- | 
+| '-' | None |
+| '->' | head_length=0.4,head_width=0.2 |
+| '-[' | widthB=1.0,lengthB=0.2,angleB=None |
+| '&#124;-&#124;' | widthA=1.0,widthB=1.0 |
+| '-&#124;>' | head_length=0.4,head_width=0.2 |
+| '<-' | head_length=0.4,head_width=0.2 |
+| '<->' | head_length=0.4,head_width=0.2 |
+| '<&#124;-' | head_length=0.4,head_width=0.2 |
+| '<&#124;-&#124;>' | head_length=0.4,head_width=0.2 |
+
+connectionstyle 键可选的值：
+
+| connectionstyle 参数| 等效参数形式 |
+| --- | --- |
+| angle	| angleA=90,angleB=0,rad=0.0 |
+| angle3 | angleA=90,angleB=0 | 
+| arc | angleA=0,angleB=0,armA=None,armB=None,rad=0.0 |
+| arc3 | rad=0.0 |
+| bar | armA=0.0,armB=0.0,fraction=0.3,angle=None |
+
+### 网格：Axes.grid
+
+一个基础的例子：
+
+
+```python
+x = np. linspace (0, 10, 100)
+y = 2 * np.sin(x)
+
+plt.close("all")
+plt.plot(x, y)
+
+# 其实简单地使用 "plt.grid(True)"  就可以显示网格
+plt.grid(axis='y', linestyle='--', color='0.75')  # 灰度适当很重要
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_38_0.png)
+
+
+下例给出了网格线的绘制步骤，以及主要、次要网格线分开设置的方法。
+
+
+```python
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
+x = np. linspace (0, 10, 100)
+y = 2*x
+plt.close('all')
+
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.xaxis.set_major_locator(MultipleLocator(2))
+ax.yaxis.set_major_locator(MultipleLocator(5))
+ax.xaxis.set_minor_locator(MultipleLocator(1))
+ax.yaxis.set_minor_locator(MultipleLocator(1))
+ax.xaxis.set_major_formatter(FormatStrFormatter('%d'))
+ax.grid(which='major', linestyle='-', color='k')
+ax.grid(which='minor', linestyle='--', color='r', alpha=0.2)
+ax.axis([0, 10, 0, 20])
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_40_0.png)
+
 
 ## 图像绘制
 
@@ -147,12 +624,14 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_14_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_43_0.png)
 
 
 ### 散点图：Axes.scatter
 
 参数：点大小向量s，点颜色向量c，透明度alpha。
+
+此外，直接使用 `plot`命令可以绘制简单的点图。只要不指定线属性，绘图时就只绘制点而不绘制线。
 
 
 ```python
@@ -168,7 +647,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_16_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_45_0.png)
 
 
 ### 条形图：Axes.bar / barh
@@ -231,7 +710,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_18_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_47_0.png)
 
 
 ### 直方图：Axes.hist
@@ -259,7 +738,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_20_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_49_0.png)
 
 
 ### 箱形图：Axes.boxplot
@@ -283,7 +762,7 @@ plt.show()
 - 置信区间参数：
     - `notch`：布尔型。绘制 V 型（中值处内缩的）箱形图。
     - `conf_intervals `：置信区间，n 乘 2 数组（n为单组数据点个数，下例为1000）。
-    - `bootstrap`：整数。用自助抽样法抽取指定个数的样本，并标注 95\% 置信区间。
+    - `bootstrap`：整数。用自助抽样法抽取指定个数的样本，并标注 95% 置信区间。
 - 美化参数：`patch_artist` 默认 False。如果为 True，会填充箱形区域，并支持更改颜色。比如 `facecolor` 参数，它在 `patch_artist=False` 时是无法传入给 boxprops 字典的，因为两种模式下 `boxplot` 返回的类型是不同的。 
 
 
@@ -325,8 +804,174 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_22_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_51_0.png)
 
+
+### 等高线图：Axes.contour(f)
+
+contour 有以下几种调用方法：
+- contour(Z, ...)表示在网格上，绘制高度为 Z 的等高线图。
+- contour(Z, N, ...)表示绘制高度为 Z 的等高线图，其等高线总数为 N 且自动选定。
+- contour(Z, V, ...)表示绘制高度为 Z 的等高线图，其等高线满足列表 V 指定要绘制等高线的高度位置。
+- 以上所有调用方法之前，均可以加上 X, Y 参数，表示在  X,Y 网格上绘制。
+
+其他的一些常用参数（contour 还可以使用 linestyle 与 linewidth）：
+- `colors`：单个字串或一个字串元组。设定等高线颜色。
+- `levels`：即上述调用方法中的 V 参数。
+- `orgin`：[当 X,Y 指定时无作用] 默认'None'，即 Z 的首元素是左下角点。可选'upper'/'lower'/'image'。如果设为'image'，rc值中的`image.origin`会被使用。
+- `extent`：[当 X,Y 指定时无作用] 以四元元组 `(x0, x1, y0, y1)` 的方式传值。如果 `origin` 非 None，它给出图像的边界；如果 `origin` 是 None，则 (x0, y0) 表示 Z[0,0] 的位置，(x1, y1) 表示 Z[-1, -1] 的位置。
+
+至于命令 `Axes.clabel(CS, ...)`，它设置了 CS 对象中存储的等高线的高度标记格式，具体参数有：
+
+- `inline`：布尔型。是否移除高度标记位置下方的等高线，默认 True。
+- `inline_spacing`：数字。高度标记两侧到等高线的空距，默认 5 像素。
+- `fmt`：格式化字串。用于指定高度标记的格式，默认 '%1.3f'（小数点左一位右三位）。
+- `colors`：单个字串或一个字串元组。设定高度标记颜色。
+
+
+```python
+# 本例改编自：http://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.contour.html
+import matplotlib.mlab as mlab
+
+delta = 0.025
+x = np.arange(-3.0, 3.0, delta)
+y = np.arange(-2.0, 2.0, delta)
+X, Y = np.meshgrid(x, y)  # 生成网格
+np.random.seed(0)
+Z1 = mlab.bivariate_normal(X, Y, 1.0, 1.0, 0.0, 0.0)  # 联合正态
+Z2 = mlab.bivariate_normal(X, Y, 1.5, 0.5, 1, 1)
+Z = 10.0 * (Z2 - Z1)
+
+plt.close("all")
+f, ax = plt.subplots(1, 2, figsize=(10, 5))
+ax[0].clabel(ax[0].contour(X, Y, Z, 8), inline=True) 
+ax[0].set_title("Colored contour")
+
+# 想要取消负高度虚线，使用：
+# matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
+ax[1].clabel(ax[1].contour(X, Y, Z, 6, colors="k"), inline=True)
+ax[1].set_title("Contour: negative dashed")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_53_0.png)
+
+
+
+```python
+# 另一个例子，也改编自上例
+import matplotlib.cm as cm
+
+plt.close("all")
+plt.figure()
+# 显示一个图片到坐标轴上
+im = plt.imshow(Z, interpolation='bilinear', origin='lower',
+                cmap=cm.gray, extent=(-3, 3, -2, 2))
+levels = np.arange(-1.2, 1.6, 0.2)
+CS = plt.contour(Z, levels,
+                 origin='lower',
+                 linewidths=2,
+                 extent=(-3, 3, -2, 2))
+
+# 加粗高度为 0 的等高线
+zc = CS.collections[6]
+plt.setp(zc, linewidth=4)
+
+# 每隔一个 level, 标记一次高度
+plt.clabel(CS, levels[1::2],
+           inline=1,
+           fmt='%1.1f',
+           fontsize=14)
+
+# 添加一个颜色条
+CB = plt.colorbar(CS, shrink=0.8, extend='both')
+plt.title('Lines with colorbar')
+
+# 交换以下两行的注释与否，可以得到不同的色图
+#plt.hot()
+plt.flag()
+
+# 可以再加上另一个颜色条
+CBI = plt.colorbar(im, orientation='horizontal', shrink=0.8)
+
+# 调整先前颜色条的位置
+l, b, w, h = plt.gca().get_position().bounds
+ll, bb, ww, hh = CB.ax.get_position().bounds
+CB.ax.set_position([ll, b + 0.1*h, ww, h*0.8])
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_54_0.png)
+
+
+说完 `contour`，再看一个 `contourf` 的例子：
+
+
+```python
+# 本例改编自：http://www.labri.fr/perso/nrougier/teaching/matplotlib/#contour-plots
+# import matplotlib.cm as cm
+plt.close('all')
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 4))
+
+def f(x,y): return (1-x/2+x**5+y**3)*np.exp(-x**2-y**2)
+
+n = 256
+X,Y = np.meshgrid(np.linspace(-3,3,n), np.linspace(-3,3,n))
+Z = f(X, Y)
+
+# 只画出边界：contour
+C1 = ax1.contour(X, Y, Z, 8, linewidth=.5)
+ax1.clabel(C1, inline=1, fontsize=10, fmt='%0.1f')  # 等高线标上数字
+ax1.axis('scaled')
+
+# 只填充颜色：contourf
+ax2.contourf(X, Y, Z, 8, alpha=.75, cmap=cm.gray)
+ax2.axis('scaled')
+
+# 绘制边界并填充颜色
+ax3.contour(X, Y, Z, 8, color='k', linewidth=.5)
+ax3.contourf(X, Y, Z, 8, alpha=.75, cmap='jet')
+ax3.axis('scaled')
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_56_0.png)
+
+
+其中，contourf 的 cmap 参数支持的字串有以下几种：
+
+
+```python
+cmap_paras = ['autumn', 'bone', 'cool', 'copper', 'flag', 'gray', 'hot', 'hsv', 
+              'jet', 'pink', 'prism', 'spring', 'summer', 'winter',
+              'nipy_spectral', 'nipy_spectral_r']
+
+plt.close('all')
+fig, axarr = plt.subplots(len(cmap_paras), 1, sharex=True, figsize=(15, 4))
+
+X, Y = np.meshgrid(np.linspace(0, 10, 1000), np.linspace(0, 1, 10))
+Z = X 
+
+axarr[0].set_title('\'cmap\' Parameter (from low to high) ')
+for index, cmapstr in enumerate(cmap_paras):
+    axarr[index].contourf(X, Y, Z, 40, cmap=cmapstr)  # 分为40级
+    axarr[index].text(10.3, 0.2, cmapstr)
+    axarr[index].set_yticklabels([])
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_58_0.png)
+
+
+## 其他命令
 
 ### 填充：Axes.fill_between / fill_betweenx
 
@@ -366,7 +1011,7 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_24_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_61_0.png)
 
 
 ### 对数坐标轴：Axes.loglog / semilogx / semilogy
@@ -395,7 +1040,61 @@ plt.show()
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_26_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_63_0.png)
+
+
+### 极坐标
+
+
+```python
+x = np.linspace(0, 2 * np.pi, 400)
+y = np.sin(x ** 2)
+
+plt.close('all')
+fig, ax = plt.subplots(1, 1, subplot_kw=dict(projection='polar'))  # 或者 dict(polar=True)
+ax.plot(x, y)
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_65_0.png)
+
+
+### 左手坐标系
+
+实质是翻转了 X 坐标轴。类似地，Y 坐标轴也可以被翻转。
+
+
+```python
+x = np.linspace(0, 2 * np.pi, 100)
+y = np.sin(x)
+
+plt.close("all")
+f, ax = plt.subplots()
+ax.plot(x, y)
+ax.invert_xaxis()
+ax.set_title("Inverted X-axis")
+
+plt.show()
+```
+
+
+![png](https://wklchris.github.io/assets/ipynb-images/Py3-matplotlib_67_0.png)
+
+
+可以用 `xaxis_inverted` 来检测坐标轴是否处于翻转状态：
+
+
+```python
+ax.xaxis_inverted(), ax.yaxis_inverted()
+```
+
+
+
+
+    (True, False)
+
 
 
 ## 附：GIF 动态图保存
