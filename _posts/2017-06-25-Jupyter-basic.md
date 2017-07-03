@@ -2,6 +2,7 @@
 layout: post
 title: Jupyter Notebook基础
 categories: Jupyter
+update: 2017-07-03
 tags: Jupyter
 ---
 
@@ -183,7 +184,7 @@ IRkernel::installspec()
 a = [x for x in range(10000000)]
 ```
 
-    Wall time: 681 ms
+    Wall time: 704 ms
     
 
 `%%timeit` 会默认运行**该行**代码十万次，并返回统计结果。
@@ -193,7 +194,7 @@ a = [x for x in range(10000000)]
 %timeit a = [x for x in range(100)]
 ```
 
-    4.05 µs ± 52.2 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    4 µs ± 12.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
     
 
 ## 其他实用技巧
@@ -241,6 +242,55 @@ $$ \sin\alpha = \cos\beta $$
     E:\Programming\wklchris.github.io\ipynb
     
 
+## 配置文件
+
+Jupyter 是可以用配置文件（以 .py 结尾）修改的方法来调节内容参数的。Windows 下默认的配置文件位于：
+
+```cmd
+C:\Users\User-Name\.jupyter
+```
+如果你没有上述的配置文件，使用命令行命令：
+
+```cmd
+jupyter notebook --generate-config
+```
+
+来创建一个。关于 Ipython 的配置文件，你可以使用：
+
+```cmd
+ipython profile create
+```
+
+来创建。我们常常把 `InteractiveShell.ast_node_interactivity` 项改为 'all' 来显示每个 cell 中的输出（而不是只显示最后一行）。例如：
+
+
+```python
+a, b = 1,2
+a
+b
+```
+
+
+
+
+    1
+
+
+
+
+
+
+    2
+
+
+
+实质上是改动了 ipython_config.py 这个文件，在文件首加上了两行内容：
+
+```python
+c = get_config()
+c.InteractiveShell.ast_node_interactivity = 'all'
+```
+
 ## Python 与 R 共事：rpy2
 
 确认你安装了 rpy2 这个 Python 库。Windows 用户可能需要一些 PATH 环境变量配置。右键我的电脑，属性；左侧选择高级系统设置，“高级”选项卡，右下角环境变量。然后：
@@ -280,7 +330,7 @@ c = a + b
 ```
 
 
-![png](https://wklchris.github.io/assets/ipynb-images/Jupyter-basic_34_0.png)
+![png](https://wklchris.github.io/assets/ipynb-images/Jupyter-basic_37_0.png)
 
 
 变量 c 的值由上述代码返回：
