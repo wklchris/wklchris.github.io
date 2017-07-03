@@ -119,5 +119,6 @@ if tablehtmllst:
         fstr = re.compile(table).sub(transfertable(table), fstr)
 
 os.remove(post_path)
+fstr = re.sub(r"\n{5,}", "\n", fstr)
 with open(post_path, 'w', encoding='utf8') as f:
     f.write(fstr)
