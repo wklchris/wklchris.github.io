@@ -9,8 +9,6 @@ tags: Linux
 
 <!-- more -->
 
-# Win10 Ubuntu 双系统笔记
-
 ## 序
 
 如果你尚未安装 Windows 10，请参考这篇文章：[Ubuntu StackExchange](https://askubuntu.com/questions/666631/how-can-i-dual-boot-windows-10-and-ubuntu-on-a-uefi-hp-notebook)。它会指导你先安装 Ubuntu 再安装 Windows。
