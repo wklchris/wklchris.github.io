@@ -1,8 +1,8 @@
 [myblog]: https://wklchris.github.io
 [GithubPages]: https://pages.github.com/
 
-*This welcoming page was last updated on May, 2017.
-本欢迎页最后更新于 2017 年 6 月。*
+*This welcoming page was last updated on Oct, 2017.
+本欢迎页最后更新于 2017 年 10 月。*
 
 # Welcome to wklchris' Github Blog!
 
@@ -20,6 +20,8 @@ My blog includes:
 - [A simple introduction to Regular Expression](https://wklchris.github.io/Regular-Expression.html)
 - Basic knowledge:
     - Probability: [Post Link](https://wklchris.github.io/Probability.html)
+    - Basic Algorithms: [Post Link]()
+    - Linear Regression: [Post Link]()
 - Go (weiqi) posts:
     - Go terms: [Post Link](https://wklchris.github.io/Go-terms-intro.html)
 
@@ -40,5 +42,7 @@ My blog includes:
 - [一份简单的正则表达式介绍](https://wklchris.github.io/Regular-Expression.html)
 - 基础知识
     - 概率论：[博文链接](https://wklchris.github.io/Probability.html)
+    - 基本算法：[博文链接]()
+    - 线性回归：[博文链接]()
 - 围棋
     - 围棋术语：[博文链接](https://wklchris.github.io/Go-terms-intro.html)
