@@ -11,7 +11,7 @@ layout: default
           [更新: {{ page.update }}]
       {% endif %}
       {% if page.categories %}
-        分类：{% for category in page.categories %}
+        Categories：{% for category in page.categories %}
                 <a href="{{ site.url }}/categories#{{ page.categories }}">{{ category | escape }}</a>; 
                 {% if category == "Go" %}
                   <script type="text/javascript" src="go-support/player/js/all.compressed.js"></script>

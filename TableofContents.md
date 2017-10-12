@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 博文目录
+title: 博文目录 Blog ToC
 permalink: /tableofcontents/
 ---
 
