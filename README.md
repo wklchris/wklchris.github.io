@@ -20,8 +20,8 @@ My blog includes:
 - [A simple introduction to Regular Expression](https://wklchris.github.io/Regular-Expression.html)
 - Basic knowledge:
     - Probability: [Post Link](https://wklchris.github.io/Probability.html)
-    - Basic Algorithms: [Post Link]()
-    - Linear Regression: [Post Link]()
+    - Basic Algorithms: [Post Link](https://wklchris.github.io/Py3-basic-algo.html)
+    - Linear Regression: [Post Link](https://wklchris.github.io/Intro-to-Linear-Regression.html)
 - Go (weiqi) posts:
     - Go terms: [Post Link](https://wklchris.github.io/Go-terms-intro.html)
 
@@ -42,7 +42,7 @@ My blog includes:
 - [一份简单的正则表达式介绍](https://wklchris.github.io/Regular-Expression.html)
 - 基础知识
     - 概率论：[博文链接](https://wklchris.github.io/Probability.html)
-    - 基本算法：[博文链接]()
-    - 线性回归：[博文链接]()
+    - 基本算法：[博文链接](https://wklchris.github.io/Py3-basic-algo.html)
+    - 线性回归：[博文链接](https://wklchris.github.io/Intro-to-Linear-Regression.html)
 - 围棋
     - 围棋术语：[博文链接](https://wklchris.github.io/Go-terms-intro.html)
