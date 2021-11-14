@@ -1,8 +1,0 @@
-(;CA[gb2312]AB[al][bl][cl][cm][dm][dn][do][eo][ep][eq][er][es][bo][bp][ap][aq][ar]
-[as][br][cq][sn][rn][rm][pm][qm][qo][pn][on][oo][no][np][mp][mq][mr][nr][ns][qr]
-[rr][sr][sp][rq]AW[bn][cn][co][cp][dp][cr][dq][dr][ds][bs][ao][nq][op][pp][pq][pr]
-[or][os][qs][po][qp][qq][ro][rp][so][am][bm]C[左下角是三劫连环的棋形，右下角是四劫连环的棋形。
-
-四劫连环可以粘劫形成三劫连环。但注意到，左下角的三劫连环是无法粘劫的。]
-AP[MultiGo:4.4.4]SZ[19]AB[rs]MULTIGOGM[1]
-;B[ps];W[sq];B[oq];W[qn];B[sp];W[qs];B[qo];W[nq]C[还原到初始形。])

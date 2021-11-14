@@ -1,6 +1,0 @@
-(;CA[gb2312]AB[ra][sa][sb][sc][sd][rd][mc][sf][sg][rg][qg][qf][pf][se][oe][ne][nd]
-[md][oc][ob][na][ma][mb]AW[rc][la][lb][lc][ld][le][me][mf][nf][of][og][pg][ph][qh]
-[rh][sh][re][qe][qd][pd][od][pc][pb][oa][pa][qa][rb]C[两子双提的棋形。]AP[MultiGo:4.4.4]
-SZ[19]AB[pe]MULTIGOGM[1]
-;B[qb]LB[qc:a][rf:b]C[黑棋扑。注意白不能在 a 位提子，否则黑 b 则白死。];W[nb]LB[nc:a]
-C[白棋只能反扑。黑棋此时如在 a 位提可以形成普通双活。];B[qc];W[nc];B[ob]C[周而复始。])
