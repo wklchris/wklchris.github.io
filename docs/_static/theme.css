@@ -1,0 +1,5 @@
+@import url("basic.css");
+
+.delete {
+    text-decoration: line-through;
+}

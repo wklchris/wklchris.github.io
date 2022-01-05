@@ -1,0 +1,11 @@
+:nosearch:
+:orphan:
+
+404 Page
+=============
+
+Oops, looks like you have come to the wrong place!
+
+.. note:: For visiters from the old website
+
+   Blogs (in Chinese) have been moved to `Blog <https://wklchris.github.io/blog/>`_ .
