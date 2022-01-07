@@ -13,7 +13,7 @@ Self-portrait
 * Male. Straight. Single. 
 * Having no religion belief. 
 * Being slightly introverted. Feel good at spending time alone or with a small group of people.
-* Never taking naps during the lunch break.
+* Never taking naps in the afternoon.
 * Always proclaim self as a cat person, though it doesn't means that I don't like dogs. My family told me that I loved holding and rubbing cats and dogs on the home floor at the age when I was learning to walk. They said I prefered dogs at that age, but you know, things have definitely changed.
 * Eating light-tasting diet, though accept slight spicy flavor. Like hotpot and tangerines. Dislike greasy/high-fat meat and celery. Stay neutral on ginger and cilantro.
 * A geek. I write codes for many years. I care about hardwares, their specs and performances. I also watch new digital products previews and, just like most geeks, clearly know that I don't have that much money to buy them back.
@@ -36,4 +36,4 @@ Anecdotes
 * In 2017, I went hiking for the first time with my friends and the location was the Pinnacles National Park. I bought a pair of hiking shoes after I got home, but our group of friends never hiked again.
 * I transferred from MS to PhD program in 2019. A lot of things happened that year. I returned home over the summer and found that many things had changed and I had to learn to say goodbye to the warm memories and yesterday.
 * I published my own book in 2020. I was very astonished. As a PhD student, I never thought that the first publication of my life would be a book rather than an academic paper.
-* I reached a new achievement in 2021, which was hospitalization. I have not been hospitalized for as long as I can remember, let alone overseas. Due to winter break and some other reasons, I was pretty much unvisited during my one-week hospitalization, but miraculously I stayed in a pretty good mood. It made me sure my heart would be stronger when I got discharged from the hospital.
+* I reached a new achievement in 2021, which was hospitalization. I have not been hospitalized for as long as I can remember, let alone overseas. Due to winter break and some other reasons, I was pretty much unvisited during my one-week hospitalization, but miraculously I stayed in a pretty good mood. I have no doubt that I've gotten tougher.

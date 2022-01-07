@@ -61,7 +61,8 @@ html_theme_options = {
     'sidebar_toc_exclude': ['404'],
     'social_accounts': {
         'github': {'user': 'wklchris', 'url': 'https://github.com/wklchris'},
-        'linkedin': {'user': 'kanglong-wu', 'url': 'https://www.linkedin.com/in/kanglong-wu/'}
+        'linkedin': {'user': 'kanglong-wu', 'url': 'https://www.linkedin.com/in/kanglong-wu/'},
+        'bilibili': {'user': 'wklchris', 'url': "https://space.bilibili.com/4595187"}
     },
     # 'people': people_json,
     # 'people_pages': ['People'],

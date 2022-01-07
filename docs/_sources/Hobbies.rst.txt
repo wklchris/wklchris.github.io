@@ -1,15 +1,21 @@
 Hobbies
 ===============
 
+.. warning::
+
+   This page is tedious, casually organized, and has quite a bit of redundancy, but it's probably unavoidable if you want to explain your hobby in detail to others.
 
 I consider myself to be a person with a relatively wide range of hobbies. However, some of my hobbies are indeed somewhat niche. My hobbies include:
 
 * `Computer \& Programming`_
 * `Go (Weiqi)`_
 * `Photography`_
-* `Tone Tuning (Virtual Singer)`_
+* `Tone Tuning & Video Editing`_
 * `Music Listening`_
 * `Magic Cube`_
+
+Well, there are still hobbies I didn't put here. I don't want the page to be too long ...... even though it's already not too short.
+
 
 Computer \& Programming
 ----------------------------
@@ -95,14 +101,28 @@ I didn't bring my camera with me oversea, so I can only show you some photos tak
    :width: 30%
 
 
-Tone Tuning (Virtual Singer)
+Tone Tuning & Video Editing
 ------------------------------------
 
 .. important::
    
-   I am a skilled tone tuner of the virtual singer software UTAU. I have heard of Synthesizer V and will probably buy it and try in the future.
+   I am a skilled tone tuner of the virtual singer software UTAU. I upload my work to the site as videos, so yes, I know how to do video editing and bitrate-compressing as well. 
+   
+   I have heard of the advanced tuning software Synthesizer V and will probably buy it and try in the future.
 
-Many people may not understand what kind of hobby this is. Simply put, it's about making virtual singers' voices match the beat, pitch, and emotion of a song so that they can sing it.
+There is nothing too much to explain about video editing. Video creators who love animation (yes I am one of them) will use images, videos, music or other media to edit and recreate their favorite animation works, and the final video result is called MAD or AMV (technically there is a difference between the two, but I won't go into it here). The purpose of the creation is often to express love for the original work (or the characters or story within it), or to make an adaptation of the original story.
+
+The following is a MAD I created in 2014 using the music *One Year, Two Months and Twenty Days* (1年2个月又20天) in conjunction with the animation *5cm per Second* (秒速五厘米). Unfortunately, the video editing really takes a lot of time and I had little time to create another one after this.
+
+.. raw:: html
+   
+   <div class="embedded-video">
+     <iframe src="https://player.bilibili.com/player.html?aid=1643833&bvid=BV1bx411P7T1&cid=2500254&page=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+   </div>
+
+-----
+
+Many people may not understand what ”Tone Tuning“ is. Simply put, it's about making virtual singers' voices match the beat, pitch, and emotion of a song so that they can sing it.
 
 The most famous virtual singer in the world is `Hatsune Miku`_ (初音ミク). If you haven't heard her name, I'm sure you've heard her coverf of *Ievan Polkka* (`Video link <https://www.youtube.com/watch?v=jrgO_9ey53M>`_). Here is a portrait of Hatsune Miku from the official Crypton website:
 
@@ -123,7 +143,7 @@ The voice software (synthesizer) behind Miku is Vocaloid_, initially made by Yam
 
 In the 2010s, the most famous free synthesizer is UTAU_ and that is exactly the software I am familiar with. I started my tuner hobby in 2014, right after the release of virtual singer Ge Ping. I am grateful for his generosity on the virtual singer, which allows me to explore the fun of music in this way.
 
-Here are some samples tuned by me, covered by the virtual singer Ge Ping:
+Here are some samples tuned by me, covered by the virtual singer Ge Ping (葛平). 
 
 * *One Night in Beijing* (北京一夜): The falsetto vocal effect is simulated in the chorus. I tuned this in 2015.
 
@@ -142,6 +162,12 @@ Here are some samples tuned by me, covered by the virtual singer Ge Ping:
        <source src="_static/Sample_RuYan.mp3" type="audio/mpeg">
        Your browser does not support the <code>audio</code> element. 
      </audio>
+
+.. warning::
+
+   You can check more samples from my `Bilibili space`_. However, some video works are in heavy Kichiku (鬼畜) or spoof style and may cause DISCOMFORT. If you do not know much about this video style, I recommend not trying or at least watching with caution.
+
+You may have noticed that these tone tuning samples are all covered by Ge Ping. Who is him? Here is a brief introduction of the tone tuning history behind him.
 
 .. note::
    
@@ -188,7 +214,7 @@ For English songs, I started with `Avril Lavigne`_ (1984--), since she is the fi
 * Coldplay: *Something Just like This*, *Viva la Vida*, and *Yellow*
 * Fall Out Boy: *Centuries*, *Imortals*, and *My Songs Know What You Did in the Dark*
 * Groove Coverage: *Far Away from Home* and *She*
-* **Image Dragons**: *Demons* and *Radioactive*
+* **Image Dragons**: *Believer*, *Demons*, and *Radioactive*
 * John Legend: *All of Me* and *Someday*
 * Kelly Clarkson: *Catch My Breath*, *Mr. Know It All*, and *Stronger*
 * Lady Gaga: *Bad Romance* and *Poker Face*
@@ -271,6 +297,7 @@ My personal best was to achieve an average of around 16 seconds for five restore
 .. _AlphaGo: https://deepmind.com/research/case-studies/alphago-the-story-so-far
 .. _Angela Zhang: https://en.wikipedia.org/wiki/Angela_Zhang
 .. _Avril Lavigne: https://en.wikipedia.org/wiki/Avril_Lavigne
+.. _Bilibili space: https://space.bilibili.com/4595187
 .. _D3.js: https://d3js.org/
 .. _Delphi: https://en.wikipedia.org/wiki/Delphi_(software)
 .. _Eason Chan: https://en.wikipedia.org/wiki/Eason_Chan

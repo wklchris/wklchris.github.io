@@ -6,6 +6,10 @@
 
 Oops, looks like you have come to the wrong place!
 
-.. note:: For visiters from the old website
+.. note:: 
+   
+   如果您是本站以前的博客文章访客，我已将博客转移到以下子页面： `Blog`_。
 
-   Blogs (in Chinese) have been moved to `Blog <https://wklchris.github.io/blog/>`_ .
+   If you are a previous visitor to a blog post on this site, I have moved the my blogs (in Chinese) to the following sub-page: Blog_.
+
+.. _Blog: https://wklchris.github.io/blog/
