@@ -48,7 +48,7 @@ gettext_compact = False
 html_theme_options = {
     'canonical_prefix': "https://wklchris.github.io/",
     'favicon': "favicon.ico",
-    'headbar_links': ['Research', 'Hobbies', 'Blog'],
+    'headbar_links': ['AboutMe', 'Research', 'Hobbies/index', 'Blog'],
     'sidebar_position': 'left',
     'github_user': 'wklchris',
     'github_repo': 'wklchris.github.io',

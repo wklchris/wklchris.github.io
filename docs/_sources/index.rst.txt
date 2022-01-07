@@ -8,7 +8,7 @@ Welcome to wklchris' Website!
    
    AboutMe.rst
    Research.rst
-   Hobbies.rst
+   Hobbies/index.rst
    Blog.rst
 
 -----
