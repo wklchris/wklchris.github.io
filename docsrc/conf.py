@@ -57,7 +57,7 @@ html_theme_options = {
     'logo_width': 0.75,
     'logo_radius': 0.5,
     'sidebar_home_text': f'Kanglong Wu',
-    # 'sidebar_localtoc': 'collapse',
+    'sidebar_localtoc': 'collapse',
     'sidebar_toc_exclude': ['404'],
     'social_accounts': {
         'github': {'user': 'wklchris', 'url': 'https://github.com/wklchris'},

@@ -1,11 +1,19 @@
 Video Editing & Tone Tuning (Virtual Singer)
--------------------------------------------------
+===================================================
 
 .. important::
    
    I am a skilled tone tuner of the virtual singer software UTAU. I upload my work to the site as videos, so yes, I know how to do video editing and bitrate-compressing as well. 
    
    I have heard of the advanced tuning software Synthesizer V and will probably buy it and try in the future.
+
+.. warning::
+
+   You can check most of my video samples from my `Bilibili space`_. However, some video works are in heavy Kichiku (鬼畜) or spoof style and may cause DISCOMFORT. If you do not know much about this video style, I recommend not trying or at least watching with caution.
+
+
+Video Editing
+--------------------
 
 There is nothing too much to explain about video editing. Video creators who love animation (yes I am one of them) will use images, videos, music or other media to edit and recreate their favorite animation works, and the final video result is called MAD or AMV (technically there is a difference between the two, but I won't go into it here). The purpose of the creation is often to express love for the original work (or the characters or story within it), or to make an adaptation of the original story.
 
@@ -17,7 +25,9 @@ The following is a MAD I created in 2014 using the music *One Year, Two Months a
      <iframe src="https://player.bilibili.com/player.html?aid=1643833&bvid=BV1bx411P7T1&cid=2500254&page=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
    </div>
 
------
+
+Tone Tuning
+--------------------
 
 Many people may not understand what ”Tone Tuning“ is. Simply put, it's about making virtual singers' voices match the beat, pitch, and emotion of a song so that they can sing it.
 
@@ -59,10 +69,6 @@ Here are some samples tuned by me, covered by the virtual singer Ge Ping (葛平
        <source src="../_static/Sample_RuYan.mp3" type="audio/mpeg">
        Your browser does not support the <code>audio</code> element. 
      </audio>
-
-.. warning::
-
-   You can check more samples from my `Bilibili space`_. However, some video works are in heavy Kichiku (鬼畜) or spoof style and may cause DISCOMFORT. If you do not know much about this video style, I recommend not trying or at least watching with caution.
 
 You may have noticed that these tone tuning samples are all covered by Ge Ping. Who is him? Here is a brief introduction of the tone tuning history behind him.
 

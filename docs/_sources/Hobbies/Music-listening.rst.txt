@@ -1,11 +1,15 @@
 Music Listening
---------------------
+======================
 
 .. important::
     
    The vast majority of the songs I listen to are in Mandarin, and I had a couple of years where I really liked English songs. I also listen to some Japanese songs from ACG culture, even though I don't speak Japanese. 
 
    I also listen to some concert music, mainly piano music from Bandari. But I have no knowledge of classical music, and most of the pieces I listen to come from friends' recommendations or internet trends.
+
+
+Chinese Songs
+-------------------
 
 For Chinese people born in the 90s who listen to songs, `Jay Chou`_ (周杰伦, 1979--) is a mountain that cannot be bypassed. Yes, the singer I've heard the most is definitely him. Although I'm not a fan of any singer, if I had to say one of my favorite singers, it would be him. I like his *Quiet* (安静), *Broken Strings* (断了的弦), *Sunny Day* (晴天), *Excuses* (借口), *Stranded* (搁浅), *Nocturne* (夜曲), *Maple* (枫), *Step Back* (退后), *Rainbow* (彩虹)... just too many to count.
 
@@ -15,7 +19,8 @@ I don't listen to many songs by female singers, but if I were to choose the favo
 
 In addition to solo artists, I have listened to some groups, mainly `Mayday`_ (五月天). Their *Stubborn* (倔强), *Angel* (天使) and *Suddenly Miss You* (突然好向你) are very famous songs, and I like also their *Embrace* (拥抱), *Tenderness* (温柔) and *Cang Jie* (仓颉). The first music CD I bought was also from a group, which is *Forever* from `S.H.E.`_. The tracks I listened to the most in the CD were *Superstar* and *Persian Cat* (波斯猫). But apart from these two songs with *He Still Doesn't Understand* (他还是不懂) and *Lovers Not Yet* (恋人未满), I haven't listened to too many of their songs.
 
------
+English Songs
+--------------------
 
 For English songs, I started with `Avril Lavigne`_ (1984--), since she is the first poular singer I noticed. I had heard many English songs before her, but the distribution of singers was very fragmented (and in fact still is for now). Here are some of the artists I've heard at least two songs from (in alphabetical order, bolded ones are the artists I have really liked for a period of time):
 
@@ -37,7 +42,8 @@ For English songs, I started with `Avril Lavigne`_ (1984--), since she is the fi
 * The Fray: *Never Say Never* and *Over My Head (Cable Car)*
 * Westlife: *My Love* and *Seasons In The Sun*
 
------
+Japanese Songs
+--------------------
 
 For Japanese songs, most of the Japanese songs I've heard are from the Japanese ACG (Anime, Comics and Games) culture scene:
 
@@ -62,12 +68,14 @@ Others Japanese songs that I listened to are from virtual singers, such as Miku,
 
 * Kaito: *上弦の月*
 * GUMI: *人生リセットボタン* (人生 Reset Button)
-* IA: *六兆年と一夜物語* (六兆年零一夜的故事)
-* 初音ミク (初音未来): *千本桜* (千本樱), *鸟の诗* (鸟之诗), *World is Mine*, and *が-からくりピエロ* (活动小丑)
+* IA: *六兆年と一夜物語* (六兆年零一夜的故事) and *鸟の诗* (鸟之诗)
+* 初音ミク (初音未来): *千本桜* (千本樱), *ワールドイズマイン* (World is Mine), *Freely Tomorrow*, *Sweet Devil*, *恋愛裁判* and *が-からくりピエロ* (活动小丑)
 * 鏡音リン (镜音双子): *ロストワンの号哭* (Lost One 的号哭)
 * ……
 
------
+
+Other Music
+------------------
 
 For concert or non-vocal music, although I took violin lessons for a while, I was more interested in piano pieces. This may have been influenced by a good friend of mine who plays the piano, especially on the piano pieces played by Bandari. Although Bandari has many famous pieces (especially in China), there is little public information about it, so there are many who still doubt that this Swiss orchestra really exists. It is worth mentioning that the Bandari repertoire *Annie's Wonderland* (安妮的仙境) and *Childhood Memory* (童年) were my school's residential music when I was in high school.
 
