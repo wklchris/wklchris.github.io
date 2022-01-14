@@ -26,6 +26,15 @@ The book is avaliable on `JD <https://item.jd.com/12925624.html>`_, `Dangdang <h
 Articles, Reports, \& Inproceedings
 -----------------------------------------
 
+.. figure:: _static/photos/TRB101-Poster.jpg
+    :width: 70%
+    :alt: Me hosting my poster session at the 101st TRB meeting, Washington D.C, 2022.
+    :align: center
+
+    Me hosting my poster session at the 101st TRB meeting, Washington D.C, 2022.
+
+-----
+
 Here are my academic publications.
 
 .. bibliography:: refs.bib

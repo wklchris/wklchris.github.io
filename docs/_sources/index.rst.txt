@@ -11,11 +11,14 @@ Welcome to wklchris' Website!
    Hobbies/index.rst
    Blog.rst
 
+
+*Last build*: |today|
+
 -----
 
-My name is Kanglong Wu, or you can call me by my internet nickname ``wklchris``.
+My name is Kanglong Wu, or you can call me by my internet nickname ``wklchris``. 
 
-I got my BS degree in Transportation Engineering (with a Mathematics minor) in `Tongji University`_ in Shanghai, China. Now I am a PhD student in Transportation Engineering program of the Department of Civil and Environmental Engineering at University of California, Davis (`UC Davis`_). 
+I got my BS degree in Transportation Engineering (with a Mathematics minor) in `Tongji University`_ in Shanghai, China. Now I am a PhD student in Transportation Engineering program of the Department of Civil and Environmental Engineering at University of California, Davis (`UC Davis`_). If you would like to contact me academically, please send messages to *klowu* followed by the *ucdavis.edu* suffix.
 
 Although I don't major in computer science, I have been learning programming since I was 10 years old and have always loved it. This is the reason why I am active on Github and have created this personal site.
 
