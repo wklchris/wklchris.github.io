@@ -12,4 +12,5 @@ I consider myself to be a person with a relatively wide range of hobbies. Howeve
     Photography.rst
     Tone-tuning.rst
     Music-listening.rst
+    Games.rst
     Rubik-cube.rst

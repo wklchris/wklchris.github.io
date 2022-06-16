@@ -17,8 +17,6 @@ Yes, that's right, of course. Programming has been my biggest passion for a long
    :target: https://github.com/wklchris/sphinx-simrofy-theme
 
 * Around 2000 (at the age of about 6), I was introduced to computers. I was very fortunate to be exposed to and interested in computers at a very young age, especially against the backdrop of the slow penetration of computers in China at that time.
-  
-  The reason is that my father was a computer enthusiast and purchased a personal computer from the family in the Windows 95 era. I can still remember that the first graphic game I got to play on the Windows 98 computer in my home was `Virtua Cop`_ (Chinese name: "VR特警"), a first-person shooter game released by Sega_ in 1994.
 
 * In 2004, I started learning programming. Pascal_ was the first language I came across in my life, learning it in a Delphi_ environment. 
 

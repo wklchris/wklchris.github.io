@@ -246,6 +246,9 @@ div.admonition.warning {
     padding-bottom: 5px;
  }
 
+/* admonition lists */
+
+div.admonition > ul { padding-left: 1.5em; }
 
 /* admonition titles */
 

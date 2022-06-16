@@ -11,13 +11,13 @@ Music Listening
 Chinese Songs
 -------------------
 
-For Chinese people born in the 90s who listen to songs, `Jay Chou`_ (周杰伦, 1979--) is a mountain that cannot be bypassed. Yes, the singer I've heard the most is definitely him. Although I'm not a fan of any singer, if I had to say one of my favorite singers, it would be him. I like his *Quiet* (安静), *Broken Strings* (断了的弦), *Sunny Day* (晴天), *Excuses* (借口), *Stranded* (搁浅), *Nocturne* (夜曲), *Maple* (枫), *Step Back* (退后), *Rainbow* (彩虹)... just too many to count.
+For Chinese people born in the 90s who listen to songs, `Jay Chou`_ (**周杰伦**, 1979--) is a mountain that cannot be bypassed. Yes, the singer I've heard the most is definitely him. Although I'm not a fan of any singer, if I had to say one of my favorite singers, it would be him. I like his *Quiet* (安静), *Broken Strings* (断了的弦), *Sunny Day* (晴天), *Excuses* (借口), *Stranded* (搁浅), *Nocturne* (夜曲), *Maple* (枫), *Step Back* (退后), *Rainbow* (彩虹)... just too many to count.
 
-Many people would say, "Hey, that's cheating! Because saying your favorite singer is Jay is an always correct but never uninteresting answer." Wow, you're right. If I were to count backwards, it would be `Eason Chan`_ (陈奕迅, 1974--) and `Yoga Lin`_ (林宥嘉, 1987--). I like Eason Chan's *King of Karaoke* (K歌之王), *Your Backpack* (你的背包) and *Don't Talk* (不要说话), and Yoga Lin's *Backdrop* (背影), *Lie* (说谎) and *Want to be Free* (想自由).
+Many people would say, "Hey, that's cheating! Because saying your favorite singer is Jay is an always correct but never uninteresting answer." Wow, you're right. If I were to count backwards, it would be `Eason Chan`_ (**陈奕迅**, 1974--) and `Yoga Lin`_ (**林宥嘉**, 1987--). I like Eason Chan's *King of Karaoke* (K歌之王), *Your Backpack* (你的背包) and *Don't Talk* (不要说话), and Yoga Lin's *Backdrop* (背影), *Lie* (说谎) and *Want to be Free* (想自由).
 
-I don't listen to many songs by female singers, but if I were to choose the favorite one, it would probably be `Angela Zhang`_ (张韶涵, 1982--). She was the first female singer I saw in a music video, at which time I was in elementary school. She released her first and second albums in 2004, and the songs *Fable* (寓言), *Lost Beauty* (遗失的美好), *Aurora* (欧若拉), *Happy Worship* (快乐崇拜), and *Sun in the Hand* (手心的太阳) were all highly popular at the time. To make up also three singers, I will list `Fish Leong`_ (梁静茹, 1978--) and `Karen Mok`_ (莫文蔚, 1970--). Although Leong is known for singing gentle, slow-tempo love songs like *Breathing Pain* (会呼吸的痛) and *Quiet Summer* (宁夏), I like her fast-paced *Swallowtail Butterfly* (燕尾蝶) best. Karen Mok's hits are also very numerous, such as *Cloudy Day* (阴天), *Fruits of Summer* (盛夏的果实) and *Suddenly* (忽然之间), but I prefer her *He Doesn't Love Me* (他不爱我) and *If I Don't Have You* (如果没有你). 
+I don't listen to many songs by female singers, but if I were to choose the favorite one, it would probably be `Angela Zhang`_ (**张韶涵**, 1982--). She was the first female singer I saw in a music video, at which time I was in elementary school. She released her first and second albums in 2004, and the songs *Fable* (寓言), *Lost Beauty* (遗失的美好), *Aurora* (欧若拉), *Happy Worship* (快乐崇拜), and *Sun in the Hand* (手心的太阳) were all highly popular at the time. To make up also three singers, I will list `Fish Leong`_ (**梁静茹**, 1978--) and `Karen Mok`_ (**莫文蔚**, 1970--). Although Leong is known for singing gentle, slow-tempo love songs like *Breathing Pain* (会呼吸的痛) and *Quiet Summer* (宁夏), I like her fast-paced *Swallowtail Butterfly* (燕尾蝶) best. Karen Mok's hits are also very numerous, such as *Cloudy Day* (阴天), *Fruits of Summer* (盛夏的果实) and *Suddenly* (忽然之间), but I prefer her *He Doesn't Love Me* (他不爱我) and *If I Don't Have You* (如果没有你). 
 
-In addition to solo artists, I have listened to some groups, mainly `Mayday`_ (五月天). Their *Stubborn* (倔强), *Angel* (天使) and *Suddenly Miss You* (突然好向你) are very famous songs, and I like also their *Embrace* (拥抱), *Tenderness* (温柔) and *Cang Jie* (仓颉). The first music CD I bought was also from a group, which is *Forever* from `S.H.E.`_. The tracks I listened to the most in the CD were *Superstar* and *Persian Cat* (波斯猫). But apart from these two songs with *He Still Doesn't Understand* (他还是不懂) and *Lovers Not Yet* (恋人未满), I haven't listened to too many of their songs.
+In addition to solo artists, I have listened to some groups, mainly `Mayday`_ (**五月天**). Their *Stubborn* (倔强), *Angel* (天使) and *Suddenly Miss You* (突然好向你) are very famous songs, and I like also their *Embrace* (拥抱), *Tenderness* (温柔) and *Cang Jie* (仓颉). The first music CD I bought was also from a group, which is the album *Forever* from `S.H.E.`_. The tracks I listened to the most in the CD were *Superstar* and *Persian Cat* (波斯猫). But apart from these two songs with *He Still Doesn't Understand* (他还是不懂) and *Lovers Not Yet* (恋人未满), I haven't listened to too many of their songs.
 
 English Songs
 --------------------
@@ -29,15 +29,16 @@ For English songs, I started with `Avril Lavigne`_ (1984--), since she is the fi
 * Coldplay: *Something Just like This*, *Viva la Vida*, and *Yellow*
 * Fall Out Boy: *Centuries*, *Imortals*, and *My Songs Know What You Did in the Dark*
 * Groove Coverage: *Far Away from Home* and *She*
-* **Image Dragons**: *Believer*, *Demons*, and *Radioactive*
+* **Image Dragons**: *Believer*, *Demons*, *It's Time*, *Natural* and *Radioactive*
 * John Legend: *All of Me* and *Someday*
 * Kelly Clarkson: *Catch My Breath*, *Mr. Know It All*, and *Stronger*
 * Lady Gaga: *Bad Romance* and *Poker Face*
-* **Linkin Park**: *Crawling*, *Leave out All the Rest*, *Lost in the Echo*, *New Divide*, *Numb*, and *Skin to Bone*
+* **Linkin Park**: *Crawling*, *In the End*, *Leave out All the Rest*, *Lost in the Echo*, *New Divide*, *Numb*, and *Skin to Bone*
 * **Maroon 5**: *Animals*, *Maps*, *Moves Like Jagger*, *Payphone*, *She Will Be Loved*, *Sugar*, and *This Love*
-* One Republic: *Apologize* and *Counting Stars*
+* **One Republic**: *Apologize* and *Counting Stars*
 * Owl City: *Fireflies* and *Good Time*
 * **Shayne Ward**: *Breathless*, *I Cry*, *No Promises*, and *Until You*
+* Starset: *Antigravity*, *Carnivore*, *Monster*, *My Demons*, and *Satellite*
 * **Taylor Swift**: *22*, *Back To December*, *i knew you were trouble*, and *You Belong With Me*
 * The Fray: *Never Say Never* and *Over My Head (Cable Car)*
 * Westlife: *My Love* and *Seasons In The Sun*

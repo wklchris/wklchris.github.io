@@ -12,8 +12,6 @@ Welcome to wklchris' Website!
    Blog.rst
 
 
-*Last build*: |today|
-
 -----
 
 My name is Kanglong Wu, or you can call me by my internet nickname ``wklchris``. 
@@ -28,12 +26,16 @@ Sub-sites
 
 Here is the list of sub-sites of this personal Github.io domain:
 
-* **Blog**: You may visit the *Blogs* page (from the sidebar or topbar) for details.
-* **Simrofy**: This website is built on a Sphinx theme that I developed in my spare time, called "Simrofy". You can access its documentation by visiting the Simrofy_ sub-site. The source code (Github repo) is available at `wklchris/sphinx-simrofy-theme`_.
+* **Blog**: You may visit the *Blogs* page (from the sidebar/topbar, or via this link: Blogs_\ ) for my blog details.
+* **Simrofy**: I developed a website theme/template in my spare time called "Simrofy". The site you are viewing now is also built based on Simrofy. You can visit its documentation by visiting my `Simrofy main documentation`_ sub-site. The source code (Github repo) is available at `wklchris/sphinx-simrofy-theme`_.
 
 
-.. _Blog: https://wklchris.github.io/blog/
-.. _Simrofy: https://wklchris.github.io/sphinx-simrofy-theme/
+
+*Last build of the website*: |today|
+
+
+.. _Blogs: https://wklchris.github.io/Blog.html
+.. _Simrofy main documentation: https://wklchris.github.io/sphinx-simrofy-theme/
 .. _Tongji University: https://www.tongji.edu.cn
 .. _UC Davis: https://www.ucdavis.edu/
 .. _wklchris/sphinx-simrofy-theme: https://github.com/wklchris/sphinx-simrofy-theme

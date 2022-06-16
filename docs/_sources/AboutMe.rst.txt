@@ -1,9 +1,9 @@
 About Me
 ===============
 
-This page introduces myself in more detail in a *casual* tone.
+.. note::
 
-After all, no one hands out a resume when they introduce themselves to friends, right?
+   This page is **NOT** a resume. It introduces myself in more detail in a *casual* tone.
 
 
 Self-portrait
