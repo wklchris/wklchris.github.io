@@ -16,7 +16,7 @@ Welcome to wklchris' Website!
 
 My name is Kanglong Wu, or you can call me by my internet nickname ``wklchris``. 
 
-I got my BS degree in Transportation Engineering (with a Mathematics minor) in `Tongji University`_ in Shanghai, China. Now I am a PhD student in Transportation Engineering program of the Department of Civil and Environmental Engineering at University of California, Davis (`UC Davis`_). If you would like to contact me academically, please send messages to *klowu* followed by the *ucdavis.edu* suffix.
+I got my BS degree in Transportation Engineering (with a Mathematics minor) in `Tongji University`_ in Shanghai, China. Now I am a PhD student in Transportation Engineering program of the Department of Civil and Environmental Engineering at University of California, Davis (`UC Davis`_). 
 
 Although I don't major in computer science, I have been learning programming since I was 10 years old and have always loved it. This is the reason why I am active on Github and have created this personal site.
 
@@ -26,15 +26,21 @@ Sub-sites
 
 Here is the list of sub-sites of this personal Github.io domain:
 
-* **Blog**: You may visit the *Blogs* page (from the sidebar/topbar, or via this link: Blogs_\ ) for my blog details.
+* **Blog**: You may visit the *Blogs* page (from the sidebar/topbar, or via this link: :doc:`Blog`\ ) for my blog details.
 * **Simrofy**: I developed a website theme/template in my spare time called "Simrofy". The site you are viewing now is also built based on Simrofy. You can visit its documentation by visiting my `Simrofy main documentation`_ sub-site. The source code (Github repo) is available at `wklchris/sphinx-simrofy-theme`_.
 
+
+Contact Me
+----------------
+
+You can contact me via my usuall e-mail, which is my internet nickname *wklchris* followed by the *hotmail dot com* suffix.
+
+If you would like to contact me *academically*, please send messages to *klowu* followed by the *ucdavis.edu* suffix.
 
 
 *Last build of the website*: |today|
 
 
-.. _Blogs: https://wklchris.github.io/Blog.html
 .. _Simrofy main documentation: https://wklchris.github.io/sphinx-simrofy-theme/
 .. _Tongji University: https://www.tongji.edu.cn
 .. _UC Davis: https://www.ucdavis.edu/

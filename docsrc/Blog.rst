@@ -1,7 +1,9 @@
 Blogs
 ==========
 
-You can visit my Blog_ page (in Chinese).  
+.. note::
+   
+   To see my blogs (in Chinese), visit the blog subsite of this website: https://wklchris.github.io/blog/
 
 
 Why do I write?

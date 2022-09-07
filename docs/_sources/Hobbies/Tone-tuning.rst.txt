@@ -5,7 +5,7 @@ Video Editing & Tone Tuning (Virtual Singer)
    
    I am a skilled tone tuner of the virtual singer software UTAU. I upload my work to the site as videos, so yes, I know how to do video editing and bitrate-compressing as well. 
    
-   I have heard of the advanced tuning software Synthesizer V and will probably buy it and try in the future.
+   I have also purchased the advanced tuning software Synthesizer V and play it around for a while.
 
 .. warning::
 

@@ -27,6 +27,7 @@ html_theme = 'sphinx-simrofy-theme'
 
 # Static paths. Folder for images, CSS, etc.
 html_static_path = ["_static"]
+html_css_files = ["css/roofpig.css"]
 
 # Load external data, if needed
 try:
