@@ -23,7 +23,7 @@ My hobbies include (but are not limited to):
      :align: center
      :alt: The first Go joseki I learned
 
-* :doc:`Rubik-cube`: I am 3x3 cuber with a single best of 13.81 seconds, but it is not recorded by a camera. Here is a video for the fast solve that I have ever recorded.
+* :doc:`Rubik-cube`: I am 3x3 cuber with a single best of 13.81 seconds, but it is not recorded by a camera. Here is a video for the fast solve that I have ever recorded (14.51 sec).
 
   .. raw:: html
      :file: ../_static/js/Rubik-pb.html

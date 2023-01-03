@@ -1,7 +1,7 @@
 Publications
 ============================
 
-I am mostly interested in traffic operations and now am pursuing the PhD degree with a dissertation topic of transit bus operation.
+I am mostly interested in traffic operations and now am pursuing the PhD degree with a dissertation topic of transit bus operation. I also work on transportation health \& equity topics.
 
 
 Published Books
@@ -35,8 +35,22 @@ Articles, Reports, \& Inproceedings
 
 -----
 
-Here are my academic publications.
+Here are my academic records:
 
-.. bibliography:: refs.bib
-    :filter: not (type == "book")
+* Articles
 
+  .. bibliography:: refs.bib
+      :list: bullet
+      :filter: type == "article"
+
+* Conference presentation \& Inproceedings
+
+  .. bibliography:: refs.bib
+      :list: bullet
+      :filter: type == "inproceedings"
+
+* Reports
+
+  .. bibliography:: refs.bib
+      :list: bullet
+      :filter: type == "techreport"
