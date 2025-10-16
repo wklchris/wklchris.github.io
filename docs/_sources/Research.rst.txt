@@ -16,10 +16,6 @@ I have a published book (in Chinese) about the use of LaTeX, and the book itself
 
     The cover picture of my published LaTeX book (Picture from iTuring)
 
-
-.. bibliography:: refs.bib
-    :filter: type == "book"
-
 The book is avaliable on `JD <https://item.jd.com/12925624.html>`_, `Dangdang <http://product.dangdang.com/28989929.html>`_, and `iTuring <https://www.ituring.com.cn/book/2685>`_.
 
 

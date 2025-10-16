@@ -16,6 +16,20 @@
 
 一个详细的本站点发展史可以阅读[本站历史](https://wklchris.github.io/blog/About.html).
 
+## 依赖项与运行
+
+请查看 [requirements.txt](./requirements.txt) 来了解 Python 环境所需的包。要为本项目执行 Sphinx 命令（可能需要一个过时的版本），使用 Pip 或者 UV 工具来同步以下设置到你的本地 Python 虚拟环境：
+```
+uv venv
+uv pip sync requirements.txt
+```
+对于 pip 用户，则使用 `pip install -r requirements.txt` 命令。
+
+之后激活 Python 环境（假设位于 .venv 目录），并允许 make.py 文件来构建网站：
+```
+.venv/Scripts/Activate.ps1  # Windows
+python make.py
+```
 
 ## 许可证
 
