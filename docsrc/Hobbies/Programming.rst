@@ -3,7 +3,7 @@ Computer \& Programming
 
 .. important::
    
-   Now I mainly use Python, and I rarely use Pascal/C++/C# that I learned before. I also know HTML/CSS and a little Javascript, otherwise I wouldn't have been able to write this site.
+   Now I mainly use Python/C++, and I rarely use Pascal/C# that I learned before. I also know HTML/CSS and a little Javascript, otherwise I wouldn't have been able to write this site.
    
    If you consider LaTeX a programming language, I'm a heavy LaTeX user too. See my published book on how to use LaTeX (Github repo: `wklchris/Note-by-LaTeX`_). 
 

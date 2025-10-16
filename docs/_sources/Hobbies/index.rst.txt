@@ -5,7 +5,7 @@ I consider myself to be a person with a relatively wide range of hobbies. Howeve
 
 My hobbies include (but are not limited to):
 
-* :doc:`Computer Programming </Hobbies/Programming>`: I use Python/R, HTML/JS, C\#, and more. I have published a book for using LaTeX (if it counts as a programming language).
+* :doc:`Computer Programming </Hobbies/Programming>`: I use Python/C++, HTML/JS, C\#, R, and more. I have published a book for using LaTeX (if it counts as a programming language).
   
   .. image:: ../_static/repo-Note-by-LaTeX.jpg
      :height: 160px
@@ -23,7 +23,7 @@ My hobbies include (but are not limited to):
      :align: center
      :alt: The first Go joseki I learned
 
-* :doc:`Rubik-cube`: I am 3x3 cuber with a single best of 13.81 seconds, but it is not recorded by a camera. Here is a video for the fast solve that I have ever recorded (14.51 sec).
+* :doc:`Rubik-cube`: I am 3x3 cuber with a single best of 9.91 seconds, but it is not recorded by a camera. Here is a video for the fast solve that I have ever recorded (10.49 sec).
 
   .. raw:: html
      :file: ../_static/js/Rubik-pb.html
